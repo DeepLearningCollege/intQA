@@ -140,6 +140,29 @@ def create_model_inputs(sess, words_placeholder, ctx, qst,
         options, wiq, wic, sq_dataset, ctx_pos, qst_pos, ctx_ner, qst_ner,
         word_chars, cove_cells, use_dropout, batch_size, input_keep_prob,
         keep_prob, rnn_keep_prob):
+    """
+
+    :param sess:
+    :param words_placeholder: 단어 룩업에서 딕셔너리인데, map인지 array인지 구분필요.
+    :param ctx: context 단어인지 혹은 index 인지 해석 필요.
+    :param qst: question 단어인지 혹은 index 인지 해석 필요.
+    :param options:
+    :param wiq:
+    :param wic:
+    :param sq_dataset:
+    :param ctx_pos:
+    :param qst_pos:
+    :param ctx_ner:
+    :param qst_ner:
+    :param word_chars:
+    :param cove_cells:
+    :param use_dropout:
+    :param batch_size:
+    :param input_keep_prob:
+    :param keep_prob:
+    :param rnn_keep_prob:
+    :return:
+    """
     with tf.variable_scope("model_inputs"):
         ctx_glove = tf.nn.embedding_lookup(words_placeholder, ctx)
         qst_glove = tf.nn.embedding_lookup(words_placeholder, qst)

@@ -38,10 +38,10 @@ def encode_passage_and_question(options, passage, question, keep_prob,
             lstm = create_cudnn_lstm(passage.get_shape()[2], sess, options,
                 "passage_lstm", keep_prob)
             passage_outputs = run_cudnn_lstm_and_return_outputs(passage,
-                keep_prob, options, lstm, batch_size, is_train) # size = [batch_size, max_ctx_length, 2 * rnn_size]
+                keep_prob, options, lstm, batch_size, is_train)  # size = [batch_size, max_ctx_length, 2 * rnn_size]
         with tf.variable_scope("question"):
             lstm = create_cudnn_lstm(question.get_shape()[2], sess, options,
                 "question_lstm", keep_prob)
             question_outputs = run_cudnn_lstm_and_return_outputs(question,
-                keep_prob, options, lstm, batch_size, is_train) # size = [batch_size, max_qst_length, 2 * rnn_size]
+                keep_prob, options, lstm, batch_size, is_train)  # size = [batch_size, max_qst_length, 2 * rnn_size]
         return passage_outputs, question_outputs

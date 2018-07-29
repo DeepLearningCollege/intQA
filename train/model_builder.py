@@ -79,8 +79,7 @@ class ModelBuilder:
                             with tf.name_scope('tower_%d' % i) as scope:
                                 iterators = self.sq_dataset.create_iterators()
                                 tower_start_time = time.time()
-                                self.loss = self._add_tower_and_compute_loss(scope,
-                                        iterators)
+                                self.loss = self._add_tower_and_compute_loss(scope, iterators)
                                 tower_creation_time += (time.time() - tower_start_time)
                                 # This should make each tower share variables.
                                 tf.get_variable_scope().reuse_variables()
