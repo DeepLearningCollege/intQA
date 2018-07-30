@@ -39,7 +39,7 @@ VECTOR_ZIP_FILE = "glove.840B.300d.zip"
 SQUAD_TRAIN_URL = "https://rajpurkar.github.io/SQuAD-explorer/dataset/train-v2.0.json"
 SQUAD_TRAIN_FILE = "train-v2.0.json"
 SQUAD_DEV_URL = "https://rajpurkar.github.io/SQuAD-explorer/dataset/dev-v2.0.json"
-SQUAD_DEV_FILE = "dev-v1.1.json"
+SQUAD_DEV_FILE = "dev-v2.0.json"
 
 EMBEDDING_FILE = "glove.embedding.npy"
 VOCAB_FILE = "vocab.txt"
