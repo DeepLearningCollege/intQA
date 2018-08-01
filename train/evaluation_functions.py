@@ -1,6 +1,6 @@
 """Functions used for evaluation of model accuracy.
 """
-
+import tensorflow as tf
 import re
 import string
 
@@ -9,20 +9,25 @@ from collections import Counter
 import numpy as np
 
 
-def get_sampled_start_and_end(start_probs, end_probs, options):
+def get_sampled_start_and_end(sess, start_probs, end_probs, options):
     best_prob = 0
     sampled_start = 0
     sampled_end = 0
 
     # TODO if start_probs is tensor, do np.random.choic in TF
     # https://stackoverflow.com/questions/41123879/numpy-random-choice-in-tensorflow
-    start_pos = np.random.choice(start_probs.shape[0], 1, p=start_probs)
-    max_end_pos = min(end_probs.shape[0], start_pos + options.max_search_span_range)
+    start_probs = sess.run(start_probs)
+    end_probs = sess.run(end_probs)
+    for i in range(start_probs.shape[0]):
+        print(start_probs[i,0])
+        print(type(start_probs))
+        start_pos = np.random.choice(start_probs[i,:], 1, p=start_probs)
+        max_end_pos = min(end_probs.shape[0], start_pos + options.max_search_span_range)
 
-    truncated_end_probs = end_probs[start_pos:max_end_pos]
-    norm_end_probs = truncated_end_probs / sum(truncated_end_probs)
-    end_pos = start_pos + np.random.choice(len(norm_end_probs), 1, p=norm_end_probs)
-    return start_pos, end_pos
+        truncated_end_probs = end_probs[start_pos:max_end_pos]
+        norm_end_probs = truncated_end_probs / sum(truncated_end_probs)
+        end_pos = start_pos + np.random.choice(len(norm_end_probs), 1, p=norm_end_probs)
+        return start_pos, end_pos
 
 
 def get_best_start_and_end(start_probs, end_probs, options):

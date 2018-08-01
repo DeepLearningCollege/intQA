@@ -4,6 +4,8 @@
 import tensorflow as tf
 
 f = tf.app.flags
+f.DEFINE_string("self_critic_type", "SCST", 
+        "")
 f.DEFINE_integer("max_ctx_length", 300,
         "Max passage length to keep. Longer content will be trimmed.")
 f.DEFINE_integer("max_qst_length", 60,

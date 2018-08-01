@@ -4,7 +4,7 @@ from train.evaluation_functions import get_best_start_and_end, get_sampled_start
 from train.sentence_util import find_question_sentence
 
 
-def self_critic_rl(options, sq_dataset, start_span_probs, end_span_probs, data_index_iterator, qst_iterator, ce_loss):
+def self_critic_rl(sess, options, sq_dataset, start_span_probs, end_span_probs, data_index_iterator, qst_iterator, ce_loss):
     """
     applies self-critical-sequence-training to optimize
     f1 between distribution sampled answer and greedy sampled answer. i.e) F1(SAMPLED,GT) - F1(GREEDY,GT)
@@ -19,7 +19,7 @@ def self_critic_rl(options, sq_dataset, start_span_probs, end_span_probs, data_i
     if not options.self_critic_type:
         return ce_loss, ce_loss, ce_loss
     # 각 context 단어별 distribution 에서 loss를 샘플한다
-    sampled_start, sampled_end = get_sampled_start_and_end(start_span_probs, end_span_probs, options)
+    sampled_start, sampled_end = get_sampled_start_and_end(sess, start_span_probs, end_span_probs, options)
     greedy_start, greedy_end = get_best_start_and_end(start_span_probs, end_span_probs, options)
 
     # 각 예측 샘플과 정답에서 문장을 가져온다.

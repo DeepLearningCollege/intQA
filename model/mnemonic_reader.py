@@ -33,6 +33,7 @@ class MnemonicReader(BaseModel):
             self.sess, self.batch_size, self.use_dropout_placeholder)
 
         self.loss, self.ce_loss, self.rl_loss = self_critic_rl(
+            self.sess,
             self.options,
             self.sq_dataset,
             self.start_span_probs,
