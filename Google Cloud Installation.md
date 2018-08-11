@@ -106,5 +106,4 @@ python setup.py develop
 # etc
 pip install boto3
 # setup package
-아
 ```

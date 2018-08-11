@@ -78,7 +78,7 @@ class FusionNet(BaseModel):
             self.use_dropout_placeholder) # size = [batch_size, max_ctx_length, 2 * rnn_size]
 
         # Step 5. Decode the answer start & end.
-        self.loss, self.start_span_probs, self.end_span_probs = \
+        self.loss, self.start_span_probs, self.end_span_probs, self.start_pos_list, self.end_pos_list = \
             stochastic_answer_pointer(self.options, final_ctx, qst_understanding,
                 self.spn_iterator, self.sq_dataset, self.keep_prob,
                 self.sess, self.batch_size, self.use_dropout_placeholder)

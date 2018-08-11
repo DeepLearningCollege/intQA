@@ -5,8 +5,8 @@ https://arxiv.org/pdf/1705.02798.pdf
 from model.alignment import *
 from model.base_model import BaseModel
 from model.encoding_util import *
-from model.self_critic_rl import *
 from model.stochastic_answer_pointer import *
+
 
 class MnemonicReader(BaseModel):
     def setup(self):
@@ -27,17 +27,8 @@ class MnemonicReader(BaseModel):
 
         # Step 3. Use an answer pointer mechanism to get the loss,
         # and start & end span probabilities
-        ce_loss, self.start_span_probs, self.end_span_probs = stochastic_answer_pointer(
-            self.options, alignment, question_outputs,
-            self.spn_iterator, self.sq_dataset, self.keep_prob,
-            self.sess, self.batch_size, self.use_dropout_placeholder)
-
-        self.loss, self.ce_loss, self.rl_loss = self_critic_rl(
-            self.sess,
-            self.options,
-            self.sq_dataset,
-            self.start_span_probs,
-            self.end_span_probs,
-            self.data_index_iterator,
-            self.qst_iterator,
-            ce_loss)
+        self.loss, self.start_span_probs, self.end_span_probs, self.start_pos_list, self.end_pos_list = \
+            stochastic_answer_pointer(
+                self.options, alignment, question_outputs,
+                self.spn_iterator, self.sq_dataset, self.keep_prob,
+                self.sess, self.batch_size, self.use_dropout_placeholder)

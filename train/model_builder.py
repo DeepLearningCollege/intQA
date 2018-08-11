@@ -17,6 +17,8 @@ class ModelBuilder:
         self.compute_gradients = compute_gradients
         self.tower_grads = []
         self.loss = None
+        self.start_pos_list = []
+        self.end_pos_list = []
         self.embeddings = embeddings
         self.word_chars = word_chars
         self.sess = sess

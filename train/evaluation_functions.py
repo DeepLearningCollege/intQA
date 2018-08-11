@@ -9,15 +9,7 @@ from collections import Counter
 import numpy as np
 
 
-def get_sampled_start_and_end(sess, start_probs, end_probs, options):
-    best_prob = 0
-    sampled_start = 0
-    sampled_end = 0
-
-    # TODO if start_probs is tensor, do np.random.choic in TF
-    # https://stackoverflow.com/questions/41123879/numpy-random-choice-in-tensorflow
-    start_probs = sess.run(start_probs)
-    end_probs = sess.run(end_probs)
+def get_sampled_start_and_end(start_probs, end_probs, options):
     for i in range(start_probs.shape[0]):
         print(start_probs[i,0])
         print(type(start_probs))

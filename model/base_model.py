@@ -84,3 +84,9 @@ class BaseModel:
 
     def get_end_span_probs(self):
         return self.end_span_probs
+
+    def get_start_pos_list(self):
+        self.start_pos_list
+
+    def get_end_pos_list(self):
+        self.end_pos_list

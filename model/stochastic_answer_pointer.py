@@ -128,4 +128,4 @@ def stochastic_answer_pointer(options, ctx, qst, spans, sq_dataset, keep_prob,
         start_loss = _compute_loss(avg_start_probs, spans[:,0], max_ctx_len)
         end_loss = _compute_loss(avg_end_probs, spans[:,1], max_ctx_len)
         loss = start_loss + end_loss
-        return loss, avg_start_probs, avg_end_probs
+        return loss, avg_start_probs, avg_end_probs, start_prob_list, end_prob_list
