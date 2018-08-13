@@ -13,9 +13,11 @@ from train.sentence_util import *
 from util.string_util import *
 
 class _EvalResult:
-    def __init__(self, em, f1, passages, questions, text_predictions, ground_truths):
+    def __init__(self, em, f1, precision, recall, passages, questions, text_predictions, ground_truths):
         self.em = em
         self.f1 = f1
+        self.precision = precision
+        self.recall = recall
         self.passages = passages
         self.questions = questions
         self.text_predictions = text_predictions
@@ -59,6 +61,9 @@ def evaluate_dev_and_visualize(session, towers, squad_dataset, options):
     qst_file = open(os.path.join(options.evaluation_dir, "question.visualization.txt"), mode="w")
     gnd_span_file = open(os.path.join(options.evaluation_dir, "ground_truth_spans.visualization.txt"), mode="w")
     spn_file = open(os.path.join(options.evaluation_dir, "predicted_spans.visualization.txt"), mode="w")
+    f1_file = open(os.path.join(options.evaluation_dir, "f1.visualization.txt"), mode="w")
+    precision_file = open(os.path.join(options.evaluation_dir, "precision.visualization.txt"), mode="w")
+    recall_file = open(os.path.join(options.evaluation_dir, "recall.visualization.txt"), mode="w")
     print("Writing context, question, ground truth, and predictions to files in evaluation dir [" + options.evaluation_dir + "]")
     for z in range(len(result.passages)):
         ctx_file.write(utf8_str(result.passages[z]))
@@ -69,7 +74,13 @@ def evaluate_dev_and_visualize(session, towers, squad_dataset, options):
         gnd_span_file.write("\n")
         spn_file.write(utf8_str(result.text_predictions[z]))
         spn_file.write("\n")
-    for f in [ctx_file, qst_file, gnd_span_file, spn_file]:
+        f1_file.write(utf8_str(result.f1))
+        f1_file.write("\n")
+        precision_file.write(utf8_str(result.precision))
+        precision_file.write("\n")
+        recall_file.write(utf8_str(result.recall))
+        recall_file.write("\n")
+    for f in [ctx_file, qst_file, gnd_span_file, spn_file, f1_file, precision_file, recall_file]:
         f.close()
     return result.em, result.f1
 
@@ -173,5 +184,7 @@ def _eval(session, towers, squad_dataset, options, is_train, sample_limit):
               "ground_truths", utf8_str(ground_truths))
     exact_match = avg_over_list(exact_match_score, text_predictions,
             ground_truths)
+    precision = avg_over_list(precision_score, text_predictions, ground_truths)
+    recall = avg_over_list(recall_score, text_predictions, ground_truths)
     f1 = avg_over_list(f1_score, text_predictions, ground_truths)
-    return _EvalResult(exact_match, f1, passages, questions, text_predictions, ground_truths)
+    return _EvalResult(exact_match, f1, precision, recall, passages, questions, text_predictions, ground_truths)

@@ -48,6 +48,30 @@ def f1_score(prediction, ground_truth):
     f1 = (2 * precision * recall) / (precision + recall)
     return f1
 
+def precision_score(prediction, ground_truth):
+    if prediction == ground_truth:
+        return 1
+    prediction_tokens = _normalize_answer(prediction).split()
+    ground_truth_tokens = _normalize_answer(ground_truth).split()
+    common = Counter(prediction_tokens) & Counter(ground_truth_tokens)
+    num_same = sum(common.values())
+    if num_same == 0:
+        return 0
+    precision = 1.0 * num_same / len(prediction_tokens)
+    return precision
+
+def recall_score(prediction, ground_truth):
+    if prediction == ground_truth:
+        return 1
+    prediction_tokens = _normalize_answer(prediction).split()
+    ground_truth_tokens = _normalize_answer(ground_truth).split()
+    common = Counter(prediction_tokens) & Counter(ground_truth_tokens)
+    num_same = sum(common.values())
+    if num_same == 0:
+        return 0
+    recall = 1.0 * num_same / len(ground_truth_tokens)
+    return recall
+
 def exact_match_score(prediction, ground_truth):
     return (_normalize_answer(prediction) == _normalize_answer(ground_truth))
 
