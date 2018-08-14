@@ -13,11 +13,12 @@ from train.sentence_util import *
 from util.string_util import *
 
 class _EvalResult:
-    def __init__(self, em, f1, precision, recall, passages, questions, text_predictions, ground_truths):
+    def __init__(self, em, f1, f1s, precisions, recalls, passages, questions, text_predictions, ground_truths):
         self.em = em
         self.f1 = f1
-        self.precision = precision
-        self.recall = recall
+        self.f1s = f1s
+        self.precisions = precisions
+        self.recalls = recalls
         self.passages = passages
         self.questions = questions
         self.text_predictions = text_predictions
@@ -74,11 +75,11 @@ def evaluate_dev_and_visualize(session, towers, squad_dataset, options):
         gnd_span_file.write("\n")
         spn_file.write(utf8_str(result.text_predictions[z]))
         spn_file.write("\n")
-        f1_file.write(utf8_str(result.f1))
+        f1_file.write(utf8_str(result.f1s[z]))
         f1_file.write("\n")
-        precision_file.write(utf8_str(result.precision))
+        precision_file.write(utf8_str(result.precisions[z]))
         precision_file.write("\n")
-        recall_file.write(utf8_str(result.recall))
+        recall_file.write(utf8_str(result.recalls[z]))
         recall_file.write("\n")
     for f in [ctx_file, qst_file, gnd_span_file, spn_file, f1_file, precision_file, recall_file]:
         f.close()
@@ -90,6 +91,9 @@ def _eval(session, towers, squad_dataset, options, is_train, sample_limit):
     text_predictions = []
     ground_truths = []
     run_ops = []
+    f1s = []
+    precisions = []
+    recalls = []
     for tower in towers:
         run_ops.append(tower.get_start_span_probs())
         run_ops.append(tower.get_end_span_probs())
@@ -153,6 +157,9 @@ def _eval(session, towers, squad_dataset, options, is_train, sample_limit):
                 ground_truths.append(acceptable_gnd_truths)
                 passages.append(dataset.get_sentence(example_index, 0, squad_dataset.get_max_ctx_len() - 1))
                 questions.append(question)
+                f1s.append(f1_score(prediction_str, acceptable_gnd_truths))
+                precisions.append(precision_score(prediction_str, acceptable_gnd_truths))
+                recalls.append(recall_score(prediction_str, acceptable_gnd_truths))
         if not is_train:
             squad_dataset.increment_val_samples_processed(batch_increment)
         else:
@@ -184,7 +191,5 @@ def _eval(session, towers, squad_dataset, options, is_train, sample_limit):
               "ground_truths", utf8_str(ground_truths))
     exact_match = avg_over_list(exact_match_score, text_predictions,
             ground_truths)
-    precision = avg_over_list(precision_score, text_predictions, ground_truths)
-    recall = avg_over_list(recall_score, text_predictions, ground_truths)
     f1 = avg_over_list(f1_score, text_predictions, ground_truths)
-    return _EvalResult(exact_match, f1, precision, recall, passages, questions, text_predictions, ground_truths)
+    return _EvalResult(exact_match, f1, f1s, precisions, recalls, passages, questions, text_predictions, ground_truths)
