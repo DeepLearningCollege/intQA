@@ -159,7 +159,7 @@ def _eval(session, towers, squad_dataset, options, is_train, sample_limit):
                 questions.append(question)
                 f1s.append(max_over_gnd_truths(f1_score, prediction_str, acceptable_gnd_truths))
                 precisions.append(max_over_gnd_truths(precision_score, prediction_str, acceptable_gnd_truths))
-                recalls.append(precision_score(recall_score, prediction_str, acceptable_gnd_truths))
+                recalls.append(max_over_gnd_truths(recall_score, prediction_str, acceptable_gnd_truths))
         if not is_train:
             squad_dataset.increment_val_samples_processed(batch_increment)
         else:
