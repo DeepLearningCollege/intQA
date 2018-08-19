@@ -90,3 +90,11 @@ class BaseModel:
 
     def get_end_pos_list(self):
         self.end_pos_list
+
+    def scrl(self, start_pos_list, end_pos_list,  rewards):
+        self.get_start_pos_list = start_pos_list
+        self.end_pos_list = end_pos_list
+
+
+        self.sess.run(a, feed_dict)
+        pass

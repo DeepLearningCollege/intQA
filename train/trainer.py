@@ -343,7 +343,7 @@ class Trainer:
                 text_predictions = []
                 ground_truths = []
                 items_per_tower = int(len(run_ops) / len(self.model_builder.towers))
-                for tower_idx in range(num_towers):
+                for tower_idx, tower in enumerate(self.model_builder.towers):
                     tower_var_idx = items_per_tower * tower_idx
                     loss = towers_spans_values[tower_var_idx]
                     tower_var_idx += 1
@@ -375,12 +375,33 @@ class Trainer:
                         example_start_pos_list = [start_pos_iter[example_idx] for start_pos_iter in start_pos_iters]
                         example_end_pos_list = [end_pos_iter[example_idx] for end_pos_iter in end_pos_iters]
 
+                        for pointer_iter_start_pos, pointer_iter_end_pos in \
+                            zip(example_start_pos_list, example_end_pos_list):
+                            greedy_start, greedy_end = get_best_start_and_end(
+                                pointer_iter_start_pos, pointer_iter_end_pos, self.options)
+                            sampled_start, sampled_end = get_sampled_start_and_end(
+                                pointer_iter_start_pos, pointer_iter_end_pos, self.options)
+                            example_index = data_indices[example_idx]
+                            question_word_ids = qst_values[example_idx]
+                            question = find_question_sentence(question_word_ids, self.squad_dataset.vocab)
+                            greedy_str = self.squad_dataset.get_sentence(example_index, greedy_start, greedy_end)
+                            sampled_str = self.squad_dataset.get_sentence(example_index, sampled_start, sampled_end)
+                            gt_str = self.squad_dataset.get_sentences_for_all_gnd_truths(example_index)
+                            greedy_f1 = f1_score(greedy_str, gt_str)
+                            sampled_f1 = f1_score(sampled_str, gt_str)
+                            gradient = None
+                            if self.options.self_critic_type == 'SCST':
+                                # feed dict 가 어떻게 만들어지는지 추적한 후,
+                                pass
+                            elif self.options.self_critic_type == 'DCRL':
+                                pass
+                            else:
+                                pass
 
 
 
 
-                        start, end = get_best_start_and_end(start_span_probs[example_idx],
-                                                            end_span_probs[example_idx], options)
+                        self.squad_dataset.increment_val_samples_processed(batch_increment)
                         # 여기서 example 의 index를 가져
                         example_index = data_indices[example_idx]
                         question_word_ids = qst_values[example_idx]
