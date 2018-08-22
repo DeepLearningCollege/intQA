@@ -32,3 +32,8 @@ class MnemonicReader(BaseModel):
                 self.options, alignment, question_outputs,
                 self.spn_iterator, self.sq_dataset, self.keep_prob,
                 self.sess, self.batch_size, self.use_dropout_placeholder)
+
+        # Step 4. apply scrl
+        # https://www.tensorflow.org/api_docs/python/tf/Session#partial_run
+        self.scrl_loss = \
+            stochastic_answer_pointer(self.options, self.loss, self.start_pos_list, self.end_pos_list)
