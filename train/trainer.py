@@ -374,7 +374,7 @@ class Trainer:
                     for example_idx in range(num_examples):
                         example_start_pos_list = [start_pos_iter[example_idx] for start_pos_iter in start_pos_iters]
                         example_end_pos_list = [end_pos_iter[example_idx] for end_pos_iter in end_pos_iters]
-
+                        rewards = []
                         for pointer_iter_start_pos, pointer_iter_end_pos in \
                             zip(example_start_pos_list, example_end_pos_list):
                             greedy_start, greedy_end = get_best_start_and_end(
@@ -383,23 +383,15 @@ class Trainer:
                                 pointer_iter_start_pos, pointer_iter_end_pos, self.options)
                             example_index = data_indices[example_idx]
                             question_word_ids = qst_values[example_idx]
-                            question = find_question_sentence(question_word_ids, self.squad_dataset.vocab)
-                            greedy_str = self.squad_dataset.get_sentence(example_index, greedy_start, greedy_end)
-                            sampled_str = self.squad_dataset.get_sentence(example_index, sampled_start, sampled_end)
-                            gt_str = self.squad_dataset.get_sentences_for_all_gnd_truths(example_index)
+                            question = find_question_sentence(question_word_ids, self.sq_dataset.vocab)
+                            greedy_str = self.sq_dataset.get_sentence(example_index, greedy_start, greedy_end)
+                            sampled_str = self.sq_dataset.get_sentence(example_index, sampled_start, sampled_end)
+                            gt_str = self.sq_dataset.get_sentences_for_all_gnd_truths(example_index)
                             greedy_f1 = f1_score(greedy_str, gt_str)
                             sampled_f1 = f1_score(sampled_str, gt_str)
-                            gradient = None
-                            if self.options.self_critic_type == 'SCST':
-                                # feed dict 가 어떻게 만들어지는지 추적한 후,
-                                pass
-                            elif self.options.self_critic_type == 'DCRL':
-                                pass
-                            else:
-                                pass
-
-
-
+                            reward = sampled_f1 - greedy_f1
+                            rewards.append(reward)
+                            # make one hot vector of greedy_start, greedy_end, sampled_start, sampled_end
 
                         self.squad_dataset.increment_val_samples_processed(batch_increment)
                         # 여기서 example 의 index를 가져

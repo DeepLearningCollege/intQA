@@ -54,7 +54,8 @@ def _compute_loss(probs, spans, max_ctx_len):
             * tf.log(probs + _NUMERICAL_STABILITY_EPSILON), axis=1) # size = [batch_size]
     )
 
-def stochastic_answer_pointer(options, ce_loss, start_pos_list, end_pos_list):
+def stochastic_answer_pointer(options, ctx, qst, spans, sq_dataset, keep_prob,
+    sess, batch_size, use_dropout):
     """Runs a stochastic answer pointer to get start/end span predictions
 
        Input:
@@ -74,18 +75,6 @@ def stochastic_answer_pointer(options, ce_loss, start_pos_list, end_pos_list):
             [batch_size, M]
     """
     with tf.variable_scope("stochastic_answer_pointer"):
-        sampled_start_pos_list = tf.placeholder()
-        sampled_end_pos_list = tf.placeholder()
-        greedy_start_pos_list = tf.placeholder()
-        greedy_end_pos_list = tf.placeholder()
-        reward = tf.placeholder()
-
-        sampled_start_pos_log_p = sampled_start_pos_list * tf.log(start_pos_list) * reward
-        sampled_end_pos_log_p = sampled_end_pos_list * tf.log(end_pos_list) * reward
-        
-        self.loss = tf.reduce_mean(tf.reduce_sum(-self.log_lik, axis=1))
-        self.train = tf.train.AdamOptimizer(LEARNING_RATE).minimize(self.loss)
-
         max_qst_len = sq_dataset.get_max_qst_len()
         max_ctx_len = sq_dataset.get_max_ctx_len()
         ctx_dim = ctx.get_shape()[-1].value # 2 * rnn_size
@@ -139,4 +128,4 @@ def stochastic_answer_pointer(options, ce_loss, start_pos_list, end_pos_list):
         start_loss = _compute_loss(avg_start_probs, spans[:,0], max_ctx_len)
         end_loss = _compute_loss(avg_end_probs, spans[:,1], max_ctx_len)
         loss = start_loss + end_loss
-        return loss, avg_start_probs, avg_end_probs, start_prob_list, end_prob_list
+        return loss, avg_start_probs, avg_end_probs
