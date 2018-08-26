@@ -38,6 +38,26 @@ def get_train_feed_dict(squad_data, options, towers):
     return get_feed_dict(squad_data, options, towers, is_train=True,
         use_dropout=True)
 
+def get_scrl_train_feed_dict(squad_data, options, towers,
+                             greedy_start_one_hots,
+                             greedy_end_one_hots,
+                             sampled_start_one_hots,
+                             sampled_end_one_hots,
+                             rewards):
+    if len(towers) < 1:
+        raise Exception("There are no models in the list of towers to train")
+    examples_per_tower = int(options.batch_size / len(towers))
+    feed_dict = {}
+    for tower_idx, tower in enumerate(towers):
+        # TODO unfold across batch index??
+        feed_dict[tower.sampled_start_pos_list] = sampled_start_one_hots[tower_idx]
+        feed_dict[tower.sampled_end_pos_list] = sampled_end_one_hots[tower_idx]
+        feed_dict[tower.greedy_start_pos_list] = greedy_start_one_hots[tower_idx]
+        feed_dict[tower.greedy_end_pos_list] = greedy_end_one_hots[tower_idx]
+        feed_dict[tower.reward] = rewards[tower_idx]
+    return feed_dict
+
+
 def get_dev_feed_dict(squad_data, options, towers):
     return get_feed_dict(squad_data, options, towers, is_train=False,
         use_dropout=False)

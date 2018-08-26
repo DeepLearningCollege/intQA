@@ -322,42 +322,76 @@ class Trainer:
             num_bad_checkpoints = 0
             epoch_start = time.time()
 
-            run_ops = []
+
+
+            train_op = None
+            global_norm = None
+            if self.options.model_type == "debug":
+                train_op = tf.no_op()
+                global_norm = tf.constant(0.0, dtype=tf.float32)
+            else:
+                grads, variables = zip(*average_gradients(self.model_builder.get_tower_grads()))
+                grads, global_norm = tf.clip_by_global_norm(grads, self.options.max_global_norm)
+                train_op = self.optimizer.apply_gradients(zip(grads, variables))
+            iteration_num = tf.Variable(initial_value=1, trainable=False,
+                dtype=tf.int32)
+            incr_iter = tf.assign(iteration_num, iteration_num + 1)
+
+
+            ce_run_ops = []
             for tower in self.model_builder.towers:
-                run_ops.append(tower.get_loss_op())
-                run_ops.append(tower.get_start_span_probs())
-                run_ops.append(tower.get_end_span_probs())
-                run_ops.extend(tower.get_start_pos_list())
-                run_ops.extend(tower.get_end_pos_list())
-                run_ops.append(tower.get_data_index_iterator())
-                run_ops.append(tower.get_qst())
+                ce_run_ops.append(tower.ce_loss)
+                ce_run_ops.append(tower.get_start_span_probs())
+                ce_run_ops.append(tower.get_end_span_probs())
+                ce_run_ops.extend(tower.get_start_pos_list())
+                ce_run_ops.extend(tower.get_end_pos_list())
+                ce_run_ops.append(tower.get_data_index_iterator())
+                ce_run_ops.append(tower.get_qst())
+
+            rl_run_ops = []
+            for tower in self.model_builder.towers:
+                rl_run_ops.append(train_op)
+                rl_run_ops.append(tower.loss)
+
+            loss_summary = tf.summary.scalar("loss", rl_run_ops[1])
+            gradients_summary = tf.summary.scalar("gradients", global_norm)
 
             while True:
                 i += 1
                 iter_start = time.time()
-                feed_dict = get_train_feed_dict(self.sq_dataset, self.options, self.model_builder.get_towers())
-                towers_spans_values = self.session.run(run_ops, feed_dict=feed_dict)
+                ce_feed_dict = get_train_feed_dict(self.sq_dataset, self.options, self.model_builder.get_towers())
+                # TODO Fill in rl_run_ops and feeds
+                self.session.partial_run_setup([ce_run_ops], feeds=[ce_feed_dict.keys()])
+                ce_towers_spans_values = self.session.partial_run(ce_run_ops, feed_dict=ce_feed_dict)
 
-                passages = []
-                questions = []
-                text_predictions = []
-                ground_truths = []
-                items_per_tower = int(len(run_ops) / len(self.model_builder.towers))
+                greedy_start_one_hots = []
+                greedy_end_one_hots = []
+                sampled_start_one_hots = []
+                sampled_end_one_hots = []
+                rewards = []
+
+                items_per_tower = int(len(ce_run_ops) / len(self.model_builder.towers))
                 for tower_idx, tower in enumerate(self.model_builder.towers):
                     tower_var_idx = items_per_tower * tower_idx
-                    loss = towers_spans_values[tower_var_idx]
+                    ce_loss = ce_towers_spans_values[tower_var_idx]
                     tower_var_idx += 1
-                    start_span_probs = towers_spans_values[tower_var_idx]
+                    start_span_probs = ce_towers_spans_values[tower_var_idx]
                     tower_var_idx += 1
-                    end_span_probs = towers_spans_values[tower_var_idx]
+                    end_span_probs = ce_towers_spans_values[tower_var_idx]
                     tower_var_idx += 1
-                    start_pos_iters = towers_spans_values[tower_var_idx: tower_var_idx + self.options.num_stochastic_answer_pointer_steps]
+                    start_pos_iters = ce_towers_spans_values[tower_var_idx: tower_var_idx + self.options.num_stochastic_answer_pointer_steps]
                     tower_var_idx += self.options.num_stochastic_answer_pointer_steps
-                    end_pos_iters = towers_spans_values[tower_var_idx: tower_var_idx + self.options.num_stochastic_answer_pointer_steps]
+                    end_pos_iters = ce_towers_spans_values[tower_var_idx: tower_var_idx + self.options.num_stochastic_answer_pointer_steps]
                     tower_var_idx += self.options.num_stochastic_answer_pointer_steps
-                    data_indices = towers_spans_values[tower_var_idx]
+                    data_indices = ce_towers_spans_values[tower_var_idx]
                     tower_var_idx += 1
-                    qst_values = towers_spans_values[tower_var_idx]
+                    qst_values = ce_towers_spans_values[tower_var_idx]
+
+                    greedy_start_one_hots[tower_idx] = []
+                    greedy_end_one_hots[tower_idx] = []
+                    sampled_start_one_hots[tower_idx] = []
+                    sampled_end_one_hots[tower_idx] = []
+                    rewards[tower_idx] = []
 
                     if start_span_probs.shape != end_span_probs.shape:
                         print("start_span_probs shape", start_span_probs.shape,
@@ -371,10 +405,17 @@ class Trainer:
                     assert start_span_probs.shape[0] == qst_values.shape[0]
 
                     num_examples = start_span_probs.shape[0]
+
                     for example_idx in range(num_examples):
                         example_start_pos_list = [start_pos_iter[example_idx] for start_pos_iter in start_pos_iters]
                         example_end_pos_list = [end_pos_iter[example_idx] for end_pos_iter in end_pos_iters]
-                        rewards = []
+
+                        greedy_start_one_hots[tower_idx][example_idx] = []
+                        greedy_end_one_hots[tower_idx][example_idx] = []
+                        sampled_start_one_hots[tower_idx][example_idx] = []
+                        sampled_end_one_hots[tower_idx][example_idx] = []
+                        rewards[tower_idx][example_idx] = []
+
                         for pointer_iter_start_pos, pointer_iter_end_pos in \
                             zip(example_start_pos_list, example_end_pos_list):
                             greedy_start, greedy_end = get_best_start_and_end(
@@ -387,30 +428,41 @@ class Trainer:
                             greedy_str = self.sq_dataset.get_sentence(example_index, greedy_start, greedy_end)
                             sampled_str = self.sq_dataset.get_sentence(example_index, sampled_start, sampled_end)
                             gt_str = self.sq_dataset.get_sentences_for_all_gnd_truths(example_index)
+                            # compute f1 and reward
                             greedy_f1 = f1_score(greedy_str, gt_str)
                             sampled_f1 = f1_score(sampled_str, gt_str)
+
                             reward = sampled_f1 - greedy_f1
-                            rewards.append(reward)
-                            # make one hot vector of greedy_start, greedy_end, sampled_start, sampled_end
+                            greedy_start_one_hot = np.zeros(self.options.max_ctx_length)
+                            greedy_start_one_hot[greedy_start] = 1
+                            greedy_start_one_hots[tower_idx][example_idx].append(greedy_start_one_hot)
 
-                        self.squad_dataset.increment_val_samples_processed(batch_increment)
-                        # 여기서 example 의 index를 가져
-                        example_index = data_indices[example_idx]
-                        question_word_ids = qst_values[example_idx]
-                        question = find_question_sentence(question_word_ids, squad_dataset.vocab)
-                        prediction_str = dataset.get_sentence(example_index, start, end)
-                        if dataset.question_ids_to_squad_ids is not None:
-                            squad_question_id = \
-                                dataset.question_ids_to_squad_ids[example_index]
-                            if squad_question_id in squad_prediction_format:
-                                continue
-                            squad_prediction_format[squad_question_id] = prediction_str
-                        text_predictions.append(prediction_str)
-                        acceptable_gnd_truths = dataset.get_sentences_for_all_gnd_truths(example_index)
-                        ground_truths.append(acceptable_gnd_truths)
-                        passages.append(dataset.get_sentence(example_index, 0, squad_dataset.get_max_ctx_len() - 1))
-                        questions.append(question)
+                            greedy_end_one_hot = np.zeros(self.options.max_ctx_length)
+                            greedy_end_one_hot[greedy_end] = 1
+                            greedy_end_one_hots[tower_idx][example_idx].append(greedy_end_one_hot)
 
+                            sampled_start_one_hot = np.zeros(self.options.max_ctx_length)
+                            sampled_start_one_hot[sampled_start] = 1
+                            sampled_start_one_hots[tower_idx][example_idx].append(sampled_start_one_hot)
+
+                            sampled_end_one_hot = np.zeros(self.options.max_ctx_length)
+                            sampled_end_one_hot[sampled_end] = 1
+                            sampled_end_one_hots[tower_idx][example_idx].append(sampled_end_one_hot)
+
+                            rewards[tower_idx][example_idx].append(reward)
+
+                sampled_start_one_hots = []
+                rl_feed_dict = get_scrl_train_feed_dict(
+                    self.sq_dataset,
+                    self.options,
+                    self.model_builder.get_towers(),
+                    greedy_start_one_hots,
+                    greedy_end_one_hots,
+                    sampled_start_one_hots,
+                    sampled_end_one_hots,
+                    rewards)
+                rl_towers_spans_values = self.session.partial_run(rl_run_ops, feed_dict=rl_feed_dict)
+                scrl_loss = rl_towers_spans_values[0]
                 self.sq_dataset.increment_train_samples_processed(self.options.batch_size * num_towers)
 
 
@@ -426,16 +478,13 @@ class Trainer:
                 # gradients_summary = tf.summary.scalar("gradients", global_norm)
                 # print("Time to apply gradients: %s"
                 #       % (time.time() - apply_gradients_start_time))
-
-
-
                 iter_end = time.time()
                 time_per_iter = iter_end - iter_start
                 time_per_epoch = time_per_iter * iterations_per_epoch
                 print("iteration:", str(i),
                       "highest f1: %.4f" % current_highest_f1,
                       "learning rate: %.3E" % _get_val(current_learning_rate),
-                      "loss: %.3E" % _get_val(ce_loss),
+                      "loss: %.3E" % _get_val(scrl_loss),
                       "Sec/iter: %.3f" % time_per_iter,
                       "time/epoch", readable_time(time_per_epoch), end="\r")
                 if i % self.options.log_every == 0:
@@ -446,7 +495,7 @@ class Trainer:
                 if i % self.options.log_valid_every == 0:
                     loss_summary_value, gradients_summary_value, ce_loss = \
                         self.session.run([
-                            loss_summary, gradients_summary, loss],
+                            loss_summary, gradients_summary, scrl_loss],
                             feed_dict=get_dev_feed_dict(self.sq_dataset,
                                                         self.options, self.model_builder.get_towers()))
                     self.sq_dataset.increment_val_samples_processed(

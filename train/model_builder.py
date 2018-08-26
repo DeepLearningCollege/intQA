@@ -51,6 +51,16 @@ class ModelBuilder:
         self.towers.append(tower)
         return tower.get_loss_op()
 
+    def _add_tower_and_compute_scrl_loss(self, scope, iterators):
+        print("Creating tower in model")
+        tower = MODEL_TYPES[self.options.model_type](self.options,
+                iterators, self.sq_dataset, self.embeddings,
+                self.word_chars, self.cove_cells, self.sess)
+        tower.setup()
+        print("Tower created")
+        self.towers.append(tower)
+        return tower.get_scrl_loss_op()
+
     def _setup(self):
         self._validate_parameters()
 
