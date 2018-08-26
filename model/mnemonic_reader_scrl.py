@@ -9,9 +9,9 @@ from model.self_critic_rl import self_critic_rl
 from model.stochastic_answer_pointer import *
 
 
-class MnemonicReader(BaseModel):
+class MnemonicReaderScrl(BaseModel):
     def setup(self):
-        super(MnemonicReader, self).setup()
+        super(MnemonicReaderScrl, self).setup()
         ctx_dim = 2 * self.options.rnn_size
         # Step 1. Encode the passage and question.
         passage_outputs, question_outputs = encode_passage_and_question(
