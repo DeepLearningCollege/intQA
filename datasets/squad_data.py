@@ -115,6 +115,11 @@ class _SquadDataset:
         text_end_idx = passage_context.word_id_to_text_positions[min(end_idx, max_word_id)].end_idx
         return passage_context.passage_str[text_start_idx:text_end_idx]
 
+    def get_sentence_for_evaluate(self, question_id, start_idx, end_idx):
+        # A 'PassageContext' defined in preprocessing/create_train_data.py
+        passage_context = self.question_ids_to_passage_context[question_id]
+        return passage_context.passage_str[start_idx:end_idx]
+
     def _create_ds(self, placeholder):
         return tf.contrib.data.Dataset.from_tensor_slices(placeholder) \
             .batch(self.options.batch_size) \
