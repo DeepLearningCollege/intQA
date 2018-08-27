@@ -155,7 +155,7 @@ def _eval(session, towers, squad_dataset, options, is_train, sample_limit):
                 text_predictions.append(prediction_str)
                 acceptable_gnd_truths = dataset.get_sentences_for_all_gnd_truths(example_index)
                 ground_truths.append(acceptable_gnd_truths)
-                passages.append(dataset.get_sentence_for_evaluate(example_index, 0, squad_dataset.get_max_ctx_len() - 1))
+                passages.append(dataset.get_full_sentence_for_evaluate(example_index))
                 questions.append(question)
                 f1s.append(max_over_gnd_truths(f1_score, prediction_str, acceptable_gnd_truths))
                 precisions.append(max_over_gnd_truths(precision_score, prediction_str, acceptable_gnd_truths))

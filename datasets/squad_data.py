@@ -120,6 +120,11 @@ class _SquadDataset:
         passage_context = self.question_ids_to_passage_context[question_id]
         return passage_context.passage_str[start_idx:end_idx]
 
+    def get_full_sentence_for_evaluate(self, question_id):
+        # A 'PassageContext' defined in preprocessing/create_train_data.py
+        passage_context = self.question_ids_to_passage_context[question_id]
+        return passage_context.passage_str
+
     def _create_ds(self, placeholder):
         return tf.contrib.data.Dataset.from_tensor_slices(placeholder) \
             .batch(self.options.batch_size) \
