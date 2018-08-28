@@ -262,10 +262,9 @@ class Trainer:
                                              tf.maximum(self.options.min_learning_rate, learning_rate_placeholder))
             self.optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate)
 
-            # PAUL - rl_loss를 더하기 위해 compute_gradients를 False로 세팅한다.
             self.model_builder = ModelBuilder(self.optimizer, self.options,
                                               self.sq_dataset, embedding_var, word_chars_var,
-                                              compute_gradients=False, sess=self.session)
+                                              compute_gradients=True, sess=self.session)
 
             # PAUL - 이전 training 부분 계속
             iteration_num = tf.Variable(initial_value=1, trainable=False, dtype=tf.int32)

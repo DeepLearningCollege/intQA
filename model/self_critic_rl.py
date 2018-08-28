@@ -15,18 +15,13 @@ def self_critic_rl(options, ce_loss, start_pos_list, end_pos_list):
         # shape is [batch_size, num_iter_answer_pointer, num words in sentence]
         shape = [None, options.num_stochastic_answer_pointer_steps, options.max_ctx_length]
         # TODO return these so that model can return handles
-        sampled_start_pos_list = \
-            tf.placeholder(tf.int8, shape=shape, name='sampled_start_pos_list')
-        sampled_end_pos_list = \
-            tf.placeholder(tf.int8, shape=shape, name='sampled_end_pos_list')
-        greedy_start_pos_list = \
-            tf.placeholder(tf.int8, shape=shape, name='greedy_start_pos_list')
-        greedy_end_pos_list = \
-            tf.placeholder(tf.int8, shape=shape, name='greedy_start_pos_list')
-        reward = \
-            tf.placeholder(tf.int8, shape=shape[0:2], name='reward')
+        sampled_start_pos_list = tf.placeholder(tf.float32, shape=shape, name='sampled_start_pos_list')
+        sampled_end_pos_list = tf.placeholder(tf.float32, shape=shape, name='sampled_end_pos_list')
+        greedy_start_pos_list = tf.placeholder(tf.float32, shape=shape, name='greedy_start_pos_list')
+        greedy_end_pos_list = tf.placeholder(tf.float32, shape=shape, name='greedy_start_pos_list')
+        reward = tf.placeholder(tf.float32, shape=shape[0:2], name='reward')
 
-        sampled_start_pos_log_p = sampled_start_pos_list * tf.log(start_pos_list) * reward
+        sampled_start_pos_log_p = tf.multiply(tf.multiply(sampled_start_pos_list, tf.log(start_pos_list)), reward)
         sampled_start_adv = tf.reduce_mean(tf.reduce_sum(-1 * sampled_start_pos_log_p, axis=1))
         sampled_end_pos_log_p = sampled_end_pos_list * tf.log(end_pos_list) * reward
         sampled_end_adv = tf.reduce_mean(tf.reduce_sum(-1 * sampled_end_pos_log_p, axis=1))
