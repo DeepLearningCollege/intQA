@@ -342,8 +342,10 @@ class Trainer:
                 ce_run_ops.append(tower.ce_loss)
                 ce_run_ops.append(tower.get_start_span_probs())
                 ce_run_ops.append(tower.get_end_span_probs())
-                ce_run_ops.extend(tower.get_start_pos_list())
-                ce_run_ops.extend(tower.get_end_pos_list())
+                for start_pos in tower.start_pos_list:
+                    ce_run_ops.append(start_pos)
+                for end_pos in tower.end_pos_list:
+                    ce_run_ops.append(end_pos)
                 ce_run_ops.append(tower.get_data_index_iterator())
                 ce_run_ops.append(tower.get_qst())
 
