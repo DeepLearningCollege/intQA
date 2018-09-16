@@ -14,6 +14,29 @@ def get_eval_feed_dict(squad_data, options, towers, is_train):
         feed_dict[tower.get_rnn_keep_prob_placeholder()] = 1
     return feed_dict
 
+def get_ce_partial_run_args(squad_data, options, towers):
+    if len(towers) < 1:
+        raise Exception("There are no models in the list of towers to train")
+    ops = [] 
+    keys = []
+    for tower in towers:
+        ops.append(tower.ce_loss)
+        ops.append(tower.get_start_span_probs())
+        ops.append(tower.get_end_span_probs())
+        for start_pos in tower.start_pos_list:
+            ops.append(start_pos)
+        for end_pos in tower.end_pos_list:
+            ops.append(end_pos)
+        ops.append(tower.get_data_index_iterator())
+        ops.append(tower.get_qst())
+
+        keys.append(tower.get_keep_prob_placeholder())
+        keys.append(tower.get_input_keep_prob_placeholder())
+        keys.append(tower.get_rnn_keep_prob_placeholder())
+        keys.append(tower.get_use_dropout_placeholder())
+    keys.append(squad_data.get_iterator_handle())
+    return ops, keys
+
 def get_feed_dict(squad_data, options, towers, is_train, use_dropout):
     if len(towers) < 1:
         raise Exception("There are no models in the list of towers to train")
@@ -34,9 +57,27 @@ def get_feed_dict(squad_data, options, towers, is_train, use_dropout):
     feed_dict[tf_handle] = train_handle if is_train else dev_handle
     return feed_dict
 
+
 def get_train_feed_dict(squad_data, options, towers):
-    return get_feed_dict(squad_data, options, towers, is_train=True,
-        use_dropout=True)
+    return get_feed_dict(squad_data, options, towers, is_train=True, use_dropout=True)
+
+
+def get_scrl_partial_run_args(squad_data, options, towers, train_op):
+    if len(towers) < 1:
+        raise Exception("There are no models in the list of towers to train")
+    ops = []
+    keys = []
+    for tower_idx, tower in enumerate(towers):
+        ops.append(train_op)
+        ops.append(tower.loss)
+
+        # TODO unfold across batch index??
+        keys.append(tower.sampled_start_pos_list)
+        keys.append(tower.sampled_end_pos_list)
+        keys.append(tower.greedy_start_pos_list)
+        keys.append(tower.greedy_end_pos_list)
+        keys.append(tower.reward)
+    return ops, keys
 
 def get_scrl_train_feed_dict(squad_data, options, towers,
                              greedy_start_one_hots,

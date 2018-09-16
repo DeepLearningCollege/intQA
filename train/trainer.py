@@ -348,23 +348,31 @@ class Trainer:
                     ce_run_ops.append(end_pos)
                 ce_run_ops.append(tower.get_data_index_iterator())
                 ce_run_ops.append(tower.get_qst())
-
-            rl_run_ops = []
-            for tower in self.model_builder.towers:
-                rl_run_ops.append(train_op)
-                rl_run_ops.append(tower.loss)
+            ce_run_ops, ce_run_feeds = get_ce_partial_run_args(self.sq_dataset, self.options, self.model_builder.towers)
+            rl_run_ops, rl_run_feeds = get_scrl_partial_run_args(self.sq_dataset, self.options, self.model_builder.towers, train_op)
+            all_feeds = []
+            all_feeds.extend(ce_run_feeds)
+            all_feeds.extend(rl_run_feeds)
 
             loss_summary = tf.summary.scalar("loss", rl_run_ops[1])
             gradients_summary = tf.summary.scalar("gradients", global_norm)
 
+            tf.global_variables_initializer()
+
+
+            print(ce_run_ops)
+            print(rl_run_ops)
+            print(ce_run_feeds)
+            print(rl_run_feeds)
+            # TODO check where was this initialization in the original training code.
+            self.session.run(tf.global_variables_initializer())
+
             while True:
                 i += 1
                 iter_start = time.time()
+                self.session.partial_run_setup([ce_run_ops, rl_run_ops], feeds=all_feeds)
                 ce_feed_dict = get_train_feed_dict(self.sq_dataset, self.options, self.model_builder.get_towers())
-                # TODO Fill in rl_run_ops and feeds
-                self.session.partial_run_setup([ce_run_ops], feeds=[ce_feed_dict.keys()])
-                ce_towers_spans_values = self.session.partial_run(ce_run_ops, feed_dict=ce_feed_dict)
-
+                ce_towers_spans_values = self.session.run([ce_run_ops], feed_dict=ce_feed_dict)
                 greedy_start_one_hots = []
                 greedy_end_one_hots = []
                 sampled_start_one_hots = []
