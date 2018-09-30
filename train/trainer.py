@@ -1,10 +1,10 @@
 """Trains a model on SQuAD data.
 """
 
-import shutil
 from decimal import Decimal
 
 import boto3
+import shutil
 
 from train.evaluation_util import *
 from train.model_builder import ModelBuilder
@@ -15,8 +15,8 @@ from train.train_util import *
 
 
 def _get_val(float_val):
-    return Decimal(float_val.item() if (isinstance(float_val, np.ndarray) \
-                                        or isinstance(float_val, np.float32) \
+    return Decimal(float_val.item() if (isinstance(float_val, np.ndarray)
+                                        or isinstance(float_val, np.float32)
                                         or isinstance(float_val, np.float64)) else float_val)
 
 
@@ -246,43 +246,47 @@ class Trainer:
             self.session = create_session()
             self.sq_dataset = create_sq_dataset(self.options)
 
-            embedding_placeholder = tf.placeholder(tf.float32,
-                                                   shape=self.sq_dataset.embeddings.shape)
-            embedding_var = \
-                tf.Variable(embedding_placeholder, trainable=False)
-            word_chars_placeholder = tf.placeholder(tf.float32,
-                                                    shape=self.sq_dataset.word_chars.shape)
-            word_chars_var = \
-                tf.Variable(word_chars_placeholder, trainable=False)
-
-            learning_rate = tf.Variable(name="learning_rate", initial_value=
-            self.options.learning_rate, trainable=False, dtype=tf.float32)
+            embedding_placeholder = tf.placeholder(tf.float32, shape=self.sq_dataset.embeddings.shape)
+            embedding_var = tf.Variable(embedding_placeholder, trainable=False)
+            word_chars_placeholder = tf.placeholder(tf.float32, shape=self.sq_dataset.word_chars.shape)
+            word_chars_var = tf.Variable(word_chars_placeholder, trainable=False)
+            learning_rate = tf.Variable(name="learning_rate",
+                                        initial_value=self.options.learning_rate,
+                                        trainable=False,
+                                        dtype=tf.float32)
             learning_rate_placeholder = tf.placeholder(tf.float32)
             assign_learning_rate = tf.assign(learning_rate,
                                              tf.maximum(self.options.min_learning_rate, learning_rate_placeholder))
             self.optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate)
+            self.model_builder = ModelBuilder(self.optimizer,
+                                              self.options,
+                                              self.sq_dataset,
+                                              embedding_var,
+                                              word_chars_var,
+                                              compute_gradients=True,
+                                              sess=self.session)
+            print("Applying gradients")
+            if self.options.model_type == "debug":
+                train_op = tf.no_op()
+                global_norm = tf.constant(0.0, dtype=tf.float32)
+            else:
+                grads, variables = zip(*average_gradients(self.model_builder.get_tower_grads()))
+                grads, global_norm = tf.clip_by_global_norm(grads, self.options.max_global_norm)
+                train_op = self.optimizer.apply_gradients(zip(grads, variables))
 
-            self.model_builder = ModelBuilder(self.optimizer, self.options,
-                                              self.sq_dataset, embedding_var, word_chars_var,
-                                              compute_gradients=True, sess=self.session)
-
-            # PAUL - 이전 training 부분 계속
             iteration_num = tf.Variable(initial_value=1, trainable=False, dtype=tf.int32)
             incr_iter = tf.assign(iteration_num, iteration_num + 1)
 
             if self.options.clear_logs_before_training:
                 shutil.rmtree(self.options.log_dir, ignore_errors=True)
             os.makedirs(self.options.log_dir, exist_ok=True)
-            self.train_writer = tf.summary.FileWriter(os.path.join(
-                self.options.log_dir, "train"), graph=tf.get_default_graph())
-            self.val_writer = tf.summary.FileWriter(os.path.join(
-                self.options.log_dir, "val"), graph=tf.get_default_graph())
-            self.em = tf.Variable(name="em",
-                                  initial_value=0, trainable=False, dtype=tf.float32)
-            self.f1 = tf.Variable(name="f1",
-                                  initial_value=0, trainable=False, dtype=tf.float32)
-            self.highest_f1 = tf.Variable(name="highest_f1",
-                                          initial_value=0, trainable=False, dtype=tf.float32)
+            self.train_writer = tf.summary.FileWriter(os.path.join(self.options.log_dir, "train"),
+                                                      graph=tf.get_default_graph())
+            self.val_writer = tf.summary.FileWriter(os.path.join(self.options.log_dir, "val"),
+                                                    graph=tf.get_default_graph())
+            self.em = tf.Variable(name="em", initial_value=0, trainable=False, dtype=tf.float32)
+            self.f1 = tf.Variable(name="f1", initial_value=0, trainable=False, dtype=tf.float32)
+            self.highest_f1 = tf.Variable(name="highest_f1", initial_value=0, trainable=False, dtype=tf.float32)
             self.extra_save_vars.append(self.highest_f1)
             highest_f1_placeholder = tf.placeholder(tf.float32)
             assign_highest_f1 = tf.assign(self.highest_f1, highest_f1_placeholder)
@@ -315,27 +319,10 @@ class Trainer:
                                        (self.options.batch_size * max(1, self.options.num_gpus)))
             start_time = time.time()
             print("Current iteration: %d, Iters/epoch: %d, Current learning rate: %f"
-                  % (current_iter, iterations_per_epoch,
-                     _get_val(current_learning_rate)))
+                  % (current_iter, iterations_per_epoch, _get_val(current_learning_rate)))
             i = current_iter - 1
             num_bad_checkpoints = 0
             epoch_start = time.time()
-
-
-
-            train_op = None
-            global_norm = None
-            if self.options.model_type == "debug":
-                train_op = tf.no_op()
-                global_norm = tf.constant(0.0, dtype=tf.float32)
-            else:
-                grads, variables = zip(*average_gradients(self.model_builder.get_tower_grads()))
-                grads, global_norm = tf.clip_by_global_norm(grads, self.options.max_global_norm)
-                train_op = self.optimizer.apply_gradients(zip(grads, variables))
-            iteration_num = tf.Variable(initial_value=1, trainable=False,
-                dtype=tf.int32)
-            incr_iter = tf.assign(iteration_num, iteration_num + 1)
-
 
             ce_run_ops = []
             for tower in self.model_builder.towers:
@@ -348,8 +335,12 @@ class Trainer:
                     ce_run_ops.append(end_pos)
                 ce_run_ops.append(tower.get_data_index_iterator())
                 ce_run_ops.append(tower.get_qst())
-            ce_run_ops, ce_run_feeds = get_ce_partial_run_args(self.sq_dataset, self.options, self.model_builder.towers)
-            rl_run_ops, rl_run_feeds = get_scrl_partial_run_args(self.sq_dataset, self.options, self.model_builder.towers, train_op)
+            ce_run_ops, ce_run_feeds = get_ce_partial_run_args(self.sq_dataset,
+                                                               self.options,
+                                                               self.model_builder.towers)
+            rl_run_ops, rl_run_feeds = get_scrl_partial_run_args(self.sq_dataset,
+                                                                 self.options,
+                                                                 self.model_builder.towers, train_op)
             all_feeds = []
             all_feeds.extend(ce_run_feeds)
             all_feeds.extend(rl_run_feeds)
@@ -357,16 +348,14 @@ class Trainer:
             loss_summary = tf.summary.scalar("loss", rl_run_ops[1])
             gradients_summary = tf.summary.scalar("gradients", global_norm)
 
-            tf.global_variables_initializer()
-
-
             print(ce_run_ops)
             print(rl_run_ops)
             print(ce_run_feeds)
             print(rl_run_feeds)
-            # TODO check where was this initialization in the original training code.
-            self.session.run(tf.global_variables_initializer())
 
+            uninitialized_vars = self.session.run(tf.report_uninitialized_variables())
+            assert len(uninitialized_vars) == 0, \
+                "variables are not initialized {}".format(str(uninitialized_vars ))
             while True:
                 i += 1
                 iter_start = time.time()
@@ -388,9 +377,11 @@ class Trainer:
                     tower_var_idx += 1
                     end_span_probs = ce_towers_spans_values[tower_var_idx]
                     tower_var_idx += 1
-                    start_pos_iters = ce_towers_spans_values[tower_var_idx: tower_var_idx + self.options.num_stochastic_answer_pointer_steps]
+                    start_pos_iters = ce_towers_spans_values[
+                                      tower_var_idx: tower_var_idx + self.options.num_stochastic_answer_pointer_steps]
                     tower_var_idx += self.options.num_stochastic_answer_pointer_steps
-                    end_pos_iters = ce_towers_spans_values[tower_var_idx: tower_var_idx + self.options.num_stochastic_answer_pointer_steps]
+                    end_pos_iters = ce_towers_spans_values[
+                                    tower_var_idx: tower_var_idx + self.options.num_stochastic_answer_pointer_steps]
                     tower_var_idx += self.options.num_stochastic_answer_pointer_steps
                     data_indices = ce_towers_spans_values[tower_var_idx]
                     tower_var_idx += 1
@@ -426,7 +417,7 @@ class Trainer:
                         rewards[tower_idx][example_idx] = []
 
                         for pointer_iter_start_pos, pointer_iter_end_pos in \
-                            zip(example_start_pos_list, example_end_pos_list):
+                                zip(example_start_pos_list, example_end_pos_list):
                             greedy_start, greedy_end = get_best_start_and_end(
                                 pointer_iter_start_pos, pointer_iter_end_pos, self.options)
                             sampled_start, sampled_end = get_sampled_start_and_end(
@@ -473,7 +464,6 @@ class Trainer:
                 rl_towers_spans_values = self.session.partial_run(rl_run_ops, feed_dict=rl_feed_dict)
                 scrl_loss = rl_towers_spans_values[0]
                 self.sq_dataset.increment_train_samples_processed(self.options.batch_size * num_towers)
-
 
                 # print("Applying gradients")
                 # apply_gradients_start_time = time.time()

@@ -51,16 +51,6 @@ class ModelBuilder:
         self.towers.append(tower)
         return tower.get_loss_op()
 
-    def _add_tower_and_compute_scrl_loss(self, scope, iterators):
-        print("Creating tower in model")
-        tower = MODEL_TYPES[self.options.model_type](self.options,
-                iterators, self.sq_dataset, self.embeddings,
-                self.word_chars, self.cove_cells, self.sess)
-        tower.setup()
-        print("Tower created")
-        self.towers.append(tower)
-        return tower.get_scrl_loss_op()
-
     def _setup(self):
         self._validate_parameters()
 
@@ -97,8 +87,7 @@ class ModelBuilder:
                                 tf.get_variable_scope().reuse_variables()
                                 if self.compute_gradients:
                                     gradient_start_time = time.time()
-                                    grads = self.optimizer.compute_gradients(
-                                        self.loss)
+                                    grads = self.optimizer.compute_gradients(self.loss)
                                     gradient_computation_time += (time.time() - gradient_start_time)
                                     self.tower_grads.append(grads)
             print("Time to create towers: %s" % tower_creation_time)

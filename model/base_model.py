@@ -79,9 +79,6 @@ class BaseModel:
     def get_loss_op(self):
         return self.loss
 
-    def get_scrl_loss(self):
-        return self.scrl_loss
-
     def get_start_span_probs(self):
         return self.start_span_probs
 
