@@ -274,6 +274,10 @@ class Trainer:
                 grads, global_norm = tf.clip_by_global_norm(grads, self.options.max_global_norm)
                 train_op = self.optimizer.apply_gradients(zip(grads, variables))
 
+            with tf.control_dependencies([train_op]):
+                # https://github.com/tensorflow/tensorflow/issues/1899
+                partial_run_train_op = tf.constant(0)
+
             iteration_num = tf.Variable(initial_value=1, trainable=False, dtype=tf.int32)
             incr_iter = tf.assign(iteration_num, iteration_num + 1)
 
@@ -324,29 +328,21 @@ class Trainer:
             num_bad_checkpoints = 0
             epoch_start = time.time()
 
-            ce_run_ops = []
-            for tower in self.model_builder.towers:
-                ce_run_ops.append(tower.ce_loss)
-                ce_run_ops.append(tower.get_start_span_probs())
-                ce_run_ops.append(tower.get_end_span_probs())
-                for start_pos in tower.start_pos_list:
-                    ce_run_ops.append(start_pos)
-                for end_pos in tower.end_pos_list:
-                    ce_run_ops.append(end_pos)
-                ce_run_ops.append(tower.get_data_index_iterator())
-                ce_run_ops.append(tower.get_qst())
+            ce_loss_summary = tf.summary.scalar("ce_loss", self.model_builder.get_ce_loss())
+            ce_gradients_summary = tf.summary.scalar("ce_gradients", global_norm)
             ce_run_ops, ce_run_feeds = get_ce_partial_run_args(self.sq_dataset,
                                                                self.options,
-                                                               self.model_builder.towers)
+                                                               self.model_builder.towers,
+                                                               ce_loss_summary,
+                                                               ce_gradients_summary)
+
             rl_run_ops, rl_run_feeds = get_scrl_partial_run_args(self.sq_dataset,
                                                                  self.options,
-                                                                 self.model_builder.towers, train_op)
+                                                                 self.model_builder.towers,
+                                                                 partial_run_train_op)
             all_feeds = []
             all_feeds.extend(ce_run_feeds)
             all_feeds.extend(rl_run_feeds)
-
-            loss_summary = tf.summary.scalar("loss", rl_run_ops[1])
-            gradients_summary = tf.summary.scalar("gradients", global_norm)
 
             print(ce_run_ops)
             print(rl_run_ops)
@@ -355,43 +351,35 @@ class Trainer:
 
             uninitialized_vars = self.session.run(tf.report_uninitialized_variables())
             assert len(uninitialized_vars) == 0, \
-                "variables are not initialized {}".format(str(uninitialized_vars ))
+                "variables are not initialized {}".format(str(uninitialized_vars))
             while True:
                 i += 1
                 iter_start = time.time()
-                self.session.partial_run_setup([ce_run_ops, rl_run_ops], feeds=all_feeds)
+                partial_run_setup = self.session.partial_run_setup([ce_run_ops, rl_run_ops], feeds=all_feeds)
                 ce_feed_dict = get_train_feed_dict(self.sq_dataset, self.options, self.model_builder.get_towers())
-                ce_towers_spans_values = self.session.run([ce_run_ops], feed_dict=ce_feed_dict)
+                ce_run_ops_values = self.session.partial_run(partial_run_setup,
+                                                             ce_run_ops,
+                                                             feed_dict=ce_feed_dict)
                 greedy_start_one_hots = []
                 greedy_end_one_hots = []
                 sampled_start_one_hots = []
                 sampled_end_one_hots = []
                 rewards = []
 
-                items_per_tower = int(len(ce_run_ops) / len(self.model_builder.towers))
                 for tower_idx, tower in enumerate(self.model_builder.towers):
-                    tower_var_idx = items_per_tower * tower_idx
-                    ce_loss = ce_towers_spans_values[tower_var_idx]
-                    tower_var_idx += 1
-                    start_span_probs = ce_towers_spans_values[tower_var_idx]
-                    tower_var_idx += 1
-                    end_span_probs = ce_towers_spans_values[tower_var_idx]
-                    tower_var_idx += 1
-                    start_pos_iters = ce_towers_spans_values[
-                                      tower_var_idx: tower_var_idx + self.options.num_stochastic_answer_pointer_steps]
-                    tower_var_idx += self.options.num_stochastic_answer_pointer_steps
-                    end_pos_iters = ce_towers_spans_values[
-                                    tower_var_idx: tower_var_idx + self.options.num_stochastic_answer_pointer_steps]
-                    tower_var_idx += self.options.num_stochastic_answer_pointer_steps
-                    data_indices = ce_towers_spans_values[tower_var_idx]
-                    tower_var_idx += 1
-                    qst_values = ce_towers_spans_values[tower_var_idx]
+                    ce_loss, \
+                    start_span_probs, \
+                    end_span_probs, \
+                    start_pos_iters, \
+                    end_pos_iters, \
+                    data_indices, \
+                    qst_values = ce_run_ops_values[tower_idx]
 
-                    greedy_start_one_hots[tower_idx] = []
-                    greedy_end_one_hots[tower_idx] = []
-                    sampled_start_one_hots[tower_idx] = []
-                    sampled_end_one_hots[tower_idx] = []
-                    rewards[tower_idx] = []
+                    greedy_start_one_hots.append([])
+                    greedy_end_one_hots.append([])
+                    sampled_start_one_hots.append([])
+                    sampled_end_one_hots.append([])
+                    rewards.append([])
 
                     if start_span_probs.shape != end_span_probs.shape:
                         print("start_span_probs shape", start_span_probs.shape,
@@ -410,11 +398,11 @@ class Trainer:
                         example_start_pos_list = [start_pos_iter[example_idx] for start_pos_iter in start_pos_iters]
                         example_end_pos_list = [end_pos_iter[example_idx] for end_pos_iter in end_pos_iters]
 
-                        greedy_start_one_hots[tower_idx][example_idx] = []
-                        greedy_end_one_hots[tower_idx][example_idx] = []
-                        sampled_start_one_hots[tower_idx][example_idx] = []
-                        sampled_end_one_hots[tower_idx][example_idx] = []
-                        rewards[tower_idx][example_idx] = []
+                        greedy_start_one_hots[tower_idx].append([])
+                        greedy_end_one_hots[tower_idx].append([])
+                        sampled_start_one_hots[tower_idx].append([])
+                        sampled_end_one_hots[tower_idx].append([])
+                        rewards[tower_idx].append([])
 
                         for pointer_iter_start_pos, pointer_iter_end_pos in \
                                 zip(example_start_pos_list, example_end_pos_list):
@@ -425,12 +413,16 @@ class Trainer:
                             example_index = data_indices[example_idx]
                             question_word_ids = qst_values[example_idx]
                             question = find_question_sentence(question_word_ids, self.sq_dataset.vocab)
-                            greedy_str = self.sq_dataset.get_sentence(example_index, greedy_start, greedy_end)
-                            sampled_str = self.sq_dataset.get_sentence(example_index, sampled_start, sampled_end)
-                            gt_str = self.sq_dataset.get_sentences_for_all_gnd_truths(example_index)
+                            passage = self.sq_dataset.train_ds.question_ids_to_passage_context[example_index]
+                            context, ground_truths = [passage.passage_str, passage.acceptable_gnd_truths]
+
+                            greedy_str = self.sq_dataset.train_ds.get_sentence(example_index, greedy_start, greedy_end)
+                            sampled_str = self.sq_dataset.train_ds.get_sentence(example_index, sampled_start,
+                                                                                sampled_end)
+                            gt_str = self.sq_dataset.train_ds.get_sentences_for_all_gnd_truths(example_index)
                             # compute f1 and reward
-                            greedy_f1 = f1_score(greedy_str, gt_str)
-                            sampled_f1 = f1_score(sampled_str, gt_str)
+                            greedy_f1 = max_over_gnd_truths(f1_score, greedy_str, gt_str)
+                            sampled_f1 = max_over_gnd_truths(f1_score, sampled_str, gt_str)
 
                             reward = sampled_f1 - greedy_f1
                             greedy_start_one_hot = np.zeros(self.options.max_ctx_length)
@@ -449,9 +441,8 @@ class Trainer:
                             sampled_end_one_hot[sampled_end] = 1
                             sampled_end_one_hots[tower_idx][example_idx].append(sampled_end_one_hot)
 
-                            rewards[tower_idx][example_idx].append(reward)
+                            rewards[tower_idx][example_idx].append([reward])
 
-                sampled_start_one_hots = []
                 rl_feed_dict = get_scrl_train_feed_dict(
                     self.sq_dataset,
                     self.options,
@@ -461,8 +452,10 @@ class Trainer:
                     sampled_start_one_hots,
                     sampled_end_one_hots,
                     rewards)
-                rl_towers_spans_values = self.session.partial_run(rl_run_ops, feed_dict=rl_feed_dict)
-                scrl_loss = rl_towers_spans_values[0]
+                rl_towers_spans_values = self.session.partial_run(partial_run_setup,
+                                                                  rl_run_ops,
+                                                                  feed_dict=rl_feed_dict)
+
                 self.sq_dataset.increment_train_samples_processed(self.options.batch_size * num_towers)
 
                 # print("Applying gradients")
@@ -483,29 +476,31 @@ class Trainer:
                 print("iteration:", str(i),
                       "highest f1: %.4f" % current_highest_f1,
                       "learning rate: %.3E" % _get_val(current_learning_rate),
-                      "loss: %.3E" % _get_val(scrl_loss),
+                      "loss: %.3E" % _get_val(rl_towers_spans_values[1]),
                       "Sec/iter: %.3f" % time_per_iter,
                       "time/epoch", readable_time(time_per_epoch), end="\r")
+
                 if i % self.options.log_every == 0:
-                    if self.options.log_gradients:
-                        self.train_writer.add_summary(gradients_summary_value, i)
+                    # TODO change it so that it logs rl_loss
                     if self.options.log_loss:
-                        self.train_writer.add_summary(loss_summary_value, i)
+                        self.train_writer.add_summary(ce_run_ops_values[-1][0], i)
+                    # if self.options.log_gradients:
+                    #     self.train_writer.add_summary(ce_gradients_summary, i)
                 if i % self.options.log_valid_every == 0:
-                    loss_summary_value, gradients_summary_value, ce_loss = \
-                        self.session.run([
-                            loss_summary, gradients_summary, scrl_loss],
-                            feed_dict=get_dev_feed_dict(self.sq_dataset,
-                                                        self.options, self.model_builder.get_towers()))
-                    self.sq_dataset.increment_val_samples_processed(
-                        self.options.batch_size * num_towers)
-                    if self.options.log_gradients:
-                        self.val_writer.add_summary(gradients_summary_value, i)
+                    # TODO add back gradient summary
+                    dev_loss_summary_value, scrl_loss_value = \
+                        self.session.run(fetches=[ce_loss_summary,
+                                                  self.model_builder.get_ce_loss()],
+                                         feed_dict=get_dev_feed_dict(self.sq_dataset,
+                                                                     self.options,
+                                                                     self.model_builder.get_towers()))
+                    self.sq_dataset.increment_val_samples_processed(self.options.batch_size * num_towers)
                     if self.options.log_loss:
-                        self.val_writer.add_summary(loss_summary_value, i)
+                        self.val_writer.add_summary(dev_loss_summary_value, i)
+                    # if self.options.log_gradients:
+                    #     self.val_writer.add_summary(dev_gradients_summary_value, i)
                     print("")
-                    print("[Validation] iteration:", str(i),
-                          "loss: %.3E" % _get_val(ce_loss))
+                    print("[Validation] iteration:", str(i), "loss: %.3E" % _get_val(scrl_loss_value))
                 # Evaluate on the dev set and save the model once per epoch.
                 if i % iterations_per_epoch == 0:
                     eval_start = time.time()

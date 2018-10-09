@@ -1,15 +1,15 @@
 """Builds a TensorFlow model to run on SQuAD data.
 """
 
-import tensorflow as tf
 import time
 
 from model.cudnn_cove_lstm import *
 from model.model_types import MODEL_TYPES
 
+
 class ModelBuilder:
     def __init__(self, optimizer, options, sq_dataset, embeddings, word_chars,
-            compute_gradients, sess):
+                 compute_gradients, sess):
         self.sq_dataset = sq_dataset
         self.optimizer = optimizer
         self.options = options
@@ -36,16 +36,19 @@ class ModelBuilder:
     def get_loss(self):
         return self.loss
 
+    def get_ce_loss(self):
+        return self.ce_loss
+
     def _validate_parameters(self):
         if self.options.model_type not in MODEL_TYPES:
             raise Exception("Model type %s not recognized. Must be in set %s."
-                % (self.options.model_type, MODEL_TYPES.keys()))
+                            % (self.options.model_type, MODEL_TYPES.keys()))
 
     def _add_tower_and_compute_loss(self, scope, iterators):
         print("Creating tower in model")
         tower = MODEL_TYPES[self.options.model_type](self.options,
-                iterators, self.sq_dataset, self.embeddings,
-                self.word_chars, self.cove_cells, self.sess)
+                                                     iterators, self.sq_dataset, self.embeddings,
+                                                     self.word_chars, self.cove_cells, self.sess)
         tower.setup()
         print("Tower created")
         self.towers.append(tower)
@@ -67,8 +70,7 @@ class ModelBuilder:
                 if self.options.num_gpus == 0:
                     iterators = self.sq_dataset.create_iterators()
                     tower_start_time = time.time()
-                    self.loss = self._add_tower_and_compute_loss("single_tower_scope",
-                            iterators)
+                    self.loss = self._add_tower_and_compute_loss("single_tower_scope", iterators)
                     tower_creation_time += (time.time() - tower_start_time)
                     if self.compute_gradients:
                         gradient_start_time = time.time()
@@ -82,6 +84,10 @@ class ModelBuilder:
                                 iterators = self.sq_dataset.create_iterators()
                                 tower_start_time = time.time()
                                 self.loss = self._add_tower_and_compute_loss(scope, iterators)
+                                if 'scrl' in self.options.model_type or \
+                                        'dcrl' in self.options.model_type:
+                                    self.ce_loss = self.towers[-1].ce_loss
+
                                 tower_creation_time += (time.time() - tower_start_time)
                                 # This should make each tower share variables.
                                 tf.get_variable_scope().reuse_variables()

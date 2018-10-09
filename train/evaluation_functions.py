@@ -10,16 +10,13 @@ import numpy as np
 
 
 def get_sampled_start_and_end(start_probs, end_probs, options):
-    for i in range(start_probs.shape[0]):
-        print(start_probs[i,0])
-        print(type(start_probs))
-        start_pos = np.random.choice(start_probs[i,:], 1, p=start_probs)
-        max_end_pos = min(end_probs.shape[0], start_pos + options.max_search_span_range)
+    start_pos = np.random.choice(len(start_probs), 1, p=start_probs)[0]
 
-        truncated_end_probs = end_probs[start_pos:max_end_pos]
-        norm_end_probs = truncated_end_probs / sum(truncated_end_probs)
-        end_pos = start_pos + np.random.choice(len(norm_end_probs), 1, p=norm_end_probs)
-        return start_pos, end_pos
+    max_end_pos = min(end_probs.shape[0], start_pos + options.max_search_span_range)
+    truncated_end_probs = end_probs[start_pos:max_end_pos]
+    norm_end_probs = truncated_end_probs / sum(truncated_end_probs)
+    end_pos = start_pos + np.random.choice(len(norm_end_probs), 1, p=norm_end_probs)[0]
+    return start_pos, end_pos
 
 
 def get_best_start_and_end(start_probs, end_probs, options):
