@@ -37,6 +37,7 @@ class MnemonicReaderScrl(BaseModel):
         # Step 4. apply scrl
         # https://www.tensorflow.org/api_docs/python/tf/Session#partial_run
         self.loss, \
+        self.rl_loss,\
         self.sampled_start_pos_list, \
         self.sampled_end_pos_list, \
         self.greedy_start_pos_list, \

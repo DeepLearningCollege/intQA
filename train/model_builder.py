@@ -87,6 +87,7 @@ class ModelBuilder:
                                 if 'scrl' in self.options.model_type or \
                                         'dcrl' in self.options.model_type:
                                     self.ce_loss = self.towers[-1].ce_loss
+                                    self.rl_loss = self.towers[-1].rl_loss
 
                                 tower_creation_time += (time.time() - tower_start_time)
                                 # This should make each tower share variables.

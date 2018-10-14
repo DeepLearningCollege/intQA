@@ -333,8 +333,8 @@ class Trainer:
             ce_run_ops, ce_run_feeds = get_ce_partial_run_args(self.sq_dataset,
                                                                self.options,
                                                                self.model_builder.towers,
-                                                               ce_loss_summary,
-                                                               ce_gradients_summary)
+                                                               # TODO [ce_loss_summary, ce_gradients_summary])
+                                                               [ce_loss_summary])
 
             rl_run_ops, rl_run_feeds = get_scrl_partial_run_args(self.sq_dataset,
                                                                  self.options,
@@ -357,9 +357,10 @@ class Trainer:
                 iter_start = time.time()
                 partial_run_setup = self.session.partial_run_setup([ce_run_ops, rl_run_ops], feeds=all_feeds)
                 ce_feed_dict = get_train_feed_dict(self.sq_dataset, self.options, self.model_builder.get_towers())
-                ce_run_ops_values = self.session.partial_run(partial_run_setup,
-                                                             ce_run_ops,
-                                                             feed_dict=ce_feed_dict)
+                ce_towers_run_ops_values, ce_common_run_ops_values = \
+                    self.session.partial_run(partial_run_setup,
+                                             ce_run_ops,
+                                             feed_dict=ce_feed_dict)
                 greedy_start_one_hots = []
                 greedy_end_one_hots = []
                 sampled_start_one_hots = []
@@ -373,7 +374,7 @@ class Trainer:
                     start_pos_iters, \
                     end_pos_iters, \
                     data_indices, \
-                    qst_values = ce_run_ops_values[tower_idx]
+                    qst_values = ce_towers_run_ops_values[tower_idx]
 
                     greedy_start_one_hots.append([])
                     greedy_end_one_hots.append([])
@@ -424,6 +425,11 @@ class Trainer:
                             greedy_f1 = max_over_gnd_truths(f1_score, greedy_str, gt_str)
                             sampled_f1 = max_over_gnd_truths(f1_score, sampled_str, gt_str)
 
+                            if greedy_f1 != 0 and not greedy_f1:
+                                print('\ngreedy_f1:', greedy_f1, '\ngreedy_str:', greedy_str, '\ngt_str:', gt_str)
+                            if sampled_f1 != 0 and not sampled_f1:
+                                print('\nsampled_f1L', sampled_f1, '\nsampled_str:', sampled_str, '\ngt_str:', gt_str)
+
                             reward = sampled_f1 - greedy_f1
                             greedy_start_one_hot = np.zeros(self.options.max_ctx_length)
                             greedy_start_one_hot[greedy_start] = 1
@@ -443,47 +449,41 @@ class Trainer:
 
                             rewards[tower_idx][example_idx].append([reward])
 
-                rl_feed_dict = get_scrl_train_feed_dict(
-                    self.sq_dataset,
-                    self.options,
-                    self.model_builder.get_towers(),
-                    greedy_start_one_hots,
-                    greedy_end_one_hots,
-                    sampled_start_one_hots,
-                    sampled_end_one_hots,
-                    rewards)
-                rl_towers_spans_values = self.session.partial_run(partial_run_setup,
-                                                                  rl_run_ops,
-                                                                  feed_dict=rl_feed_dict)
+                rl_feed_dict = get_scrl_train_feed_dict(self.sq_dataset,
+                                                        self.options,
+                                                        self.model_builder.get_towers(),
+                                                        greedy_start_one_hots,
+                                                        greedy_end_one_hots,
+                                                        sampled_start_one_hots,
+                                                        sampled_end_one_hots,
+                                                        rewards)
+                rl_towers_run_ops_values = self.session.partial_run(partial_run_setup,
+                                                                    rl_run_ops,
+                                                                    feed_dict=rl_feed_dict)
 
                 self.sq_dataset.increment_train_samples_processed(self.options.batch_size * num_towers)
 
-                # print("Applying gradients")
-                # apply_gradients_start_time = time.time()
-                # train_op = None
-                # global_norm = None
-                # grads, variables = zip(*average_gradients(self.model_builder.get_tower_grads()))
-                # grads, global_norm = tf.clip_by_global_norm(grads, self.options.max_global_norm)
-                # train_op = self.optimizer.apply_gradients(zip(grads, variables))
-                # loss = self.model_builder.get_loss()
-                # loss_summary = tf.summary.scalar("loss", loss)
-                # gradients_summary = tf.summary.scalar("gradients", global_norm)
-                # print("Time to apply gradients: %s"
-                #       % (time.time() - apply_gradients_start_time))
                 iter_end = time.time()
                 time_per_iter = iter_end - iter_start
                 time_per_epoch = time_per_iter * iterations_per_epoch
+
+                ce_loss = ce_towers_run_ops_values[0][0]
+                # TODO Unwarp rl_loss
+                rl_loss = rl_towers_run_ops_values[0][1]
+                loss = rl_towers_run_ops_values[0][0][0]
                 print("iteration:", str(i),
                       "highest f1: %.4f" % current_highest_f1,
                       "learning rate: %.3E" % _get_val(current_learning_rate),
-                      "loss: %.3E" % _get_val(rl_towers_spans_values[1]),
+                      "ce_loss: %.3E" % _get_val(ce_loss),
+                      "rl_loss: %.3E" % _get_val(rl_loss),
+                      "loss: %.3E" % _get_val(loss),
                       "Sec/iter: %.3f" % time_per_iter,
                       "time/epoch", readable_time(time_per_epoch), end="\r")
 
                 if i % self.options.log_every == 0:
                     # TODO change it so that it logs rl_loss
                     if self.options.log_loss:
-                        self.train_writer.add_summary(ce_run_ops_values[-1][0], i)
+                        self.train_writer.add_summary(ce_common_run_ops_values[0], i)
                     # if self.options.log_gradients:
                     #     self.train_writer.add_summary(ce_gradients_summary, i)
                 if i % self.options.log_valid_every == 0:
@@ -505,16 +505,21 @@ class Trainer:
                 if i % iterations_per_epoch == 0:
                     eval_start = time.time()
                     em, f1 = evaluate_train_partial(self.session,
-                                                    self.model_builder.get_towers(), self.sq_dataset,
-                                                    self.options, sample_limit=val_ds_size)
+                                                    self.model_builder.get_towers(),
+                                                    self.sq_dataset,
+                                                    self.options,
+                                                    sample_limit=val_ds_size)
                     print("")
                     print("[Train] F1", f1, "Em", em)
                     val_em, val_f1 = evaluate_dev_partial(self.session,
-                                                          self.model_builder.get_towers(), self.sq_dataset,
-                                                          self.options, sample_limit=val_ds_size)
+                                                          self.model_builder.get_towers(),
+                                                          self.sq_dataset,
+                                                          self.options,
+                                                          sample_limit=val_ds_size)
+
                     print("[Valid] F1", val_f1, "Em", val_em)
-                    print("Time to evaluate train/val: %f"
-                          % (time.time() - eval_start))
+                    print("Time to evaluate train/val: %f" % (time.time() - eval_start))
+
                     self._perform_summary_assignment(self.em, em)
                     self._perform_summary_assignment(self.f1, f1)
                     if self.options.log_exact_match:
@@ -532,21 +537,17 @@ class Trainer:
                     # If the validation F1 score didn't increase, then cut
                     # the learning rate.
                     if current_highest_f1 >= val_f1:
-                        if num_bad_checkpoints \
-                                < self.options.bad_checkpoints_tolerance:
+                        if num_bad_checkpoints < self.options.bad_checkpoints_tolerance:
                             num_bad_checkpoints += 1
-                            print("Hit bad checkpoint. num_bad_checkpoints: %d"
-                                  % num_bad_checkpoints)
+                            print("Hit bad checkpoint. num_bad_checkpoints: %d" % num_bad_checkpoints)
                         else:
                             new_learning_rate = current_learning_rate \
                                                 * self.options.bad_iteration_learning_decay
-                            self.session.run(assign_learning_rate, feed_dict={
-                                learning_rate_placeholder: new_learning_rate})
+                            self.session.run(assign_learning_rate,
+                                             feed_dict={learning_rate_placeholder: new_learning_rate})
                             current_learning_rate = new_learning_rate
-                            print(("Dropped learning rate to %.3E because val F1 "
-                                   + "didn't increase from %.3E")
-                                  % (_get_val(new_learning_rate),
-                                     _get_val(current_highest_f1)))
+                            print("Dropped learning rate to %.3E because val F1 didn't increase from %.3E" %
+                                  (_get_val(new_learning_rate), _get_val(current_highest_f1)))
                             num_bad_checkpoints = 0
                     else:
                         self.session.run(assign_highest_f1, feed_dict={
@@ -558,8 +559,6 @@ class Trainer:
                                                  self.options.checkpoint_dir, self.options)
                         print("Saved model at iteration", i)
                         num_bad_checkpoints = 0
-                    print("Total epoch time %s" % readable_time(
-                        time.time() - epoch_start))
-                    print("Cumulative run time %s" % readable_time(
-                        time.time() - train_start_time))
+                    print("Total epoch time %s" % readable_time(time.time() - epoch_start))
+                    print("Cumulative run time %s" % readable_time(time.time() - train_start_time))
                     epoch_start = time.time()

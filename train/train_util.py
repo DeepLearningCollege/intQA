@@ -15,10 +15,10 @@ def get_eval_feed_dict(squad_data, options, towers, is_train):
     return feed_dict
 
 
-def get_ce_partial_run_args(squad_data, options, towers, loss_summary, gradients_summary):
+def get_ce_partial_run_args(squad_data, options, towers, common_run_ops):
     if len(towers) < 1:
         raise Exception("There are no models in the list of towers to train")
-    run_ops = []
+    towers_run_ops = []
     feed_dict_keys = []
 
     for tower in towers:
@@ -33,7 +33,7 @@ def get_ce_partial_run_args(squad_data, options, towers, loss_summary, gradients
             tower.get_data_index_iterator(),
             tower.get_qst()
         ]
-        run_ops.append(tower_run_ops)
+        towers_run_ops.append(tower_run_ops)
 
         feed_dict_keys.append(tower.get_keep_prob_placeholder())
         feed_dict_keys.append(tower.get_input_keep_prob_placeholder())
@@ -42,8 +42,7 @@ def get_ce_partial_run_args(squad_data, options, towers, loss_summary, gradients
     feed_dict_keys.append(squad_data.get_iterator_handle())
     # gradients_summary 는 scrl_loss 가 반영되어야 계산하기 때문에 못씀 ㅠㅠ.
     # common_run_ops = [loss_summary, gradients_summary]
-    common_run_ops = [loss_summary]
-    run_ops.append(common_run_ops)
+    run_ops = [towers_run_ops, common_run_ops]
     return run_ops, feed_dict_keys
 
 
@@ -75,21 +74,23 @@ def get_train_feed_dict(squad_data, options, towers):
 def get_scrl_partial_run_args(squad_data,
                               options,
                               towers,
-                              train_op):
+                              common_ops):
     if len(towers) < 1:
         raise Exception("There are no models in the list of towers to train")
-    ops = []
-    keys = []
+
+    towers_run_ops = []
+    feed_dict_keys = []
     for tower_idx, tower in enumerate(towers):
-        ops.append(train_op)
-        ops.append(towers[tower_idx].loss)
+        towers_run_ops.append(towers[tower_idx].loss)
+        towers_run_ops.append(towers[tower_idx].rl_loss)
         # TODO unfold across batch index??
-        keys.append(tower.sampled_start_pos_list)
-        keys.append(tower.sampled_end_pos_list)
-        keys.append(tower.greedy_start_pos_list)
-        keys.append(tower.greedy_end_pos_list)
-        keys.append(tower.reward)
-    return ops, keys
+        feed_dict_keys.append(tower.sampled_start_pos_list)
+        feed_dict_keys.append(tower.sampled_end_pos_list)
+        feed_dict_keys.append(tower.greedy_start_pos_list)
+        feed_dict_keys.append(tower.greedy_end_pos_list)
+        feed_dict_keys.append(tower.reward)
+    run_ops = [towers_run_ops, common_ops]
+    return run_ops, feed_dict_keys
 
 
 def get_scrl_train_feed_dict(squad_data, options, towers,
