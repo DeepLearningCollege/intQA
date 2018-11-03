@@ -23,7 +23,8 @@ def get_ce_partial_run_args(squad_data, options, towers, common_run_ops):
 
     for tower in towers:
         tower_run_ops = [
-            tower.ce_loss,
+            # tower.ce_loss,
+            tf.constant(1.0),
             # TODO remove the following line
             tower.get_start_span_probs(),
             # TODO remove the following line
@@ -81,8 +82,11 @@ def get_scrl_partial_run_args(squad_data,
     towers_run_ops = []
     feed_dict_keys = []
     for tower_idx, tower in enumerate(towers):
-        towers_run_ops.append(towers[tower_idx].loss)
-        towers_run_ops.append(towers[tower_idx].rl_loss)
+        towers_run_ops.append([
+            towers[tower_idx].loss,
+            towers[tower_idx].rl_loss,
+            towers[tower_idx].ce_loss
+        ])
         # TODO unfold across batch index??
         feed_dict_keys.append(tower.sampled_start_pos_list)
         feed_dict_keys.append(tower.sampled_end_pos_list)

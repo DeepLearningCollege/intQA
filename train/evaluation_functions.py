@@ -10,6 +10,7 @@ import numpy as np
 
 
 def get_sampled_start_and_end(start_probs, end_probs, options):
+    assert not np.isnan(start_probs).any() or not np.isnan(end_probs).any()
     start_pos = np.random.choice(len(start_probs), 1, p=start_probs)[0]
 
     max_end_pos = min(end_probs.shape[0], start_pos + options.max_search_span_range)

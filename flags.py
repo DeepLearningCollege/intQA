@@ -2,9 +2,22 @@
 """
 
 import tensorflow as tf
+from datetime import datetime
+
+
+log_dir_time = datetime.now().strftime('%Y%m%d_%H%M%S')
+
+batch_size = 32
+
 
 f = tf.app.flags
 f.DEFINE_string("self_critic_type", "SCST", "")
+f.DEFINE_integer("truncated_record_size", batch_size * 1000, "")
+f.DEFINE_boolean("ce_only", False, "")
+f.DEFINE_boolean("eval_val", False, "")
+f.DEFINE_boolean("dcrl", False, "")
+
+
 f.DEFINE_integer("max_ctx_length", 300, "Max passage length to keep. Longer content will be trimmed.")
 f.DEFINE_integer("max_qst_length", 60, "Max question length to keep. Longer content will be trimmed.")
 f.DEFINE_string("model_type", "mnemonic_reader",
@@ -14,7 +27,7 @@ f.DEFINE_string("experiment_name", "test",
                 "saved and loaded from different model files and can use different " +
                 "model hyperparameters. If you use the same experiment name, then it" +
                 "will be loaded from from the same model files (including using S3)")
-f.DEFINE_string("checkpoint_dir", "checkpoint", "Directory to save model weights and metadata.")
+f.DEFINE_string("checkpoint_dir", "checkpoint/ckpt{}".format(log_dir_time), "Directory to save model weights and metadata.")
 f.DEFINE_float("learning_rate", 1e-3, "Initial learning rate.")
 f.DEFINE_float("min_learning_rate", 1e-8, "Minimum learning rate, even after decay.")
 f.DEFINE_string("download_dir", "downloads", "Directory for data downloads.")
@@ -23,15 +36,15 @@ f.DEFINE_string("evaluation_dir", "evaluation_results", "Directory that stores t
 f.DEFINE_boolean("visualize_evaluated_results", True,
                  "Whether to write DEV contexts, questions, ground truths, and " +
                  "predicted spans to a file when running evaluation.")
-f.DEFINE_string("log_dir", "log", "Directory to log training summaries. " +
+f.DEFINE_string("log_dir", "log2/log{}".format(log_dir_time), "Directory to log training summaries. " +
                 "These summaries can be monitored with tensorboard.")
 f.DEFINE_boolean("clear_logs_before_training", False, "Whether to clear the log directory before starting training.")
-f.DEFINE_integer("log_every", 100, "Frequency to log loss and gradients.")
+f.DEFINE_integer("log_every", 1, "Frequency to log loss and gradients.")
 f.DEFINE_boolean("log_loss", True, "Whether to log loss summaries.")
 f.DEFINE_boolean("log_gradients", True, "Whether to log gradient summaries.")
 f.DEFINE_boolean("log_exact_match", True, "Whether to log exact match scores.")
 f.DEFINE_boolean("log_f1_score", True, "Whether to log f1 scores.")
-f.DEFINE_integer("log_valid_every", 100,
+f.DEFINE_integer("log_valid_every", 1,
                  "Frequency (in iterations) to log loss & gradients for the validation data set.")
 f.DEFINE_boolean("use_s3", False, "Whether to use AWS S3 storage to save model checkpoints. " +
                  "Checkpoints will be saved according to the experiment name and model type.")
@@ -41,8 +54,8 @@ f.DEFINE_string("s3_data_folder_name", "data", "Folder within the S3 bucket " +
                 "s3 storage is enabled. Using this makes it faster to start up "
                 "training on another instance, rather than using SCP to upload " +
                 "files and then unzip them on the EC2 instance.")
-f.DEFINE_integer("num_gpus", 2, "Number of GPUs available for training. Use 0 for CPU-only training")
-f.DEFINE_integer("batch_size", 24, "Training batch size. If using GPUs, then this will be the same for each GPU.")
+f.DEFINE_integer("num_gpus", 1, "Number of GPUs available for training. Use 0 for CPU-only training")
+f.DEFINE_integer("batch_size", batch_size, "Training batch size. If using GPUs, then this will be the same for each GPU.")
 f.DEFINE_integer("rnn_size", 100, "The dimension of rnn cells.")
 f.DEFINE_integer("num_rnn_layers", 1, "The number of rnn layers to use in a single multi-rnn cell.")
 f.DEFINE_float("dropout", 0.2,

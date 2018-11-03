@@ -1,6 +1,6 @@
 """Trains a model on SQuAD data.
 """
-
+import sys
 from decimal import Decimal
 
 import boto3
@@ -395,6 +395,7 @@ class Trainer:
 
                     num_examples = start_span_probs.shape[0]
 
+                    infos = []
                     for example_idx in range(num_examples):
                         example_start_pos_list = [start_pos_iter[example_idx] for start_pos_iter in start_pos_iters]
                         example_end_pos_list = [end_pos_iter[example_idx] for end_pos_iter in end_pos_iters]
@@ -405,22 +406,33 @@ class Trainer:
                         sampled_end_one_hots[tower_idx].append([])
                         rewards[tower_idx].append([])
 
+                        example_index = data_indices[example_idx]
+                        question_word_ids = qst_values[example_idx]
+                        passage = self.sq_dataset.train_ds.question_ids_to_passage_context[example_index]
+                        context, ground_truths = [passage.passage_str, passage.acceptable_gnd_truths]
+                        question = find_question_sentence(question_word_ids, self.sq_dataset.vocab)
+
+                        info_greedy = []
+                        info_sampled = []
+                        info_reward = []
+                        info = {'context': context,
+                                'ground_truths': ground_truths,
+                                'question': question,
+                                'greedy': info_greedy,
+                                'sampled': info_sampled}
+                        infos.append(info)
                         for pointer_iter_start_pos, pointer_iter_end_pos in \
                                 zip(example_start_pos_list, example_end_pos_list):
                             greedy_start, greedy_end = get_best_start_and_end(
                                 pointer_iter_start_pos, pointer_iter_end_pos, self.options)
                             sampled_start, sampled_end = get_sampled_start_and_end(
                                 pointer_iter_start_pos, pointer_iter_end_pos, self.options)
-                            example_index = data_indices[example_idx]
-                            question_word_ids = qst_values[example_idx]
-                            question = find_question_sentence(question_word_ids, self.sq_dataset.vocab)
-                            passage = self.sq_dataset.train_ds.question_ids_to_passage_context[example_index]
-                            context, ground_truths = [passage.passage_str, passage.acceptable_gnd_truths]
 
                             greedy_str = self.sq_dataset.train_ds.get_sentence(example_index, greedy_start, greedy_end)
                             sampled_str = self.sq_dataset.train_ds.get_sentence(example_index, sampled_start,
                                                                                 sampled_end)
                             gt_str = self.sq_dataset.train_ds.get_sentences_for_all_gnd_truths(example_index)
+                            gt_strs = gt_str
                             # compute f1 and reward
                             greedy_f1 = max_over_gnd_truths(f1_score, greedy_str, gt_str)
                             sampled_f1 = max_over_gnd_truths(f1_score, sampled_str, gt_str)
@@ -429,8 +441,12 @@ class Trainer:
                                 print('\ngreedy_f1:', greedy_f1, '\ngreedy_str:', greedy_str, '\ngt_str:', gt_str)
                             if sampled_f1 != 0 and not sampled_f1:
                                 print('\nsampled_f1L', sampled_f1, '\nsampled_str:', sampled_str, '\ngt_str:', gt_str)
-
                             reward = sampled_f1 - greedy_f1
+
+                            info_greedy.append((greedy_f1, greedy_str))
+                            info_sampled.append((sampled_f1, sampled_str))
+                            info_reward.append(reward)
+
                             greedy_start_one_hot = np.zeros(self.options.max_ctx_length)
                             greedy_start_one_hot[greedy_start] = 1
                             greedy_start_one_hots[tower_idx][example_idx].append(greedy_start_one_hot)
@@ -448,6 +464,7 @@ class Trainer:
                             sampled_end_one_hots[tower_idx][example_idx].append(sampled_end_one_hot)
 
                             rewards[tower_idx][example_idx].append([reward])
+                            # rewards[tower_idx][example_idx] = [[reward]] * self.options.num_stochastic_answer_pointer_steps
 
                 rl_feed_dict = get_scrl_train_feed_dict(self.sq_dataset,
                                                         self.options,
@@ -467,18 +484,19 @@ class Trainer:
                 time_per_iter = iter_end - iter_start
                 time_per_epoch = time_per_iter * iterations_per_epoch
 
-                ce_loss = ce_towers_run_ops_values[0][0]
+                # ce_loss = ce_towers_run_ops_values[0][0]
                 # TODO Unwarp rl_loss
-                rl_loss = rl_towers_run_ops_values[0][1]
+                rl_loss = rl_towers_run_ops_values[0][0][1][0]
+                ce_loss = rl_towers_run_ops_values[0][0][2]
                 loss = rl_towers_run_ops_values[0][0][0]
-                print("iteration:", str(i),
-                      "highest f1: %.4f" % current_highest_f1,
-                      "learning rate: %.3E" % _get_val(current_learning_rate),
-                      "ce_loss: %.3E" % _get_val(ce_loss),
-                      "rl_loss: %.3E" % _get_val(rl_loss),
-                      "loss: %.3E" % _get_val(loss),
-                      "Sec/iter: %.3f" % time_per_iter,
-                      "time/epoch", readable_time(time_per_epoch), end="\r")
+                # print("iteration:", str(i),
+                #       "highest f1: %.4f" % current_highest_f1,
+                #       "learning rate: %.3E" % _get_val(current_learning_rate),
+                #       "ce_loss: %.3E" % _get_val(ce_loss),
+                #       "rl_loss: %.3E" % _get_val(rl_loss),
+                #       "loss: %.3E" % _get_val(loss),
+                #       "Sec/iter: %.3f" % time_per_iter,
+                #       "time/epoch", readable_time(time_per_epoch), end="\r")
 
                 if i % self.options.log_every == 0:
                     # TODO change it so that it logs rl_loss
@@ -486,6 +504,21 @@ class Trainer:
                         self.train_writer.add_summary(ce_common_run_ops_values[0], i)
                     # if self.options.log_gradients:
                     #     self.train_writer.add_summary(ce_gradients_summary, i)
+                    print("question:{}\ncontext:{}\ngt: {}\ngreedy: {}\nsampled: {}".format(info['question'],
+                                                                                            info['context'],
+                                                                                            info['ground_truths'],
+                                                                                            info['greedy'][-1],
+                                                                                            info['sampled'][-1]))
+                    print("dsafjaiodfhwqeifwfeijoewfjkofwejkowfe:")
+                    print("iteration:", str(i),
+                          "highest f1: %.4f" % current_highest_f1,
+                          "learning rate: %.3E" % _get_val(current_learning_rate),
+                          "ce_loss: %.3E" % _get_val(ce_loss),
+                          "rl_loss: %.3E" % _get_val(rl_loss),
+                          "loss: %.3E" % _get_val(loss),
+                          "Sec/iter: %.3f" % time_per_iter,
+                          "time/epoch", readable_time(time_per_epoch), end="\r")
+
                 if i % self.options.log_valid_every == 0:
                     # TODO add back gradient summary
                     dev_loss_summary_value, scrl_loss_value = \
@@ -503,6 +536,7 @@ class Trainer:
                     print("[Validation] iteration:", str(i), "loss: %.3E" % _get_val(scrl_loss_value))
                 # Evaluate on the dev set and save the model once per epoch.
                 if i % iterations_per_epoch == 0:
+                    num_epoch = i / iterations_per_epoch
                     eval_start = time.time()
                     em, f1 = evaluate_train_partial(self.session,
                                                     self.model_builder.get_towers(),
@@ -511,11 +545,15 @@ class Trainer:
                                                     sample_limit=val_ds_size)
                     print("")
                     print("[Train] F1", f1, "Em", em)
-                    val_em, val_f1 = evaluate_dev_partial(self.session,
-                                                          self.model_builder.get_towers(),
-                                                          self.sq_dataset,
-                                                          self.options,
-                                                          sample_limit=val_ds_size)
+
+                    if self.options.eval_val:
+                        val_em, val_f1 = evaluate_dev_partial(self.session,
+                                                              self.model_builder.get_towers(),
+                                                              self.sq_dataset,
+                                                              self.options,
+                                                              sample_limit=val_ds_size)
+                    else:
+                        val_em, val_f1 = [-1, -1]
 
                     print("[Valid] F1", val_f1, "Em", val_em)
                     print("Time to evaluate train/val: %f" % (time.time() - eval_start))
@@ -523,20 +561,21 @@ class Trainer:
                     self._perform_summary_assignment(self.em, em)
                     self._perform_summary_assignment(self.f1, f1)
                     if self.options.log_exact_match:
-                        self.train_writer.add_summary(self.session.run(em_summary), i)
+                        self.train_writer.add_summary(self.session.run(em_summary), num_epoch)
                     if self.options.log_f1_score:
-                        self.train_writer.add_summary(self.session.run(f1_summary), i)
+                        self.train_writer.add_summary(self.session.run(f1_summary), num_epoch)
                     self._perform_summary_assignment(self.em, val_em)
                     self._perform_summary_assignment(self.f1, val_f1)
                     if self.options.log_exact_match:
-                        self.val_writer.add_summary(self.session.run(em_summary), i)
+                        self.val_writer.add_summary(self.session.run(em_summary), num_epoch)
                     if self.options.log_f1_score:
-                        self.val_writer.add_summary(self.session.run(f1_summary), i)
+                        self.val_writer.add_summary(self.session.run(f1_summary), num_epoch)
                     self.train_writer.flush()
                     self.val_writer.flush()
                     # If the validation F1 score didn't increase, then cut
                     # the learning rate.
-                    if current_highest_f1 >= val_f1:
+                    eval_f1 = val_f1 if self.options.eval_val else f1
+                    if current_highest_f1 >= eval_f1:
                         if num_bad_checkpoints < self.options.bad_checkpoints_tolerance:
                             num_bad_checkpoints += 1
                             print("Hit bad checkpoint. num_bad_checkpoints: %d" % num_bad_checkpoints)
@@ -551,9 +590,9 @@ class Trainer:
                             num_bad_checkpoints = 0
                     else:
                         self.session.run(assign_highest_f1, feed_dict={
-                            highest_f1_placeholder: val_f1})
-                        current_highest_f1 = val_f1
-                        print("Achieved new highest F1: %f" % val_f1)
+                            highest_f1_placeholder: eval_f1})
+                        current_highest_f1 = eval_f1
+                        print("Achieved new highest F1: %f" % eval_f1)
                         self.saver.save(self.session, self.checkpoint_file_name)
                         maybe_upload_files_to_s3(self.s3, self.s3_save_key,
                                                  self.options.checkpoint_dir, self.options)
@@ -562,3 +601,5 @@ class Trainer:
                     print("Total epoch time %s" % readable_time(time.time() - epoch_start))
                     print("Cumulative run time %s" % readable_time(time.time() - train_start_time))
                     epoch_start = time.time()
+                if i >= self.options.truncated_record_size / self.options.batch_size * 50:
+                    sys.exit(0)

@@ -28,18 +28,23 @@ class MnemonicReaderScrl(BaseModel):
 
         # Step 3. Use an answer pointer mechanism to get the loss,
         # and start & end span probabilities
-        self.ce_loss, self.start_span_probs, self.end_span_probs, self.start_pos_list, self.end_pos_list = \
-            stochastic_answer_pointer(
-                self.options, alignment, question_outputs,
-                self.spn_iterator, self.sq_dataset, self.keep_prob,
-                self.sess, self.batch_size, self.use_dropout_placeholder)
+        self.ce_loss, \
+        self.start_span_probs, \
+        self.end_span_probs, \
+        self.start_pos_list, \
+        self.end_pos_list = stochastic_answer_pointer(
+            self.options, alignment, question_outputs,
+            self.spn_iterator, self.sq_dataset, self.keep_prob,
+            self.sess, self.batch_size, self.use_dropout_placeholder)
 
         # Step 4. apply scrl
         # https://www.tensorflow.org/api_docs/python/tf/Session#partial_run
         self.loss, \
-        self.rl_loss,\
+        self.rl_loss, \
+        scrl_inputs = self_critic_rl(self.options, self.ce_loss, self.start_pos_list, self.end_pos_list)
+
         self.sampled_start_pos_list, \
         self.sampled_end_pos_list, \
         self.greedy_start_pos_list, \
         self.greedy_end_pos_list, \
-        self.reward = self_critic_rl(self.options, self.ce_loss,  self.start_pos_list, self.end_pos_list)
+        self.reward = scrl_inputs

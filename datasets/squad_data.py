@@ -125,9 +125,11 @@ class _SquadDataset:
         self.handle = sess.run(self.iterator.string_handle())
         self.load_next_file(increment_file_number=False)
 
-    def _load_2d_np_arr_with_possible_padding(self, full_file_name,
-            max_second_dim, pad_value):
-        np_arr = np.load(full_file_name)[:,:max_second_dim]
+    def _np_load_trunc_(self, file_name):
+        return np.load(file_name)[:self.options.truncated_record_size]
+
+    def _load_2d_np_arr_with_possible_padding(self, full_file_name, max_second_dim, pad_value):
+        np_arr = self._np_load_trunc_(full_file_name)[:,:max_second_dim]
         return np.pad(np_arr,
             pad_width=((0, 0), (0, max_second_dim - np_arr.shape[1])),
             mode="constant",
@@ -135,7 +137,7 @@ class _SquadDataset:
 
     def _load_3d_np_arr_with_possible_padding(self, full_file_name,
             max_second_dim, pad_value):
-        np_arr = np.load(full_file_name)[:,:max_second_dim, :]
+        np_arr = self._np_load_trunc_(full_file_name)[:,:max_second_dim, :]
         return np.pad(np_arr,
             pad_width=((0, 0), (0, max_second_dim - np_arr.shape[1]), (0, 0)),
             mode="constant",
@@ -144,13 +146,14 @@ class _SquadDataset:
     def load_next_file(self, increment_file_number):
         max_ctx_len = self.options.max_ctx_length
         max_qst_len = self.options.max_qst_length
+
         WORD_PAD_ID = self.vocab.PAD_ID
         self.ctx = self._load_2d_np_arr_with_possible_padding(self.context_files[self.current_file_number], max_ctx_len, pad_value=WORD_PAD_ID)
         self.qst = self._load_2d_np_arr_with_possible_padding(self.question_files[self.current_file_number], max_qst_len, pad_value=WORD_PAD_ID)
-        self.spn = np.load(self.span_files[self.current_file_number])
+        self.spn = self._np_load_trunc_(self.span_files[self.current_file_number])
         self.wiq = self._load_2d_np_arr_with_possible_padding(self.word_in_question_files[self.current_file_number], max_ctx_len, pad_value=0)
         self.wic = self._load_2d_np_arr_with_possible_padding(self.word_in_context_files[self.current_file_number], max_qst_len, pad_value=0)
-        self.qid = np.load(self.question_ids_files[self.current_file_number])
+        self.qid = self._np_load_trunc_(self.question_ids_files[self.current_file_number])
         self.ctx_pos = self._load_2d_np_arr_with_possible_padding(self.context_pos_files[self.current_file_number], max_ctx_len, pad_value=0)
         self.ctx_ner = self._load_2d_np_arr_with_possible_padding(self.context_ner_files[self.current_file_number], max_ctx_len, pad_value=0)
         self.qst_pos = self._load_2d_np_arr_with_possible_padding(self.question_pos_files[self.current_file_number], max_qst_len, pad_value=0)
