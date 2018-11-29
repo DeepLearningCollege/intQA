@@ -36,6 +36,7 @@ def split_vocab_and_embedding(options, data_dir, download_dir):
         print("Word embedding and vocab files already exist")
         return
     print("Creating NumPy word embedding file and vocab files")
+
     num_lines = _get_line_count(input_file)
     print("Vocab size: %d" % num_lines)
     # Include 4 entries for bos/eos/unk/pad (they will all be left as 0 vectors).
@@ -45,6 +46,9 @@ def split_vocab_and_embedding(options, data_dir, download_dir):
     # the bos/eos/unk/pad.
     vocab_chars = np.zeros((num_lines + 4, constants.MAX_WORD_LEN), dtype=np.uint8)
     i_file = open(input_file, "r", encoding="utf-8")
+    if options.exobrain_korean_dataset:
+        firstLine = i_file.pop(0)
+        print("exobrain_korean_dataset first line: %s" % firstLine)
     i = 0
     char_counts = {}
     vocab_list = []

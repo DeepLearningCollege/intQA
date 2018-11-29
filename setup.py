@@ -31,7 +31,7 @@ def main(_):
     #
     split_vocab_and_embedding(options, data_dir, download_dir)
     if options.exobrain_korean_dataset:
-    DataParser(data_dir, download_dir).exobrain_korean_dataset_excel_to_squad_json(options)
+        DataParser(data_dir, download_dir).exobrain_korean_dataset_excel_to_squad_json(options)
     DataParser(data_dir, download_dir).create_train_data(options)
     if options.use_cove_vectors:
         save_cove_weights(options)
