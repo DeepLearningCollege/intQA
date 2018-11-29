@@ -23,8 +23,11 @@ def _get_line_count(filename):
             num_lines += 1
     return num_lines
 
-def split_vocab_and_embedding(data_dir, download_dir):
-    input_file = os.path.join(download_dir, constants.VECTOR_FILE)
+def split_vocab_and_embedding(options, data_dir, download_dir):
+    if options.word_embedding_model_type == "fasttext":
+        input_file = os.path.join(download_dir, constants.FASTTEXT_VECTOR_FILE)
+    else:
+        input_file = os.path.join(download_dir, constants.VECTOR_FILE)
     embedding_output_file = os.path.join(data_dir, constants.EMBEDDING_FILE)
     vocab_output_file = os.path.join(data_dir, constants.VOCAB_FILE)
     vocab_chars_output_file = os.path.join(data_dir, constants.VOCAB_CHARS_FILE)

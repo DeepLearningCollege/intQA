@@ -8,3 +8,5 @@ data
 log
 evaluation_results
 downloads
+/ext/*
+.idea

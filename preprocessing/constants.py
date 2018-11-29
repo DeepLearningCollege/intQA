@@ -4,6 +4,9 @@
 VOCAB_CHARS_FILE = "vocab.chars.npy"
 TRAIN_SQUAD_FILE = "train-v2.0.json"
 DEV_SQUAD_FILE = "dev-v2.0.json"
+EXOBRAIN_KOREAN_FILE = "SQuAD_Korean_QA_dataset_wikipedia_339.xlsx"
+TRAIN_SQUAD_KOREAN_FILE = "train-exobrain-korean.json"
+DEV_SQUAD_KOREAN_FILE = "dev-exobrain-korean.json"
 
 COVE_WEIGHTS_FOLDER = "cove_weights"
 COVE_WEIGHT_NAMES = ['weight_ih_l0', 'weight_hh_l0', 'bias_ih_l0',
@@ -32,14 +35,22 @@ QUESTION_IDS_TO_SQUAD_QUESTION_ID_FILE_PATTERN = "question_ids_to_squad_question
 QUESTION_IDS_TO_PASSAGE_CONTEXT_FILE_PATTERN = "passage_context.%d"
 
 VECTORS_URL = "http://nlp.stanford.edu/data/glove.840B.300d.zip"
+FASTTEXT_VECTORS_URL = "https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki.ko.vec"
 WORD_VEC_DIM = 300
 MAX_WORD_LEN = 25
 VECTOR_FILE = "glove.840B.300d.txt"
+FASTTEXT_VECTOR_FILE = "fasttext.300d.txt"
 VECTOR_ZIP_FILE = "glove.840B.300d.zip"
 SQUAD_TRAIN_URL = "https://rajpurkar.github.io/SQuAD-explorer/dataset/train-v2.0.json"
 SQUAD_TRAIN_FILE = "train-v2.0.json"
 SQUAD_DEV_URL = "https://rajpurkar.github.io/SQuAD-explorer/dataset/dev-v2.0.json"
 SQUAD_DEV_FILE = "dev-v2.0.json"
+SQUAD_KOREAN_TRAIN_URL = "https://drive.google.com/open?id=1HQ3AVfrDVMrMjMo-rSEud-ljCgBkbwU2"
+SQUAD_KOREAN_TRAIN_FILE = "train-exobrain-korean.json"
+SQUAD_KOREAN_DEV_URL = "https://drive.google.com/open?id=1HQ3AVfrDVMrMjMo-rSEud-ljCgBkbwU2"
+SQUAD_KOREAN_DEV_FILE = "train-exobrain-korean.json"
+
 
 EMBEDDING_FILE = "glove.embedding.npy"
 VOCAB_FILE = "vocab.txt"
+
