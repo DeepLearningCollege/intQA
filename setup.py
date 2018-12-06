@@ -29,7 +29,10 @@ def main(_):
     else:
         download_data(download_dir)
     #
-    split_vocab_and_embedding(options, data_dir, download_dir)
+    if options.word_embedding_model_type == "fasttext":
+        split_vocab_and_embedding_fasttext(options, data_dir, download_dir)
+    else:
+        split_vocab_and_embedding(options, data_dir, download_dir)
     if options.exobrain_korean_dataset:
         DataParser(data_dir, download_dir).exobrain_korean_dataset_excel_to_squad_json(options)
     DataParser(data_dir, download_dir).create_train_data(options)

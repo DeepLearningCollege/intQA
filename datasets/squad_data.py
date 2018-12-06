@@ -219,8 +219,10 @@ class SquadData:
 
         self.embeddings = embedding_util.load_word_embeddings_including_unk_and_padding(options)
         self.word_chars = embedding_util.load_word_char_embeddings(options)
-
-        self.word_vec_size = constants.WORD_VEC_DIM
+        if options.word_embedding_model_type == "fasttext":
+            self.word_vec_size = constants.WORD_VEC_DIM_FASTTEXT
+        else:
+            self.word_vec_size = constants.WORD_VEC_DIM
         self.max_word_len = constants.MAX_WORD_LEN
 
     def get_max_ctx_len(self):

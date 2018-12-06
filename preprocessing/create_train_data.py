@@ -18,6 +18,9 @@ from preprocessing.string_category import *
 from preprocessing.vocab import get_vocab
 from util.string_util import *
 
+#파일을 읽어들이는 내장함수인 load_workbook을 불러옵니다.
+#from openpyxl import load_workbook
+
 _BOS = "bos"
 _EOS = "eos"
 

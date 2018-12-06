@@ -37,6 +37,7 @@ QUESTION_IDS_TO_PASSAGE_CONTEXT_FILE_PATTERN = "passage_context.%d"
 VECTORS_URL = "http://nlp.stanford.edu/data/glove.840B.300d.zip"
 FASTTEXT_VECTORS_URL = "https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki.ko.vec"
 WORD_VEC_DIM = 300
+WORD_VEC_DIM_FASTTEXT = 300
 MAX_WORD_LEN = 25
 VECTOR_FILE = "glove.840B.300d.txt"
 FASTTEXT_VECTOR_FILE = "fasttext.300d.txt"
@@ -52,5 +53,7 @@ SQUAD_KOREAN_DEV_FILE = "train-exobrain-korean.json"
 
 
 EMBEDDING_FILE = "glove.embedding.npy"
+FASTTEXT_EMBEDDING_FILE = "fasttext.embedding.npy"
+
 VOCAB_FILE = "vocab.txt"
 
