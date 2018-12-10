@@ -5,7 +5,7 @@ import os
 import tensorflow as tf
 import time
 
-from datasets.test_data import TestData
+from datasets.test_data import TestData, PredictData
 from datasets.squad_data import SquadData
 from train.s3_util import *
 
@@ -17,6 +17,9 @@ def create_s3_save_key(options):
 
 def create_sq_dataset(options):
     return TestData(options) if options.use_fake_dataset else SquadData(options)
+
+def create_predict_dataset(options):
+    return PredictData(options)
 
 def create_session():
     return tf.Session(config=tf.ConfigProto(

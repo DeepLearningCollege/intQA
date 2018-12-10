@@ -4,6 +4,47 @@
 import numpy as np
 import tensorflow as tf
 
+def get_predict_feed_dict(squad_data, options, towers, is_train):
+    feed_dict = get_predict_feed_dict_with_ctx_and_qst(squad_data, options, towers, is_train=is_train,
+        use_dropout=False)
+    for i in range(len(towers)):
+        tower = towers[i]
+        feed_dict[tower.get_keep_prob_placeholder()] = 1
+        feed_dict[tower.get_input_keep_prob_placeholder()] = 1
+        feed_dict[tower.get_rnn_keep_prob_placeholder()] = 1
+    return feed_dict
+
+def get_predict_feed_dict_with_ctx_and_qst(squad_data, options, towers, is_train):
+    feed_dict = get_feed_dict_with_ctx_and_qst(squad_data, options, towers, is_train=is_train,
+        use_dropout=False)
+    for i in range(len(towers)):
+        tower = towers[i]
+        feed_dict[tower.get_keep_prob_placeholder()] = 1
+        feed_dict[tower.get_input_keep_prob_placeholder()] = 1
+        feed_dict[tower.get_rnn_keep_prob_placeholder()] = 1
+    return feed_dict
+
+def get_feed_dict_with_ctx_and_qst(squad_data, options, towers, is_train, use_dropout):
+    if len(towers) < 1:
+        raise Exception("There are no models in the list of towers to train")
+    examples_per_tower = int(options.batch_size / len(towers))
+    feed_dict = {}
+    for i in range(len(towers)):
+        tower = towers[i]
+        feed_dict[tower.get_keep_prob_placeholder()] = 1 if not use_dropout \
+            else 1 - options.dropout
+        feed_dict[tower.get_input_keep_prob_placeholder()] = 1 if not use_dropout \
+            else 1 - options.input_dropout
+        feed_dict[tower.get_rnn_keep_prob_placeholder()] = 1 if not use_dropout \
+            else 1 - options.rnn_dropout
+        feed_dict[tower.get_use_dropout_placeholder()] = use_dropout
+    train_handle = squad_data.get_train_handle()
+    dev_handle = squad_data.get_dev_handle()
+    tf_handle = squad_data.get_iterator_handle()
+    feed_dict[tf_handle] = train_handle if is_train else dev_handle
+    return feed_dict
+
+
 def get_eval_feed_dict(squad_data, options, towers, is_train):
     feed_dict = get_feed_dict(squad_data, options, towers, is_train=is_train,
         use_dropout=False)

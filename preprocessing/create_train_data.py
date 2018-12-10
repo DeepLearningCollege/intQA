@@ -397,7 +397,7 @@ class DataParser():
 
         print("Finished creating training data!")
 
-    def exobrain_korean_dataset_excel_to_squad_json(self, options):
+    def create_train_data_exobrain_korean(self, options):
         train_folder = os.path.join(self.data_dir, constants.TRAIN_FOLDER_NAME)
         dev_folder = os.path.join(self.data_dir, constants.DEV_FOLDER_NAME)
         train_files_wrapper = DatasetFilesWrapper(train_folder)
@@ -407,53 +407,53 @@ class DataParser():
             print("Train & dev data already exist.")
             return
 
-        # print("Getting vocabulary")
-        # self.vocab = get_vocab(self.data_dir)
-        # print("Finished getting vocabulary")
-        # self.nlp = spacy.load("en")
-        # self.tokenizer = create_tokenizer(self.nlp)
-        # self.nlp.tokenizer = self.tokenizer
-        # print("Getting DEV dataset")
-        # if options.exobrain_korean_dataset:
-        #     dev_raw_data = self._create_train_data_internal(
-        #     constants.DEV_SQUAD_KOREAN_FILE, is_dev=True)
-        # else:
-        #     dev_raw_data = self._create_train_data_internal(
-        #     constants.DEV_SQUAD_FILE, is_dev=True)
-        # print("Getting TRAIN dataset")
-        # if options.exobrain_korean_dataset:
-        #     train_raw_data = self._create_train_data_internal(
-        #     constants.TRAIN_SQUAD_KOREAN_FILE, is_dev=False)
-        # else:
-        #     train_raw_data = self._create_train_data_internal(
-        #     constants.TRAIN_SQUAD_FILE, is_dev=False)
-        # print("Num NER categories", self.ner_categories.get_num_categories())
-        # print("Num POS categories", self.pos_categories.get_num_categories())
-        #
-        # max_context_length = max(
-        #         max([len(x) for x in train_raw_data.list_contexts]),
-        #         max([len(x) for x in dev_raw_data.list_contexts]))
-        #
-        # max_question_length = max(
-        #         max([len(x) for x in train_raw_data.list_questions]),
-        #         max([len(x) for x in dev_raw_data.list_questions]))
-        #
-        # print("Saving TRAIN data")
-        # train_file_saver = DatasetFilesSaver(
-        #         train_files_wrapper,
-        #         max_context_length,
-        #         max_question_length,
-        #         self.vocab,
-        #         train_raw_data)
-        # train_file_saver.save()
-        #
-        # print("Saving DEV data")
-        # dev_file_saver = DatasetFilesSaver(
-        #         dev_files_wrapper,
-        #         max_context_length,
-        #         max_question_length,
-        #         self.vocab,
-        #         dev_raw_data)
-        # dev_file_saver.save()
+        print("Getting vocabulary")
+        self.vocab = get_vocab(self.data_dir)
+        print("Finished getting vocabulary")
+        self.nlp = spacy.load("en")
+        self.tokenizer = create_tokenizer(self.nlp)
+        self.nlp.tokenizer = self.tokenizer
+        print("Getting DEV dataset")
+        if options.exobrain_korean_dataset:
+            dev_raw_data = self._create_train_data_internal(
+            constants.DEV_SQUAD_KOREAN_FILE, is_dev=True)
+        else:
+            dev_raw_data = self._create_train_data_internal(
+            constants.DEV_SQUAD_FILE, is_dev=True)
+        print("Getting TRAIN dataset")
+        if options.exobrain_korean_dataset:
+            train_raw_data = self._create_train_data_internal(
+            constants.TRAIN_SQUAD_KOREAN_FILE, is_dev=False)
+        else:
+            train_raw_data = self._create_train_data_internal(
+            constants.TRAIN_SQUAD_FILE, is_dev=False)
+        print("Num NER categories", self.ner_categories.get_num_categories())
+        print("Num POS categories", self.pos_categories.get_num_categories())
+
+        max_context_length = max(
+                max([len(x) for x in train_raw_data.list_contexts]),
+                max([len(x) for x in dev_raw_data.list_contexts]))
+
+        max_question_length = max(
+                max([len(x) for x in train_raw_data.list_questions]),
+                max([len(x) for x in dev_raw_data.list_questions]))
+
+        print("Saving TRAIN data")
+        train_file_saver = DatasetFilesSaver(
+                train_files_wrapper,
+                max_context_length,
+                max_question_length,
+                self.vocab,
+                train_raw_data)
+        train_file_saver.save()
+
+        print("Saving DEV data")
+        dev_file_saver = DatasetFilesSaver(
+                dev_files_wrapper,
+                max_context_length,
+                max_question_length,
+                self.vocab,
+                dev_raw_data)
+        dev_file_saver.save()
 
         print("Finished converting exobrain korean dataset excel to squad json!")

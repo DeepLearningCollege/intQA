@@ -113,6 +113,8 @@ f.DEFINE_boolean("use_token_reembedding", False, "Whether to use token" +
         "reembedding on the model inputs (passage & question).")
 f.DEFINE_string("word_embedding_model_type", "glove", "Type of Word Embedding model.")
 f.DEFINE_boolean("exobrain_korean_dataset", False, "Whether to use Exobrain Korean Dataset.")
+f.DEFINE_string("context", "아폴로 계획(영어: Project Apollo)은 1961년부터 1972년까지 미국항공우주국에 의해 이루어진 일련의 유인 우주 비행 탐사 계획이다. 아폴로 계획의 목표는 1960년대 존 F. 케네디 대통령의 연설에서 언급되었던 \"인간을 달에 착륙시킨 후 무사히 지구로 귀환시키는\" 것으로 요약할 수 있다. 이 목표는 1969년 아폴로 11호에 의해 달성되었다.[1] 그 뒤로 아폴로 계획은 1970년대 초반까지 여섯 차례의 성공적인 달 착륙으로 이어졌다. 후에 스카이랩 계획이나 미국과 소련의 공동 실험인 아폴로-소유즈 시험 계획에서도 아폴로 계획 당시에 만들어진 장비를 사용하였으며, 이들 탐사도 아폴로 계획의 일부로 다뤄지기도 한다. 여러 번의 성공도 있었지만, 두 차례의 큰 사고도 있었다. 1967년 1월 27일에는 지상 훈련 중이던 아폴로 1호가 화재로 인해 사령선이 전소되고 세 명의 우주비행사가 사망하였다. 1970년 4월 13일에는 달로 가고 있던 아폴로 13호가 장비의 고장으로 달 궤도만을 선회하고는 간신히 지구로 귀환했다.", "context when predict")
+f.DEFINE_string("question", "1961년부터 1972년까지 미국항공우주국에 의해 이루어진 일련의 유인 우주 비행 탐사 계획은 무엇인가?", "question when predict")
 
 def get_options_from_flags():
     return tf.app.flags.FLAGS
