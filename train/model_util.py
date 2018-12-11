@@ -5,7 +5,8 @@ import os
 import tensorflow as tf
 import time
 
-from datasets.test_data import TestData, PredictData
+from datasets.test_data import TestData
+from datasets.predict_data import PredictData
 from datasets.squad_data import SquadData
 from train.s3_util import *
 

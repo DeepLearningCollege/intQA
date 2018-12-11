@@ -333,6 +333,129 @@ class DataParser():
                 question_ids_to_squad_question_id = question_ids_to_squad_question_id,
                 question_ids_to_passage_context = question_ids_to_passage_context)
 
+    def _create_predict_data_internal(self, context_str, question_str, is_dev):
+        """Returns (contexts, word_in_question, questions, word_in_context, spans)
+            contexts: list of lists of integer word ids
+            word_in_question: list of lists of booleans indicating whether each
+                word in the context is present in the question
+            questions: list of lists of integer word ids
+            word_in_context: list of lists of booleans indicating whether each
+                word in the question is present in the context
+            spans: numpy array of shape (num_samples, 2)
+            question_ids: a list of ints that indicates which question the
+                given sample is part of. this has the same length as
+                |contexts| and |questions|. multiple samples may come from
+                the same question because there are potentially multiple valid
+                answers for the same question
+        """
+        print("Reading data from context_str, question_str", context_str, " :: " ,question_str)
+
+        # data = json.load(data_file)
+        # dataset = data["data"]
+        num_values = 1
+        spans = []
+        list_contexts = []
+        list_word_in_question = []
+        list_questions = []
+        list_word_in_context = []
+        question_ids = []
+        context_pos = []
+        question_pos = []
+        context_ner = []
+        question_ner = []
+        question_ids_to_squad_question_id = {}
+        question_ids_to_passage_context = {}
+        self.value_idx = 0
+
+        # if dataset_id > 0 and _DEBUG_USE_ONLY_FIRST_ARTICLE:
+        #     break
+        # article = dataset[dataset_id]
+        context = context_str
+        tok_context = self.nlp(context)
+        tok_contexts_with_bos_and_eos = []
+        ctx_ner_dict = self._get_ner_dict(tok_context)
+        assert tok_context is not None
+        ctx_offset_dict = {}
+        ctx_end_offset_dict = {}
+        word_idx_to_text_position = {}
+
+        word_idx = 0
+        for sentence in tok_context.sents:
+            tok_contexts_with_bos_and_eos.append(_BOS)
+            word_idx_to_text_position[word_idx] = \
+                TextPosition(0, 0)
+            word_idx += 1
+            for token in sentence:
+                tok_contexts_with_bos_and_eos.append(token)
+                st = token.idx
+                end = token.idx + len(token.text)
+                ctx_offset_dict[st] = token
+                ctx_end_offset_dict[end] = token
+                word_idx_to_text_position[word_idx] = \
+                    TextPosition(st, end)
+                word_idx += 1
+            tok_contexts_with_bos_and_eos.append(_EOS)
+            word_idx_to_text_position[word_idx] = \
+                TextPosition(0, 0)
+            word_idx += 1
+
+        self.question_id =0
+        acceptable_gnd_truths = []
+        # for answer in qa["answers"]:
+        #     acceptable_gnd_truths.append(answer["text"])
+        question_ids_to_passage_context[self.question_id] = \
+            PassageContext(context, word_idx_to_text_position,
+                           acceptable_gnd_truths)
+        question = question_str
+        squad_question_id = 0
+        assert squad_question_id is not None
+        question_ids_to_squad_question_id[self.question_id] = \
+            squad_question_id
+        tok_question = self.nlp(question)
+        tok_question_with_bos_and_eos = []
+
+        for sentence in tok_question.sents:
+            tok_question_with_bos_and_eos.append(_BOS)
+            for token in sentence:
+                tok_question_with_bos_and_eos.append(token)
+            tok_question_with_bos_and_eos.append(_EOS)
+
+        qst_ner_dict = self._get_ner_dict(tok_question)
+        assert tok_question is not None
+        found_answer_in_context = False
+        found_answer_in_context = self._maybe_add_samples(
+            tok_context=tok_contexts_with_bos_and_eos,
+            tok_question=tok_question_with_bos_and_eos, qa=qa,
+            ctx_offset_dict=ctx_offset_dict,
+            ctx_end_offset_dict=ctx_end_offset_dict,
+            list_contexts=list_contexts,
+            list_word_in_question=list_word_in_question,
+            list_questions=list_questions,
+            list_word_in_context=list_word_in_context,
+            spans=spans, num_values=num_values,
+            question_ids=question_ids,
+            context_pos=context_pos, question_pos=question_pos,
+            context_ner=context_ner, question_ner=question_ner,
+            is_dev=is_dev,
+            ctx_ner_dict=ctx_ner_dict,
+            qst_ner_dict=qst_ner_dict,
+            psg_ctx=question_ids_to_passage_context[self.question_id])
+        print("")
+        spans = np.array(spans[:self.value_idx], dtype=np.int32)
+        return RawTrainingData(
+            list_contexts=list_contexts,
+            list_word_in_question=list_word_in_question,
+            list_questions=list_questions,
+            list_word_in_context=list_word_in_context,
+            spans=spans,
+            question_ids=question_ids,
+            context_pos=context_pos,
+            question_pos=question_pos,
+            context_ner=context_ner,
+            question_ner=question_ner,
+            question_ids_to_squad_question_id=question_ids_to_squad_question_id,
+            question_ids_to_passage_context=question_ids_to_passage_context)
+
     def _create_padded_array(self, list_of_py_arrays, max_len, pad_value):
         return [py_arr + [pad_value] * (max_len - len(py_arr)) for py_arr in list_of_py_arrays]
 

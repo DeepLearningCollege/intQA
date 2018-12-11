@@ -5,7 +5,7 @@ from preprocessing.save_cove_weights import save_cove_weights
 from preprocessing.create_train_data import DataParser
 from preprocessing.download_data import download_data
 from preprocessing.download_fasttext_data import download_fasttext_data
-from preprocessing.embedding_util import split_vocab_and_embedding
+from preprocessing.embedding_util import split_vocab_and_embedding, split_vocab_and_embedding_fasttext
 from preprocessing.s3_util import maybe_upload_data_files_to_s3
 from flags import get_options_from_flags
 
@@ -34,7 +34,7 @@ def main(_):
     else:
         split_vocab_and_embedding(options, data_dir, download_dir)
     if options.exobrain_korean_dataset:
-        DataParser(data_dir, download_dir).create_train_data_exobrain_korean(options)
+        DataParser(data_dir, download_dir).create_train_data_exobrain(options)
     else:
         DataParser(data_dir, download_dir).create_train_data(options)
     if options.use_cove_vectors:
