@@ -5,7 +5,7 @@ import numpy as np
 import tensorflow as tf
 
 def get_predict_feed_dict(squad_data, options, towers, is_train):
-    feed_dict = get_predict_feed_dict_with_ctx_and_qst(squad_data, options, towers, is_train=is_train,
+    feed_dict = get_feed_dict_with_ctx_and_qst(squad_data, options, towers, is_train=is_train,
         use_dropout=False)
     for i in range(len(towers)):
         tower = towers[i]
@@ -14,7 +14,7 @@ def get_predict_feed_dict(squad_data, options, towers, is_train):
         feed_dict[tower.get_rnn_keep_prob_placeholder()] = 1
     return feed_dict
 
-def get_predict_feed_dict_with_ctx_and_qst(squad_data, options, towers, is_train):
+def get_predict_feed_dict_with_ctx_and_qst(squad_data, options, towers, is_train, ):
     feed_dict = get_feed_dict_with_ctx_and_qst(squad_data, options, towers, is_train=is_train,
         use_dropout=False)
     for i in range(len(towers)):
