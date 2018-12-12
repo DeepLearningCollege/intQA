@@ -430,7 +430,7 @@ class DataParser():
         found_answer_in_context = False
         found_answer_in_context = self._maybe_add_samples(
             tok_context=tok_contexts_with_bos_and_eos,
-            tok_question=tok_question_with_bos_and_eos, qa=qa,
+            tok_question=tok_question_with_bos_and_eos, qa="",
             ctx_offset_dict=ctx_offset_dict,
             ctx_end_offset_dict=ctx_end_offset_dict,
             list_contexts=list_contexts,
