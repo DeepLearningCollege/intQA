@@ -222,9 +222,9 @@ class DataParser():
         # For dev, only keep one exmaple per question, and the set of all
         # acceptable answers. This reduces the required memory for storing
         # data.
-        if is_dev and not first_answer:
-            continue
-        first_answer = False
+        # if is_dev and not first_answer:
+        #     continue
+        # first_answer = False
 
         # spans.append([tok_start_idx, tok_end_idx])
         question_ids.append(self.question_id)
