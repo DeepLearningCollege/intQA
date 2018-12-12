@@ -150,10 +150,22 @@ class _PredictDataset:
         self.qst_pos = rawPredictData.question_pos
         self.qst_ner = rawPredictData.question_ner
         self.question_ids_to_squad_ids = rawPredictData.question_ids_to_squad_question_id
-        self.question_ids_to_passage_context = rawPredictData.question_ids_to_passage_context
+        self.question_ids_to_passage_context = rawPredictData.
+
+        self.sess.run(self.iterator.initializer, feed_dict={
+            self.context_placeholder: self.ctx,
+            self.question_placeholder: self.qst,
+            self.span_placeholder: self.spn,
+            self.word_in_question_placeholder: self.wiq,
+            self.word_in_context_placeholder: self.wic,
+            self.question_ids_placeholder: self.qid,
+            self.context_pos_placeholder: self.ctx_pos,
+            self.context_ner_placeholder: self.ctx_ner,
+            self.question_pos_placeholder: self.qst_pos,
+            self.question_ner_placeholder: self.qst_ner,
+        })
 
         # self.load_next_file(increment_file_number=False)
-
     # def _load_2d_np_arr_with_possible_padding(self, full_file_name,
     #         max_second_dim, pad_value):
     #     np_arr = np.load(full_file_name)[:,:max_second_dim]
