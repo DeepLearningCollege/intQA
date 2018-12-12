@@ -2,12 +2,14 @@
 $(() => {
 
     $('#analyze').click(() => {
+        var passage = $('#passage_text').text;
+        var question = $('#question_text').text;
+        console.log("passage:"+passage);
+        console.log("question:"+question);
         var inputs = {
-                "passage": ""
-                , "question": ""
+                "passage": passage ,
+                "question": question
             };
-        inputs["passage"] = $('#passage_text').text;
-        inputs["question"] = $('#question_text').text;
         console.log(JSON.stringify(inputs));
         $.ajax({
             url: '/api/intqa',
