@@ -46,10 +46,10 @@ SQUAD_TRAIN_URL = "https://rajpurkar.github.io/SQuAD-explorer/dataset/train-v2.0
 SQUAD_TRAIN_FILE = "train-v2.0.json"
 SQUAD_DEV_URL = "https://rajpurkar.github.io/SQuAD-explorer/dataset/dev-v2.0.json"
 SQUAD_DEV_FILE = "dev-v2.0.json"
-SQUAD_KOREAN_TRAIN_URL = "https://drive.google.com/open?id=1HQ3AVfrDVMrMjMo-rSEud-ljCgBkbwU2"
+SQUAD_KOREAN_TRAIN_URL = "https://drive.google.com/file/d/1koFAvff_RKKivF8UZTTAlQJ-Qz5aUtnw"
 SQUAD_KOREAN_TRAIN_FILE = "train-exobrain-korean.json"
-SQUAD_KOREAN_DEV_URL = "https://drive.google.com/open?id=1HQ3AVfrDVMrMjMo-rSEud-ljCgBkbwU2"
-SQUAD_KOREAN_DEV_FILE = "train-exobrain-korean.json"
+SQUAD_KOREAN_DEV_URL = "https://drive.google.com/file/d/1onXV-y15YqLsoFbMQlrS21OsZyh3TcKZ"
+SQUAD_KOREAN_DEV_FILE = "dev-exobrain-korean.json"
 
 
 EMBEDDING_FILE = "glove.embedding.npy"
