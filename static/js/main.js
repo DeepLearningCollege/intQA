@@ -2,8 +2,8 @@
 $(() => {
 
     $('#analyze').click(() => {
-        var passage = $('#passage_text').text;
-        var question = $('#question_text').text;
+        var passage = $('#passage_text').val();
+        var question = $('#question_text').val();
         console.log("passage:"+passage);
         console.log("question:"+question);
         var inputs = {
