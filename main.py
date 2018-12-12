@@ -12,14 +12,14 @@ sess = tf.Session()
 with tf.variable_scope("regression"):
     y1, variables = model.regression(x)
 saver = tf.train.Saver(variables)
-saver.restore(sess, "mnist/data/regression.ckpt")
+saver.restore(sess, "mnist/mnist_data/regression.ckpt")
 
 
 with tf.variable_scope("convolutional"):
     keep_prob = tf.placeholder("float")
     y2, variables = model.convolutional(x, keep_prob)
 saver = tf.train.Saver(variables)
-saver.restore(sess, "mnist/data/convolutional.ckpt")
+saver.restore(sess, "mnist/mnist_data/convolutional.ckpt")
 
 
 def regression(input):
