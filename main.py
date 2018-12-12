@@ -6,8 +6,15 @@ from preprocessing.s3_util import *
 from train.evaluator import Evaluator
 from flags import get_options_from_flags
 
+def del_all_flags(FLAGS):
+    flags_dict = FLAGS._flags()
+    keys_list = [keys for keys in flags_dict]
+    for keys in keys_list:
+        FLAGS.__delattr__(keys)
+
 def analyze(passage, question):
     f = tf.app.flags
+    del_all_flags(f)
     f.DEFINE_integer("max_ctx_length", 300,
                      "Max passage length to keep. Longer content will be trimmed.")
     f.DEFINE_integer("max_qst_length", 60,
