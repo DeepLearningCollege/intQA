@@ -3,8 +3,8 @@ $(() => {
 
     $('#analyze').click(() => {
         var inputs = {
-                passage: ""
-                , question: ""
+                "passage": ""
+                , "question": ""
             };
         inputs["passage"] = $('#passage_text').text;
         inputs["question"] = $('#question_text').text;
