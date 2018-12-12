@@ -371,6 +371,11 @@ class DataParser():
         #     break
         # article = dataset[dataset_id]
         context = context_str
+
+        self.nlp = spacy.load("en")
+        self.tokenizer = create_tokenizer(self.nlp)
+        self.nlp.tokenizer = self.tokenizer
+
         tok_context = self.nlp(context)
         tok_contexts_with_bos_and_eos = []
         ctx_ner_dict = self._get_ner_dict(tok_context)
