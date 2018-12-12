@@ -201,7 +201,7 @@ class DataParser():
         """
         filename = os.path.join(self.download_dir, data_file)
         print("Reading data from file", filename)
-        with open(filename, encoding="utf8") as data_file:
+        with open(filename, encoding="utf-8") as data_file:
             data = json.load(data_file)
             dataset = data["data"]
             num_values = self._get_num_data_values(dataset)
