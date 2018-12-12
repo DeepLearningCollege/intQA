@@ -170,6 +170,87 @@ class DataParser():
                   100 * float(self.value_idx) / float(num_values), end="\r")
             self.value_idx += 1
 
+    def _maybe_add_samples_predict(self, tok_context=None, tok_question=None,
+        ctx_offset_dict=None, ctx_end_offset_dict=None, list_contexts=None,
+        list_word_in_question=None, list_questions=None,
+        list_word_in_context=None, spans=None, num_values=None,
+        question_ids=None,
+        context_pos=None,
+        question_pos=None, context_ner=None, question_ner=None,
+        is_dev=None, ctx_ner_dict=None, qst_ner_dict=None,
+        psg_ctx=None):
+        first_answer = True
+
+        # answer_start = answer["answer_start"]
+        # text = answer["text"]
+        # answer_end = answer_start + len(text)
+        tok_start = None
+        tok_end = None
+        # exact_match = answer_start in ctx_offset_dict and answer_end in ctx_end_offset_dict
+        # if not exact_match:
+        #     # Sometimes, the given answer isn't actually in the context.
+        #     # If so, find the smallest surrounding text instead.
+        #     for z in range(len(tok_context)):
+        #         tok = tok_context[z]
+        #         if not isinstance(tok, spacy.tokens.token.Token):
+        #             continue
+        #         st = tok.idx
+        #         end = st + len(tok.text)
+        #         if st <= answer_start and answer_start <= end:
+        #             tok_start = tok
+        #             if z == len(tok_context) - 2:
+        #                 tok_end = tok
+        #         elif tok_start is not None:
+        #             tok_end = tok
+        #             if end >= answer_end:
+        #                 break
+        # tok_start = tok_start if tok_start is not None else ctx_offset_dict[answer_start]
+        # tok_end = tok_end if tok_end is not None else ctx_end_offset_dict[answer_end]
+        # tok_start_idx, tok_end_idx = None, None
+        # for z in range(len(tok_context)):
+        #     tok = tok_context[z]
+        #     if not isinstance(tok, spacy.tokens.token.Token): # BOS, EOS
+        #         continue
+        #     if tok == tok_start:
+        #         tok_start_idx = z
+        #     if tok == tok_end:
+        #         tok_end_idx = z
+        #     if tok_start_idx is not None and tok_end_idx is not None:
+        #         break
+        # assert(tok_start_idx is not None)
+        # assert(tok_end_idx is not None)
+        # For dev, only keep one exmaple per question, and the set of all
+        # acceptable answers. This reduces the required memory for storing
+        # data.
+        if is_dev and not first_answer:
+            continue
+        first_answer = False
+
+        # spans.append([tok_start_idx, tok_end_idx])
+        question_ids.append(self.question_id)
+
+        ctx_vocab_ids_list, ctx_vocab_ids_set, \
+            ctx_pos_list, ctx_ner_list = \
+            self._parse_data_from_tokens_list(tok_context, ctx_ner_dict)
+        list_contexts.append(ctx_vocab_ids_list)
+        context_pos.append(ctx_pos_list)
+        context_ner.append(ctx_ner_list)
+
+        qst_vocab_ids_list, qst_vocab_ids_set, \
+            qst_pos_list, qst_ner_list = \
+            self._parse_data_from_tokens_list(tok_question, qst_ner_dict)
+        list_questions.append(qst_vocab_ids_list)
+        question_pos.append(qst_pos_list)
+        question_ner.append(qst_ner_list)
+
+        word_in_question_list = [1 if word_id in qst_vocab_ids_set else 0 for word_id in ctx_vocab_ids_list]
+        word_in_context_list = [1 if word_id in ctx_vocab_ids_set else 0 for word_id in qst_vocab_ids_list]
+        list_word_in_question.append(word_in_question_list)
+        list_word_in_context.append(word_in_context_list)
+        print("Value", self.value_idx, "of", num_values, "percent done",
+              100 * float(self.value_idx) / float(num_values), end="\r")
+        self.value_idx += 1
+
     def _get_num_data_values(self, dataset):
         num_values = 0
         for article in dataset:
@@ -427,24 +508,24 @@ class DataParser():
 
         qst_ner_dict = self._get_ner_dict(tok_question)
         assert tok_question is not None
-        # found_answer_in_context = False
-        # found_answer_in_context = self._maybe_add_samples(
-        #     tok_context=tok_contexts_with_bos_and_eos,
-        #     tok_question=tok_question_with_bos_and_eos, qa="",
-        #     ctx_offset_dict=ctx_offset_dict,
-        #     ctx_end_offset_dict=ctx_end_offset_dict,
-        #     list_contexts=list_contexts,
-        #     list_word_in_question=list_word_in_question,
-        #     list_questions=list_questions,
-        #     list_word_in_context=list_word_in_context,
-        #     spans=spans, num_values=num_values,
-        #     question_ids=question_ids,
-        #     context_pos=context_pos, question_pos=question_pos,
-        #     context_ner=context_ner, question_ner=question_ner,
-        #     is_dev=is_dev,
-        #     ctx_ner_dict=ctx_ner_dict,
-        #     qst_ner_dict=qst_ner_dict,
-        #     psg_ctx=question_ids_to_passage_context[self.question_id])
+        found_answer_in_context = False
+        found_answer_in_context = self._maybe_add_samples_predict(
+            tok_context=tok_contexts_with_bos_and_eos,
+            tok_question=tok_question_with_bos_and_eos,
+            ctx_offset_dict=ctx_offset_dict,
+            ctx_end_offset_dict=ctx_end_offset_dict,
+            list_contexts=list_contexts,
+            list_word_in_question=list_word_in_question,
+            list_questions=list_questions,
+            list_word_in_context=list_word_in_context,
+            spans=spans, num_values=num_values,
+            question_ids=question_ids,
+            context_pos=context_pos, question_pos=question_pos,
+            context_ner=context_ner, question_ner=question_ner,
+            is_dev=is_dev,
+            ctx_ner_dict=ctx_ner_dict,
+            qst_ner_dict=qst_ner_dict,
+            psg_ctx=question_ids_to_passage_context[self.question_id])
         print("")
         spans = np.array(spans[:self.value_idx], dtype=np.int32)
         return RawTrainingData(
