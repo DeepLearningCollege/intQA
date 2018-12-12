@@ -226,7 +226,7 @@ class DataParser():
         #     continue
         # first_answer = False
 
-        # spans.append([tok_start_idx, tok_end_idx])
+        spans.append([0, 0])
         question_ids.append(self.question_id)
 
         ctx_vocab_ids_list, ctx_vocab_ids_set, \
