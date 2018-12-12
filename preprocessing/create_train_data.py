@@ -531,6 +531,7 @@ class DataParser():
             psg_ctx=question_ids_to_passage_context[self.question_id])
         print("")
         spans = np.array(spans[:self.value_idx], dtype=np.int32)
+
         return RawTrainingData(
             list_contexts=list_contexts,
             list_word_in_question=list_word_in_question,
@@ -544,9 +545,6 @@ class DataParser():
             question_ner=question_ner,
             question_ids_to_squad_question_id=question_ids_to_squad_question_id,
             question_ids_to_passage_context=question_ids_to_passage_context)
-
-    def _create_padded_array(self, list_of_py_arrays, max_len, pad_value):
-        return [py_arr + [pad_value] * (max_len - len(py_arr)) for py_arr in list_of_py_arrays]
 
     def create_train_data(self, options):
         train_folder = os.path.join(self.data_dir, constants.TRAIN_FOLDER_NAME)

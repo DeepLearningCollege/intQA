@@ -164,23 +164,39 @@ class _PredictDataset:
             self.question_pos_placeholder: self.qst_pos,
             self.question_ner_placeholder: self.qst_ner,
         })
+        max_ctx_len = self.options.max_ctx_length
+        max_qst_len = self.options.max_qst_length
+        WORD_PAD_ID = self.vocab.PAD_ID
+        self.ctx = self._load_2d_np_arr_with_possible_padding(self.ctx, max_ctx_len, pad_value=WORD_PAD_ID)
+        self.qst = self._load_2d_np_arr_with_possible_padding(self.qst, max_qst_len, pad_value=WORD_PAD_ID)
+        # self.spn = np.load(self.span_files[self.current_file_number])
+        self.wiq = self._load_2d_np_arr_with_possible_padding(self.wiq, max_ctx_len, pad_value=0)
+        self.wic = self._load_2d_np_arr_with_possible_padding(self.wic, max_qst_len, pad_value=0)
+        # self.qid = np.load(self.question_ids_files[self.current_file_number])
+        self.ctx_pos = self._load_2d_np_arr_with_possible_padding(self.ctx_pos, max_ctx_len, pad_value=0)
+        self.ctx_ner = self._load_2d_np_arr_with_possible_padding(self.ctx_ner, max_ctx_len, pad_value=0)
+        self.qst_pos = self._load_2d_np_arr_with_possible_padding(self.qst_pos, max_qst_len, pad_value=0)
+        self.qst_ner = self._load_2d_np_arr_with_possible_padding(self.qst_ner, max_qst_len, pad_value=0)
+        # self.question_ids_to_squad_ids = load_text_file(
+        #     self.question_ids_to_squad_id_files[self.current_file_number])
+        # self.question_ids_to_passage_context = load_text_file(
+        #     self.question_ids_to_passage_context_files[self.current_file_number])
 
-        # self.load_next_file(increment_file_number=False)
-    # def _load_2d_np_arr_with_possible_padding(self, full_file_name,
-    #         max_second_dim, pad_value):
-    #     np_arr = np.load(full_file_name)[:,:max_second_dim]
-    #     return np.pad(np_arr,
-    #         pad_width=((0, 0), (0, max_second_dim - np_arr.shape[1])),
-    #         mode="constant",
-    #         constant_values=(pad_value,))
-    #
-    # def _load_3d_np_arr_with_possible_padding(self, full_file_name,
-    #         max_second_dim, pad_value):
-    #     np_arr = np.load(full_file_name)[:,:max_second_dim, :]
-    #     return np.pad(np_arr,
-    #         pad_width=((0, 0), (0, max_second_dim - np_arr.shape[1]), (0, 0)),
-    #         mode="constant",
-    #         constant_values=(pad_value,))
+    def _load_2d_np_arr_with_possible_padding(self, np_arr,
+            max_second_dim, pad_value):
+        return np.pad(np_arr,
+            pad_width=((0, 0), (0, max_second_dim - np_arr.shape[1])),
+            mode="constant",
+            constant_values=(pad_value,))
+
+    def _load_3d_np_arr_with_possible_padding(self, np_arr,
+            max_second_dim, pad_value):
+        return np.pad(np_arr,
+            pad_width=((0, 0), (0, max_second_dim - np_arr.shape[1]), (0, 0)),
+            mode="constant",
+            constant_values=(pad_value,))
+
+
 
     # def load_next_file(self, increment_file_number):
     #     max_ctx_len = self.options.max_ctx_length
