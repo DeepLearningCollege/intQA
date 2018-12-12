@@ -266,6 +266,7 @@ def _predict(session, towers, squad_dataset, options, is_train, sample_limit):
         for zz in range(start_span_probs.shape[0]):
             start, end = get_best_start_and_end(start_span_probs[zz],
                 end_span_probs[zz], options)
+            print("Start point : ", start, ", End point : ", end)
             example_index = data_indices[zz]
             question_word_ids = qst_values[zz]
             question = find_question_sentence(question_word_ids, squad_dataset.vocab)
