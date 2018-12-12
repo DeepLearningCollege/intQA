@@ -131,8 +131,8 @@ app = Flask(__name__)
 
 @app.route('/api/intqa', methods=['POST'])
 def intqa():
-    input = request.json
-    output1 = analyze(input[0], input[1])
+    content = request.json
+    output1 = analyze(content['passage'], content['question'])
     return jsonify(results=[output1])
 
 @app.route('/')
