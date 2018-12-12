@@ -270,7 +270,7 @@ def _predict(session, towers, squad_dataset, options, is_train, sample_limit):
             example_index = data_indices[zz]
             question_word_ids = qst_values[zz]
             question = find_question_sentence(question_word_ids, squad_dataset.vocab)
-            answer = dataset.get_sentence(example_index, start, end)
+            answer = dataset.get_sentence_for_evaluate(example_index, start, end)
 #             if dataset.question_ids_to_squad_ids is not None:
 #                 squad_question_id = \
 #                     dataset.question_ids_to_squad_ids[example_index]

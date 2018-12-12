@@ -119,6 +119,7 @@ class _PredictDataset:
     def get_sentence_for_evaluate(self, question_id, start_idx, end_idx):
         # A 'PassageContext' defined in preprocessing/create_train_data.py
         passage_context = self.question_ids_to_passage_context[question_id]
+        print("*** passage_context.passage_str : ", passage_context.passage_str)
         return passage_context.passage_str[start_idx:end_idx]
 
     def get_full_sentence_for_evaluate(self, question_id):
