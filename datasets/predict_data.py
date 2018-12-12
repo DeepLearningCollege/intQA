@@ -150,7 +150,7 @@ class _PredictDataset:
         self.qst_pos = rawPredictData.question_pos
         self.qst_ner = rawPredictData.question_ner
         self.question_ids_to_squad_ids = rawPredictData.question_ids_to_squad_question_id
-        self.question_ids_to_passage_context = rawPredictData.
+        self.question_ids_to_passage_context = rawPredictData.question_ids_to_passage_context
 
         self.sess.run(self.iterator.initializer, feed_dict={
             self.context_placeholder: self.ctx,
