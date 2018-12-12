@@ -184,15 +184,17 @@ class _PredictDataset:
         })
 
 
-    def _load_2d_np_arr_with_possible_padding(self, np_arr,
+    def _load_2d_np_arr_with_possible_padding(self, list,
             max_second_dim, pad_value):
+        np_arr = np.asarray(list)
         return np.pad(np_arr,
             pad_width=((0, 0), (0, max_second_dim - np_arr.shape[1])),
             mode="constant",
             constant_values=(pad_value,))
 
-    def _load_3d_np_arr_with_possible_padding(self, np_arr,
+    def _load_3d_np_arr_with_possible_padding(self, list,
             max_second_dim, pad_value):
+        np_arr = np.asarray(list)
         return np.pad(np_arr,
             pad_width=((0, 0), (0, max_second_dim - np_arr.shape[1]), (0, 0)),
             mode="constant",
