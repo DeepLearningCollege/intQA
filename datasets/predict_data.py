@@ -152,18 +152,6 @@ class _PredictDataset:
         self.question_ids_to_squad_ids = rawPredictData.question_ids_to_squad_question_id
         self.question_ids_to_passage_context = rawPredictData.question_ids_to_passage_context
 
-        self.sess.run(self.iterator.initializer, feed_dict={
-            self.context_placeholder: self.ctx,
-            self.question_placeholder: self.qst,
-            self.span_placeholder: self.spn,
-            self.word_in_question_placeholder: self.wiq,
-            self.word_in_context_placeholder: self.wic,
-            self.question_ids_placeholder: self.qid,
-            self.context_pos_placeholder: self.ctx_pos,
-            self.context_ner_placeholder: self.ctx_ner,
-            self.question_pos_placeholder: self.qst_pos,
-            self.question_ner_placeholder: self.qst_ner,
-        })
         max_ctx_len = self.options.max_ctx_length
         max_qst_len = self.options.max_qst_length
         WORD_PAD_ID = self.vocab.PAD_ID
@@ -181,6 +169,20 @@ class _PredictDataset:
         #     self.question_ids_to_squad_id_files[self.current_file_number])
         # self.question_ids_to_passage_context = load_text_file(
         #     self.question_ids_to_passage_context_files[self.current_file_number])
+
+        self.sess.run(self.iterator.initializer, feed_dict={
+            self.context_placeholder: self.ctx,
+            self.question_placeholder: self.qst,
+            self.span_placeholder: self.spn,
+            self.word_in_question_placeholder: self.wiq,
+            self.word_in_context_placeholder: self.wic,
+            self.question_ids_placeholder: self.qid,
+            self.context_pos_placeholder: self.ctx_pos,
+            self.context_ner_placeholder: self.ctx_ner,
+            self.question_pos_placeholder: self.qst_pos,
+            self.question_ner_placeholder: self.qst_ner,
+        })
+
 
     def _load_2d_np_arr_with_possible_padding(self, np_arr,
             max_second_dim, pad_value):
