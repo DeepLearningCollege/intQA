@@ -8,7 +8,7 @@ $(() => {
             };
         inputs["passage"] = $('#passage_text').text;
         inputs["question"] = $('#question_text').text;
-        alert(JSON.stringify(inputs));
+        console.log(JSON.stringify(inputs));
         $.ajax({
             url: '/api/intqa',
             method: 'POST',
