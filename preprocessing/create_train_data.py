@@ -453,6 +453,9 @@ class DataParser():
         # article = dataset[dataset_id]
         context = context_str
 
+        print("Getting vocabulary")
+        self.vocab = get_vocab(self.data_dir)
+
         self.nlp = spacy.load("en")
         self.tokenizer = create_tokenizer(self.nlp)
         self.nlp.tokenizer = self.tokenizer
