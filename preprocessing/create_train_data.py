@@ -427,24 +427,24 @@ class DataParser():
 
         qst_ner_dict = self._get_ner_dict(tok_question)
         assert tok_question is not None
-        found_answer_in_context = False
-        found_answer_in_context = self._maybe_add_samples(
-            tok_context=tok_contexts_with_bos_and_eos,
-            tok_question=tok_question_with_bos_and_eos, qa="",
-            ctx_offset_dict=ctx_offset_dict,
-            ctx_end_offset_dict=ctx_end_offset_dict,
-            list_contexts=list_contexts,
-            list_word_in_question=list_word_in_question,
-            list_questions=list_questions,
-            list_word_in_context=list_word_in_context,
-            spans=spans, num_values=num_values,
-            question_ids=question_ids,
-            context_pos=context_pos, question_pos=question_pos,
-            context_ner=context_ner, question_ner=question_ner,
-            is_dev=is_dev,
-            ctx_ner_dict=ctx_ner_dict,
-            qst_ner_dict=qst_ner_dict,
-            psg_ctx=question_ids_to_passage_context[self.question_id])
+        # found_answer_in_context = False
+        # found_answer_in_context = self._maybe_add_samples(
+        #     tok_context=tok_contexts_with_bos_and_eos,
+        #     tok_question=tok_question_with_bos_and_eos, qa="",
+        #     ctx_offset_dict=ctx_offset_dict,
+        #     ctx_end_offset_dict=ctx_end_offset_dict,
+        #     list_contexts=list_contexts,
+        #     list_word_in_question=list_word_in_question,
+        #     list_questions=list_questions,
+        #     list_word_in_context=list_word_in_context,
+        #     spans=spans, num_values=num_values,
+        #     question_ids=question_ids,
+        #     context_pos=context_pos, question_pos=question_pos,
+        #     context_ner=context_ner, question_ner=question_ner,
+        #     is_dev=is_dev,
+        #     ctx_ner_dict=ctx_ner_dict,
+        #     qst_ner_dict=qst_ner_dict,
+        #     psg_ctx=question_ids_to_passage_context[self.question_id])
         print("")
         spans = np.array(spans[:self.value_idx], dtype=np.int32)
         return RawTrainingData(
