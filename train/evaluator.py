@@ -82,3 +82,4 @@ class Evaluator:
             context, question, answer = eval_fn(self.session,
                 self.model_builder.get_towers(), self.sq_dataset, self.options)
             print("Context:", context, "Question:", question, "Predicted Answer:", answer)
+            return answer

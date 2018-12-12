@@ -2,9 +2,12 @@
 $(() => {
 
     $('#analyze').click(() => {
-        var inputs;
-        inputs[0] = $('#passage_text').text;
-        inputs[1] = $('#question_text').text;
+        var inputs = {
+                passage: ""
+                , question: ""
+            };
+        inputs["passage"] = $('#passage_text').text;
+        inputs["question"] = $('#question_text').text;
         alert(JSON.stringify(inputs));
         $.ajax({
             url: '/api/intqa',
@@ -12,6 +15,7 @@ $(() => {
             contentType: 'application/json',
             data: JSON.stringify(inputs),
             success: (data) => {
+                console.log(data.results)
                 $('#answer').text(data.results);
             }
         });

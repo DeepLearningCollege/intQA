@@ -1,85 +1,35 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MNIST</title>
+    <title>Intelligent QA Bot(Machine Reading Comprehension)</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
   </head>
   <body>
-    <a href="https://github.com/sugyan/tensorflow-mnist"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+    <a href="https://github.com/DeepLearningCollege/intQA"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
     <div class="container">
-      <h1>MNIST</h1>
+      <h1>Intelligent QA Bot(Machine Reading Comprehension)</h1>
       <div class="row">
         <div class="col-md-6">
-          <p>draw a digit here!</p>
-          <canvas id="main"></canvas>
+          <p>Passage:</p>
+          <div class="sentence-view">
+            <textarea class="form-control" rows="10" id="passage_text">루트비히 판 베토벤(독일어: Ludwig van Beethoven, 문화어: 루드위히 판 베토벤, 1770년 12월 17일 ~ 1827년 3월 26일)은 독일의 서양 고전 음악 작곡가이다. 독일의 본에서 태어났으며, 성인이 된 이후 거의 오스트리아 빈에서 살았다. 감기와 폐렴으로 인한 합병증으로 투병하다가 57세로 생을 마친 그는 고전주의와 낭만주의의 전환기에 활동한 주요 음악가이며, 작곡가로 널리 존경받고 있다. 음악의 성인(聖人) 또는 악성(樂聖)이라는 별칭으로 부르기도 한다. 가장 잘 알려진 작품 가운데에는 〈교향곡 5번〉, 〈교향곡 6번〉, 〈교향곡 9번〉, 〈비창 소나타〉, 〈월광 소나타〉 등이 있다.</textarea>
+          </div>
           <p>
-            <button id="clear" class="btn btn-default">clear</button>
+          <p>Question:</p>
+          <div class="sentence-view">
+            <textarea class="form-control" rows="4" id="question_text">베토벤이 누구야?</textarea>
+          </div>
+          <p>
+            <button id="analyze" class="btn btn-default">Analyze</button>
           </p>
         </div>
         <div class="col-md-6">
-          <p>input:</p>
-          <canvas id="input" style="border:1px solid" width="140" height="140"></canvas>
+          <p>Answer:</p>
+          <h4 id="answer"></h4>
           <hr>
           <p>output:</p>
-          <table id="output" class="table">
-            <tr>
-              <th class="col-md-1"></th>
-              <th class="col-md-2">regression</th>
-              <th class="col-md-2">convolutional</th>
-            </tr>
-            <tr>
-              <th>0</th>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>1</th>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>2</th>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>3</th>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>4</th>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>5</th>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>6</th>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>7</th>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>8</th>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>9</th>
-              <td></td>
-              <td></td>
-            </tr>
-          </table>
         </div>
       </div>
     </div>
