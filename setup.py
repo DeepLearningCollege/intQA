@@ -34,7 +34,7 @@ def main(_):
     else:
         split_vocab_and_embedding(options, data_dir, download_dir)
     if options.exobrain_korean_dataset:
-        DataParser(data_dir, download_dir).create_train_data_exobrain(options)
+        DataParser(data_dir, download_dir).create_train_data_exobrain_korean(options)
     else:
         DataParser(data_dir, download_dir).create_train_data(options)
     if options.use_cove_vectors:
