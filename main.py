@@ -14,7 +14,8 @@ def del_all_flags(FLAGS):
 
 def analyze(passage, question):
     f = tf.app.flags
-    del_all_flags(f.FLAGS)
+    f.FLAGS.remove_flag_values(f.FLAGS.flag_values_dict())
+    # del_all_flags(f.FLAGS)
     f.DEFINE_integer("max_ctx_length", 300,
                      "Max passage length to keep. Longer content will be trimmed.")
     f.DEFINE_integer("max_qst_length", 60,
