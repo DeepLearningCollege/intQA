@@ -13,10 +13,6 @@
                 {
                   "text": "아폴로 계획",
                   "answer_start": 0
-                },
-                {
-                  "text": "아폴로 프로젝트",
-                  "answer_start": 0
                 }
               ]
             }
@@ -36,11 +32,7 @@
               "answers": [
                 {
                   "text": "1961년부터 1972년까지",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1961-1972",
-                  "answer_start": 0
+                  "answer_start": 28
                 }
               ]
             }
@@ -60,11 +52,11 @@
               "answers": [
                 {
                   "text": "1967년",
-                  "answer_start": 0
+                  "answer_start": 392
                 },
                 {
                   "text": "1967",
-                  "answer_start": 0
+                  "answer_start": 392
                 }
               ]
             }
@@ -84,11 +76,7 @@
               "answers": [
                 {
                   "text": "한 명",
-                  "answer_start": 0
-                },
-                {
-                  "text": "한 사람",
-                  "answer_start": 0
+                  "answer_start":  77
                 }
               ]
             }
@@ -107,12 +95,8 @@
               "id": "5",
               "answers": [
                 {
-                  "text": "세 명",
-                  "answer_start": 0
-                },
-                {
-                  "text": "세 사람",
-                  "answer_start": 0
+                  "text": "세명",
+                  "answer_start": 126
                 }
               ]
             }
@@ -132,11 +116,7 @@
               "answers": [
                 {
                   "text": "존 F 케네디",
-                  "answer_start": 0
-                },
-                {
-                  "text": "존 에프 케네디, 케네디",
-                  "answer_start": 0
+                  "answer_start": 296
                 }
               ]
             }
@@ -156,11 +136,11 @@
               "answers": [
                 {
                   "text": "유리 가가린",
-                  "answer_start": 0
+                  "answer_start": 431
                 },
                 {
                   "text": "가가린",
-                  "answer_start": 0
+                  "answer_start": 434
                 }
               ]
             }
@@ -180,11 +160,7 @@
               "answers": [
                 {
                   "text": "소비에트",
-                  "answer_start": 0
-                },
-                {
-                  "text": "소련, 소비에트 연방",
-                  "answer_start": 0
+                  "answer_start": 346
                 }
               ]
             }
@@ -203,12 +179,8 @@
               "id": "9",
               "answers": [
                 {
-                  "text": "하루",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1일",
-                  "answer_start": 0
+                  "text": "바로 다음날",
+                  "answer_start": 513
                 }
               ]
             }
@@ -228,11 +200,7 @@
               "answers": [
                 {
                   "text": "4월 20일",
-                  "answer_start": 0
-                },
-                {
-                  "text": "4월 20일",
-                  "answer_start": 0
+                  "answer_start": 577
                 }
               ]
             }
@@ -252,11 +220,7 @@
               "answers": [
                 {
                   "text": "린든 존슨",
-                  "answer_start": 0
-                },
-                {
-                  "text": "린든 존슨",
-                  "answer_start": 0
+                  "answer_start": 593
                 }
               ]
             }
@@ -275,12 +239,8 @@
               "id": "12",
               "answers": [
                 {
-                  "text": "텍사스 휴스턴",
-                  "answer_start": 0
-                },
-                {
-                  "text": "텍사스 휴스턴",
-                  "answer_start": 0
+                  "text": "텍사스 휴스턴",
+                  "answer_start": 7
                 }
               ]
             }
@@ -300,11 +260,7 @@
               "answers": [
                 {
                   "text": "마지막 달 탐사",
-                  "answer_start": 0
-                },
-                {
-                  "text": "마지막 달 탐사",
-                  "answer_start": 0
+                  "answer_start": 1098
                 }
               ]
             }
@@ -324,13 +280,8 @@
               "answers": [
                 {
                   "text": "1969년 7월",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1969년 7월",
-                  "answer_start": 0
+                  "answer_start": 656
                 }
-              ]
             }
           ],
           "context": "아폴로 계획에 따른 임무 수행에는 아폴로 1호부터 18호까지 총 16대의 우주선이 사용되었다. 이 가운데 유인 우주 비행의 성공은 아폴로 7호부터였다. 아폴로 1호: 1967년 1월 27일, 첫 유인 사령선 테스트가 계획되어 있었으나 발사 전 훈련 도중에 화재가 발생하여 거스 그리섬, 에드 화이트, 로저 채피의 세 우주비행사가 목숨을 잃었다. 아폴로 4호: 1967년 11월 9일, 새턴 V 로켓의 시험이 주목적인 무인 비행이었다. 아폴로 5호: 1968년 1월 22-23일, 달 착륙선을 시험하는 것이 목적인 무인 비행이었다. 아폴로 6호: 1968년 4월 4일, 사령선, 달 착륙선 등을 모두 포함한 최종 시험 성격의 무인 비행이었다.아폴로 7호: 1968년 10월 11-22일, 지구 궤도에서 유인 사령선 및 달 착륙선 궤도 비행이 이루어졌다. 우주 비행이 최초로 텔레비전에 생방송으로 방송되었다. 아폴로 8호: 1968년 12월 21-27일, 20시간에 걸쳐 달 궤도를 10회 선회 비행하였다. 아폴로 9호: 1969년 3월 3일-13일, 달착륙선에 우주인이 탑승하여 지구 궤도를 선회하였다. 아폴로 10호: 1969년 5월 18-26일, 달착륙선을 분리하여 달 궤도를 선회한후 다시 사령선과 도킹하였다. 최초의 컬러 텔레비전 방송이 중계되었다. 아폴로 11호: 1969년 7월 16-24일, 달 착륙에 성공하였다. 아폴로 12호: 1969년 11월 14-24일, 달에 착륙하여 31시간 이상 표면에서 활동하였다. 아폴로 13호: 1970년 4월 11-17일, 달로 향하던 중 사령선이 고장나는 사고가 일어나 달 궤도를 선회하여 귀환하였다. 아폴로 14호: 1971년 1월 31일 - 2월 9일, 월석 채취를 위한 카트가 최초로 사용되었다. 아폴로 15호: 1971년 7월 26일 - 8월 7일, 1971, 최초로 월면차를 사용하였다. 아폴로 16호: 1972년 4월 16-27일, 처음으로 달의 고지대에 착륙하였다. 두 번째로 월면차를 사용하였으며 달표면에서 71시간 동안 임무를 수행하였다. 아폴로 17호: 1972년 12월 7-19일, 75시간 동안 달 표면에서 임무를 수행하였다. 월면차를 이용하여 30.5km를 이동하였다. 아폴로 계획에 따른 마지막 달 탐사였다. 아폴로 18호: 1975년 7월 15-24일, 아폴로-소유스 시험 계획의 일환으로 발사되어 소유즈 19호와 도킹하였다. 정식으로는 번호가 붙지 않는 그냥 '아폴로 호'이나 NASA의 일부 공식 문서에서도 아폴로 18호라 기재되는 등 사실상의 정식 명칭화되어 있다."
@@ -348,11 +299,7 @@
               "answers": [
                 {
                   "text": "7월 24일",
-                  "answer_start": 0
-                },
-                {
-                  "text": "7월 24일",
-                  "answer_start": 0
+                  "answer_start": 7
                 }
               ]
             }
@@ -372,11 +319,7 @@
               "answers": [
                 {
                   "text": "1856년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1856년",
-                  "answer_start": 0
+                  "answer_start": 54
                 }
               ]
             }
@@ -396,11 +339,7 @@
               "answers": [
                 {
                   "text": "1944년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1944년",
-                  "answer_start": 0
+                  "answer_start": 69
                 }
               ]
             }
@@ -420,11 +359,7 @@
               "answers": [
                 {
                   "text": "세르비아인",
-                  "answer_start": 0
-                },
-                {
-                  "text": "세르비아인",
-                  "answer_start": 0
+                  "answer_start":  47
                 }
               ]
             }
@@ -444,16 +379,13 @@
               "answers": [
                 {
                   "text": "1884년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1884년",
-                  "answer_start": 0
+                  "answer_start": 260
+                }
                 }
               ]
             }
           ],
-          "context": "오스트리아 제국(현재의 크로아티아)의 크로아티아 군대 변경 지대(Croatian Military Frontier)의 스밀랸이라는 마을에서 태어난 세르비아계 오스트리아인인 테슬라는 태어날 때부터 오스트리아 제국의 지배를 받았으며 후에 미국의 시민이 되었다. 라디오를 통한 무선 통신을 1894년 최초로 실현시켜 특허청에 1897년 10월 2일 출원, 1900년 3월 5일 승인 되어 무선통신의 아버지를 인정받았다.또한 전류전쟁의 승리로 인해 테슬라는 미국에서 가장 대단한 전기 공학자 중 하나로 널리 존경을 받았다. 그는 현대 전기 공학을 개척했으며 수많은 그의 발명은 선도자로서 중요한 역할을 하였다. 테슬라는 1893년 이전에 무선 에너지 통신부터 전력 장치까지 개발했으며, 비록 완성하진 못했지만 그의 와덴클리프 탑 프로젝트에서 대륙을 잇는 무선 통신을 실현시키기를 갈망했다. 자기장의 국제 단위인 테슬라는 니콜라 테슬라의 이름을 딴 것이다."
+          "context": "1882년 테슬라는 가족과 오랜 친분을 유지하고 있던 푸스카스(Puskas) 형제의 주선으로 에디슨 전화회사의 파리 지사에 일자리를 얻게 된다. 그는 많은 실험을 바탕으로 자신의 교류 시스템이 현재의 직류 시스템보다 훨씬 월등하다는 것을 증명해냈으며, 이러한 교류의 잠재적 가치를 알리고자 많은 노력을 기울였다. 파리 지사의 책임자이자 에디슨의 동료였던 찰스 베처러(Charles Batchelor)는 그러한 테슬라의 능력을 알아보고는 미국으로 갈 것을 권유했다. 1884년 테슬라는 그의 추천서와 함께 미국으로 떠났다."
         }
       ]
     },
@@ -468,11 +400,7 @@
               "answers": [
                 {
                   "text": "전류전쟁",
-                  "answer_start": 0
-                },
-                {
-                  "text": "전류전쟁",
-                  "answer_start": 0
+                  "answer_start": 233
                 }
               ]
             }
@@ -492,11 +420,7 @@
               "answers": [
                 {
                   "text": "에디슨",
-                  "answer_start": 0
-                },
-                {
-                  "text": "에디슨",
-                  "answer_start": 0
+                  "answer_start": 25
                 }
               ]
             }
@@ -516,11 +440,7 @@
               "answers": [
                 {
                   "text": "정교회 사제",
-                  "answer_start": 0
-                },
-                {
-                  "text": "정교회 사제",
-                  "answer_start": 0
+                  "answer_start": 9
                 }
               ]
             }
@@ -540,11 +460,7 @@
               "answers": [
                 {
                   "text": "크로아티아",
-                  "answer_start": 0
-                },
-                {
-                  "text": "크로아티아",
-                  "answer_start": 0
+                  "answer_start": 13
                 }
               ]
             }
@@ -564,11 +480,7 @@
               "answers": [
                 {
                   "text": "존 하버드",
-                  "answer_start": 0
-                },
-                {
-                  "text": "존 하버드",
-                  "answer_start": 0
+                  "answer_start": 321
                 }
               ]
             }
@@ -588,11 +500,7 @@
               "answers": [
                 {
                   "text": "1636년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1636년",
-                  "answer_start": 0
+                  "answer_start": 136
                 }
               ]
             }
@@ -612,11 +520,7 @@
               "answers": [
                 {
                   "text": "매사추세츠 식민지 일반의회",
-                  "answer_start": 0
-                },
-                {
-                  "text": "매사추세츠 식민지 일반의회",
-                  "answer_start": 0
+                  "answer_start": 143
                 }
               ]
             }
@@ -636,11 +540,7 @@
               "answers": [
                 {
                   "text": "찰스 윌리엄 엘리엇",
-                  "answer_start": 0
-                },
-                {
-                  "text": "찰스 윌리엄 엘리엇",
-                  "answer_start": 0
+                  "answer_start": 454
                 }
               ]
             }
@@ -660,13 +560,8 @@
               "answers": [
                 {
                   "text": "1639년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1639년",
-                  "answer_start": 0
+                  "answer_start": 258
                 }
-              ]
             }
           ],
           "context": "하버드 대학교(Harvard University)는 미국의 아이비 리그 사립 대학이다. 하버드 대학교는 오랜 역사와 큰 영향력, 그리고 많은 재산으로 세계의 일류 대학 중 하나가 되었다. 하버드 대학교는 1636년에 매사추세츠 식민지 일반의회가 설립하였다. 미국에서 가장 오래된 대학교며, 처음에는 '새로운 대학'(New College) 또는 '새 도시 대학'(The college at New Towne)으로 불렸으나, 1639년 3월 13일에 '하버드 칼리지'(Harvard College)라는 이름을 지었다. 젊은 청교도 성직자 존 하버드의 성을 따서 지은 것이다. 그는 유언을 남겨서 4백여권의 책과 재산의 절반인 현금 779파운드를 학교에 기부하였다.[훗날에 여러 학과와 전문대학원들이 통합되면서 하버드 대학교가 되었다. 지금도 학부는 하버드 칼리지라고 부른다. 찰스 윌리엄 엘리엇은 40년간 하버드 총장으로 일하면서 하버드 대학교를 근대 연구 대학으로 변모시켰다. 엘리엇의 개혁은 선택 과목, 소규모 강의 등에 관한 변화도 포함하고 있었다. 하버드 모델은 미국 교육에 영향을 끼쳤다. 하버드 대학교는 현재까지 졸업생과 교수를 포함해서 세계에서 가장 많은 157명의 노벨상 수상자를 배출했다.[4] 또한 프랭클린 루즈벨트와 존 F. 케네디에 이르기까지 미국에서 가장 많은 총 7명의 미국 대통령, 36명의 퓰리처상 수상자, 미국에서 가장 많은 21명의 연방 대법원 대법관과 7명의 세계은행 총재, 세계에서 가장 많은 62명의 억만장자와 미국에서 가장 많은 335명의 로즈 장학생이 하버드를 졸업했다. 세계 각국에 포진한 하버드 유학파들로 인해 하버드 출신은 미국뿐만 아니라 전 세계의 지도층을 형성하고 있다는 말이 나올 정도로, 미국내뿐만 아니라 세계적으로도 높은 권위를 자랑한다. 하버드 대학교의 학부는 4년제 과정이다. 학부 학생들은 의학, 법학, 경영학 등의 전문 분야는 공부할 수 없으며 자연과학, 응용과학, 사회과학, 인문학 등을 공부한다. 전문대학원 과정에 메디컬 스쿨, 로스쿨, 비즈니스 스쿨과 케네디 스쿨 등을 두고 있다.."
@@ -684,11 +579,7 @@
               "answers": [
                 {
                   "text": "동아프리카",
-                  "answer_start": 0
-                },
-                {
-                  "text": "동아프리카",
-                  "answer_start": 0
+                  "answer_start": 102
                 }
               ]
             }
@@ -708,11 +599,7 @@
               "answers": [
                 {
                   "text": "나이로비",
-                  "answer_start": 0
-                },
-                {
-                  "text": "나이로비",
-                  "answer_start": 0
+                  "answer_start": 194
                 }
               ]
             }
@@ -731,12 +618,8 @@
               "id": "31",
               "answers": [
                 {
-                  "text": "영어와 스와힐리어",
-                  "answer_start": 0
-                },
-                {
-                  "text": "영어와 스와힐리어",
-                  "answer_start": 0
+                  "text": "영어: Republic of Kenya 리퍼블릭 오브 케냐[*], 스와힐리어",
+                  "answer_start":  7
                 }
               ]
             }
@@ -756,11 +639,7 @@
               "answers": [
                 {
                   "text": "탄자니아",
-                  "answer_start": 0
-                },
-                {
-                  "text": "탄자니아",
-                  "answer_start": 0
+                  "answer_start": 172
                 }
               ]
             }
@@ -779,12 +658,8 @@
               "id": "33",
               "answers": [
                 {
-                  "text": "1963년 12월 12일",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1963년 12월 12일",
-                  "answer_start": 0
+                  "text": "1963년 12월 12일",
+                  "answer_start": 440
                 }
               ]
             }
@@ -804,11 +679,7 @@
               "answers": [
                 {
                   "text": "1957년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1957년",
-                  "answer_start": 0
+                  "answer_start": 258
                 }
               ]
             }
@@ -828,11 +699,7 @@
               "answers": [
                 {
                   "text": "케냐 아프리카 국민연맹",
-                  "answer_start": 0
-                },
-                {
-                  "text": "케냐 아프리카 국민연맹",
-                  "answer_start": 0
+                  "answer_start": 370
                 }
               ]
             }
@@ -852,11 +719,7 @@
               "answers": [
                 {
                   "text": "국민 무지개 연립",
-                  "answer_start": 0
-                },
-                {
-                  "text": "국민 무지개 연립",
-                  "answer_start": 0
+                  "answer_start": 347
                 }
               ]
             }
@@ -876,11 +739,7 @@
               "answers": [
                 {
                   "text": "기독교",
-                  "answer_start": 0
-                },
-                {
-                  "text": "기독교",
-                  "answer_start": 0
+                  "answer_start": 30
                 }
               ]
             }
@@ -898,10 +757,6 @@
               "question": "I미국 플로리다 주에서 인구가 가장 많은 도시는?",
               "id": "38",
               "answers": [
-                {
-                  "text": "잭슨빌",
-                  "answer_start": 0
-                },
                 {
                   "text": "잭슨빌",
                   "answer_start": 0
@@ -924,11 +779,7 @@
               "answers": [
                 {
                   "text": "듀발 군",
-                  "answer_start": 0
-                },
-                {
-                  "text": "듀발 군",
-                  "answer_start": 0
+                  "answer_start": 51
                 }
               ]
             }
@@ -948,11 +799,7 @@
               "answers": [
                 {
                   "text": "독일",
-                  "answer_start": 0
-                },
-                {
-                  "text": "독일",
-                  "answer_start": 0
+                  "answer_start": 29
                 }
               ]
             }
@@ -971,12 +818,8 @@
               "id": "41",
               "answers": [
                 {
-                  "text": "1546년 2월 18일",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1546년 2월 18일",
-                  "answer_start": 0
+                  "text": "1546년 2월 18일",
+                  "answer_start":  63
                 }
               ]
             }
@@ -996,11 +839,7 @@
               "answers": [
                 {
                   "text": "가톨릭교회",
-                  "answer_start": 0
-                },
-                {
-                  "text": "가톨릭교회",
-                  "answer_start": 0
+                  "answer_start": 162
                 }
               ]
             }
@@ -1020,11 +859,7 @@
               "answers": [
                 {
                   "text": "죄의식",
-                  "answer_start": 0
-                },
-                {
-                  "text": "죄의식",
-                  "answer_start": 0
+                  "answer_start": 488
                 }
               ]
             }
@@ -1044,11 +879,7 @@
               "answers": [
                 {
                   "text": "파문",
-                  "answer_start": 0
-                },
-                {
-                  "text": "파문",
-                  "answer_start": 0
+                  "answer_start": 538
                 }
               ]
             }
@@ -1068,11 +899,7 @@
               "answers": [
                 {
                   "text": "성서",
-                  "answer_start": 0
-                },
-                {
-                  "text": "성서",
-                  "answer_start": 0
+                  "answer_start": 444
                 }
               ]
             }
@@ -1091,12 +918,8 @@
               "id": "46",
               "answers": [
                 {
-                  "text": "독일어와 문법의 통일",
-                  "answer_start": 0
-                },
-                {
-                  "text": "독일어와 문법의 통일",
-                  "answer_start": 0
+                  "text": "독일어와 문법이 통일",
+                  "answer_start": 521
                 }
               ]
             }
@@ -1116,13 +939,8 @@
               "answers": [
                 {
                   "text": "1483년 11월 10일",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1483년 11월 10일",
-                  "answer_start": 0
+                  "answer_start": 27
                 }
-              ]
             }
           ],
           "context": "마르틴 루터(독일어: Martin Luther, 1483년 11월 10일~1546년 2월 18일)는 독일의 종교개혁가이다. 당시 비텐베르크 대학교의 교수였으며, 훗날 종교개혁을 일으킨 역사적인 인물이다.[1] 본래 아우구스티노회 수사였던 루터는 로마 가톨릭교회의 면벌부 판매를 회개가 없는 용서, 거짓 평안(예레미야 예언자의 가르침을 인용함)이라 비판하고 믿음을 통하여 의롭다함을 얻는(der Rechtfertigung durch den Glauben) 이신칭의를 주장하였다. 칭의를 통한 개인 구원의 새 시대를 열어주었다. 면죄부 판매를 비판한 그는 1517년 95개 논제를 게시함으로써 당시 면죄부의 대량 세일을 하는 도미니코회 수사이자 설교 담당자인 요한 테첼에 맞섰다. 1520년 그는 교황 레오 10세로부터 자신의 모든 주장을 철회하라는 요구를 받았으나 오직 성경의 권위을 앞세우면서 성서에 어긋나는 가르침들을 거부하였다. 1521년 보름스 회의에서도 마찬가지로 신성 로마 제국의 황제인 카를 5세로부터 같은 요구를 받았으나 거부함으로써 결국 교황에게 파문을 당하였다. 그는 1517년 10월 31일 비텐베르크 대학교 교회 문에 95개 논제를 붙였는데 이것이 종교 개혁의 시작이 되었다. 그의 종교 개혁은 당시 종교와 사회에 큰 영향을 주었다."
@@ -1139,12 +957,8 @@
               "id": "48",
               "answers": [
                 {
-                  "text": "작센안할트 주의 아이스레벤",
-                  "answer_start": 0
-                },
-                {
-                  "text": "작센안할트 주의 아이스레벤",
-                  "answer_start": 0
+                  "text": "작센안할트주 아이슬레벤",
+                  "answer_start": 13
                 }
               ]
             }
@@ -1164,11 +978,7 @@
               "answers": [
                 {
                   "text": "법률가",
-                  "answer_start": 0
-                },
-                {
-                  "text": "법률가",
-                  "answer_start": 0
+                  "answer_start": 341
                 }
               ]
             }
@@ -1187,12 +997,8 @@
               "id": "50",
               "answers": [
                 {
-                  "text": "에르푸르트 대학교",
-                  "answer_start": 0
-                },
-                {
-                  "text": "에르푸르트 대학교",
-                  "answer_start": 0
+                  "text": "에르푸르트 대학교",
+                  "answer_start": 365
                 }
               ]
             }
@@ -1211,12 +1017,8 @@
               "id": "51",
               "answers": [
                 {
-                  "text": "요한 스타우피츠 교수",
-                  "answer_start": 0
-                },
-                {
-                  "text": "요한 스타우피츠 교수",
-                  "answer_start": 0
+                  "text": "요한 폰 스타우피츠 교수",
+                  "answer_start": 456
                 }
               ]
             }
@@ -1235,12 +1037,8 @@
               "id": "52",
               "answers": [
                 {
-                  "text": "1517년 10월 31일",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1517년 10월 31일",
-                  "answer_start": 0
+                  "text": "1517년 10월 31일",
+                  "answer_start": 196
                 }
               ]
             }
@@ -1260,11 +1058,7 @@
               "answers": [
                 {
                   "text": "95개 논제",
-                  "answer_start": 0
-                },
-                {
-                  "text": "95개 반박문",
-                  "answer_start": 0
+                  "answer_start": 315
                 }
               ]
             }
@@ -1284,11 +1078,7 @@
               "answers": [
                 {
                   "text": "금화",
-                  "answer_start": 0
-                },
-                {
-                  "text": "금화",
-                  "answer_start": 0
+                  "answer_start": 209
                 }
               ]
             }
@@ -1308,11 +1098,7 @@
               "answers": [
                 {
                   "text": "요한 테첼",
-                  "answer_start": 0
-                },
-                {
-                  "text": "요한 테첼",
-                  "answer_start": 0
+                  "answer_start": 201
                 }
               ]
             }
@@ -1332,11 +1118,7 @@
               "answers": [
                 {
                   "text": "필리프 멜란히톤",
-                  "answer_start": 0
-                },
-                {
-                  "text": "필리프 멜란히톤",
-                  "answer_start": 0
+                  "answer_start": 21
                 }
               ]
             }
@@ -1355,12 +1137,8 @@
               "id": "57",
               "answers": [
                 {
-                  "text": "1520년 6월 24일",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1520년 6월 24일",
-                  "answer_start": 0
+                  "text": "1520년 6월 24일",
+                  "answer_start": 97
                 }
               ]
             }
@@ -1380,11 +1158,7 @@
               "answers": [
                 {
                   "text": "1521년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1521년",
-                  "answer_start": 0
+                  "answer_start": 871
                 }
               ]
             }
@@ -1394,7 +1168,7 @@
       ]
     },
     {
-      "title": "산0",
+      "title": "산소",
       "paragraphs": [
         {
           "qas": [
@@ -1404,11 +1178,7 @@
               "answers": [
                 {
                   "text": "8",
-                  "answer_start": 0
-                },
-                {
-                  "text": "8 ",
-                  "answer_start": 0
+                  "answer_start":  97
                 }
               ]
             }
@@ -1428,11 +1198,7 @@
               "answers": [
                 {
                   "text": "헬륨",
-                  "answer_start": 0
-                },
-                {
-                  "text": "헬륨",
-                  "answer_start": 0
+                  "answer_start": 177
                 }
               ]
             }
@@ -1452,11 +1218,7 @@
               "answers": [
                 {
                   "text": "49.5%",
-                  "answer_start": 0
-                },
-                {
-                  "text": "49.5%",
-                  "answer_start": 0
+                  "answer_start": 28
                 }
               ]
             }
@@ -1474,10 +1236,6 @@
               "question": "어떤 원소가 질량 백분율로 지각의 49.5%를 차지하나?",
               "id": "62",
               "answers": [
-                {
-                  "text": "산소",
-                  "answer_start": 0
-                },
                 {
                   "text": "산소",
                   "answer_start": 0
@@ -1500,11 +1258,7 @@
               "answers": [
                 {
                   "text": "물",
-                  "answer_start": 0
-                },
-                {
-                  "text": "물",
-                  "answer_start": 0
+                  "answer_start": 1
                 }
               ]
             }
@@ -1523,12 +1277,8 @@
               "id": "64",
               "answers": [
                 {
-                  "text": "탈 플로지스톤 공기",
-                  "answer_start": 0
-                },
-                {
-                  "text": "탈 플로지스톤 공기",
-                  "answer_start": 0
+                  "text": "탈 플로지스톤 공기",
+                  "answer_start": 156
                 }
               ]
             }
@@ -1548,11 +1298,7 @@
               "answers": [
                 {
                   "text": "1774년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1774년",
-                  "answer_start": 0
+                  "answer_start": 4
                 }
               ]
             }
@@ -1572,11 +1318,7 @@
               "answers": [
                 {
                   "text": "앙투안 라부아지에",
-                  "answer_start": 0
-                },
-                {
-                  "text": "앙투안 라부아지에",
-                  "answer_start": 0
+                  "answer_start": 241
                 }
               ]
             }
@@ -1596,11 +1338,7 @@
               "answers": [
                 {
                   "text": "자외선",
-                  "answer_start": 0
-                },
-                {
-                  "text": "자외선",
-                  "answer_start": 0
+                  "answer_start": 206
                 }
               ]
             }
@@ -1619,12 +1357,12 @@
               "id": "68",
               "answers": [
                 {
-                  "text": "산소",
+                  "text": "생명체는 세포 호흡 과정에서 산소를 사용한다. 전체 과정을 하나의 반응식으로 요약하면 다음과 같다.세포호흡은 크게 해당과정, TCA회로, 산화적 인산화 과정으로 나뉘는데, 이 중 산소가 관여하는 과정은 산화적 인산화과정이다. 해당과정과 TCA회로에서 NAD+는 고에너지 전자를 받아 NADH가 된다. 생성된 NADH는 미토콘드리아의 내막에 존재하는 단백질 복합체로 전자를 전달한다. 단백질 복합체에서 전자가 가진 에너지는 ATP를 생성하는 데 사용된다. 마지막으로 전자는 산소로 전달되고 수소 이온과 결합하여 물이 생성된다."",
                   "answer_start": 0
                 },
                 {
                   "text": "산소",
-                  "answer_start": 0
+                  "answer_start": 16
                 }
               ]
             }
@@ -1644,11 +1382,7 @@
               "answers": [
                 {
                   "text": "몽골 제국",
-                  "answer_start": 0
-                },
-                {
-                  "text": "몽골 제국",
-                  "answer_start": 0
+                  "answer_start": 83
                 }
               ]
             }
@@ -1668,11 +1402,7 @@
               "answers": [
                 {
                   "text": "1227년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1227년",
-                  "answer_start": 0
+                  "answer_start": 65
                 }
               ]
             }
@@ -1692,11 +1422,7 @@
               "answers": [
                 {
                   "text": "예수게이",
-                  "answer_start": 0
-                },
-                {
-                  "text": "예수게이",
-                  "answer_start": 0
+                  "answer_start": 143
                 }
               ]
             }
@@ -1716,11 +1442,7 @@
               "answers": [
                 {
                   "text": "1162년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1162년",
-                  "answer_start": 0
+                  "answer_start": 7
                 }
               ]
             }
@@ -1740,11 +1462,7 @@
               "answers": [
                 {
                   "text": "테무 진 우게",
-                  "answer_start": 0
-                },
-                {
-                  "text": "테무 진 우게",
-                  "answer_start": 0
+                  "answer_start": 288
                 }
               ]
             }
@@ -1764,11 +1482,7 @@
               "answers": [
                 {
                   "text": "보르테",
-                  "answer_start": 0
-                },
-                {
-                  "text": "보르테",
-                  "answer_start": 0
+                  "answer_start": 97
                 }
               ]
             }
@@ -1788,11 +1502,7 @@
               "answers": [
                 {
                   "text": "메르키트족",
-                  "answer_start": 0
-                },
-                {
-                  "text": "메르키트족",
-                  "answer_start": 0
+                  "answer_start": 128
                 }
               ]
             }
@@ -1812,11 +1522,7 @@
               "answers": [
                 {
                   "text": "토그릴 완 칸",
-                  "answer_start": 0
-                },
-                {
-                  "text": "토그릴 완 칸",
-                  "answer_start": 0
+                  "answer_start": 259
                 }
               ]
             }
@@ -1836,11 +1542,7 @@
               "answers": [
                 {
                   "text": "케레이트족",
-                  "answer_start": 0
-                },
-                {
-                  "text": "케레이트족",
-                  "answer_start": 0
+                  "answer_start": 249
                 }
               ]
             }
@@ -1860,11 +1562,7 @@
               "answers": [
                 {
                   "text": "2만",
-                  "answer_start": 0
-                },
-                {
-                  "text": "2만 명",
-                  "answer_start": 0
+                  "answer_start": 425
                 }
               ]
             }
@@ -1883,12 +1581,8 @@
               "id": "79",
               "answers": [
                 {
-                  "text": "쟈무카",
-                  "answer_start": 0
-                },
-                {
-                  "text": "쟈무카",
-                  "answer_start": 0
+                  "text": "자무카",
+                  "answer_start": 476
                 }
               ]
             }
@@ -1909,10 +1603,6 @@
                 {
                   "text": "1206년",
                   "answer_start": 0
-                },
-                {
-                  "text": "1206",
-                  "answer_start": 0
                 }
               ]
             }
@@ -1932,11 +1622,7 @@
               "answers": [
                 {
                   "text": "프랑스",
-                  "answer_start": 0
-                },
-                {
-                  "text": "프랑스",
-                  "answer_start": 0
+                  "answer_start": 27
                 }
               ]
             }
@@ -1956,11 +1642,7 @@
               "answers": [
                 {
                   "text": "롤로",
-                  "answer_start": 0
-                },
-                {
-                  "text": "롤로",
-                  "answer_start": 0
+                  "answer_start": 257
                 }
               ]
             }
@@ -1979,12 +1661,8 @@
               "id": "83",
               "answers": [
                 {
-                  "text": "스칸디나비아 출신의 야만족",
-                  "answer_start": 0
-                },
-                {
-                  "text": "스칸디나비아 출신의 야만족",
-                  "answer_start": 0
+                  "text": "스칸디나비아 출신의 야만족",
+                  "answer_start": 41
                 }
               ]
             }
@@ -2004,11 +1682,7 @@
               "answers": [
                 {
                   "text": "911년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "911년",
-                  "answer_start": 0
+                  "answer_start": 225
                 }
               ]
             }
@@ -2028,11 +1702,7 @@
               "answers": [
                 {
                   "text": "샤를 3세",
-                  "answer_start": 0
-                },
-                {
-                  "text": "샤를 3세",
-                  "answer_start": 0
+                  "answer_start": 241
                 }
               ]
             }
@@ -2052,11 +1722,7 @@
               "answers": [
                 {
                   "text": "가톨릭",
-                  "answer_start": 0
-                },
-                {
-                  "text": "카톨릭",
-                  "answer_start": 0
+                  "answer_start": 325
                 }
               ]
             }
@@ -2076,11 +1742,7 @@
               "answers": [
                 {
                   "text": "북부지역",
-                  "answer_start": 0
-                },
-                {
-                  "text": "북부지역",
-                  "answer_start": 0
+                  "answer_start": 31
                 }
               ]
             }
@@ -2095,16 +1757,12 @@
         {
           "qas": [
             {
-              "question": "I이들은 주로 무엇으로 고용되었나?",
+              "question": "이들은 주로 무엇으로 고용되었나?",
               "id": "88",
               "answers": [
                 {
                   "text": "용병",
-                  "answer_start": 0
-                },
-                {
-                  "text": "용병",
-                  "answer_start": 0
+                  "answer_start": 543
                 }
               ]
             }
@@ -2122,10 +1780,6 @@
               "question": "캘리포니아 주에서 5번째로 인구가 많은 도시는?",
               "id": "89",
               "answers": [
-                {
-                  "text": "프레즈노",
-                  "answer_start": 0
-                },
                 {
                   "text": "프레즈노",
                   "answer_start": 0
@@ -2148,11 +1802,7 @@
               "answers": [
                 {
                   "text": "물푸레나무",
-                  "answer_start": 0
-                },
-                {
-                  "text": "물푸레나무",
-                  "answer_start": 0
+                  "answer_start": 145
                 }
               ]
             }
@@ -2171,12 +1821,8 @@
               "id": "91",
               "answers": [
                 {
-                  "text": "연구 중심 사립 대학",
-                  "answer_start": 0
-                },
-                {
-                  "text": "연구 중심 사립 대학",
-                  "answer_start": 0
+                  "text": "연구 중심 사립 대학",
+                  "answer_start": 86
                 }
               ]
             }
@@ -2196,11 +1842,7 @@
               "answers": [
                 {
                   "text": "1890년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1890",
-                  "answer_start": 0
+                  "answer_start": 75
                 }
               ]
             }
@@ -2220,11 +1862,7 @@
               "answers": [
                 {
                   "text": "존 D. 록펠러",
-                  "answer_start": 0
-                },
-                {
-                  "text": "록펠러",
-                  "answer_start": 0
+                  "answer_start": 59
                 }
               ]
             }
@@ -2244,11 +1882,7 @@
               "answers": [
                 {
                   "text": "윌리엄 레이니 하퍼",
-                  "answer_start": 0
-                },
-                {
-                  "text": "윌리엄 레이니 하퍼",
-                  "answer_start": 0
+                  "answer_start": 151
                 }
               ]
             }
@@ -2268,11 +1902,7 @@
               "answers": [
                 {
                   "text": "1891년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1891년",
-                  "answer_start": 0
+                  "answer_start": 145
                 }
               ]
             }
@@ -2292,11 +1922,7 @@
               "answers": [
                 {
                   "text": "1892년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1892년",
-                  "answer_start": 0
+                  "answer_start": 199
                 }
               ]
             }
@@ -2316,11 +1942,7 @@
               "answers": [
                 {
                   "text": "사티아 나델라",
-                  "answer_start": 0
-                },
-                {
-                  "text": "사티아 나델라",
-                  "answer_start": 0
+                  "answer_start": 182
                 }
               ]
             }
@@ -2340,11 +1962,7 @@
               "answers": [
                 {
                   "text": "칼 세이건",
-                  "answer_start": 0
-                },
-                {
-                  "text": "칼 세이건",
-                  "answer_start": 0
+                  "answer_start": 1025
                 }
               ]
             }
@@ -2364,11 +1982,7 @@
               "answers": [
                 {
                   "text": "데이비드 스즈키",
-                  "answer_start": 0
-                },
-                {
-                  "text": "데이비드 스즈키",
-                  "answer_start": 0
+                  "answer_start": 930
                 }
               ]
             }
@@ -2388,11 +2002,7 @@
               "answers": [
                 {
                   "text": "밀턴 프리드먼",
-                  "answer_start": 0
-                },
-                {
-                  "text": "밀턴 프리드먼",
-                  "answer_start": 0
+                  "answer_start": 524
                 }
               ]
             }
@@ -2411,12 +2021,8 @@
               "id": "101",
               "answers": [
                 {
-                  "text": "영국 런던의 사우스켄싱턴",
-                  "answer_start": 0
-                },
-                {
-                  "text": "영국 런던의 사우스켄싱턴",
-                  "answer_start": 0
+                  "text": "영국 런던의 사우스켄싱턴",
+                  "answer_start": 42
                 }
               ]
             }
@@ -2436,11 +2042,7 @@
               "answers": [
                 {
                   "text": "1852년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1852",
-                  "answer_start": 0
+                  "answer_start": 172
                 }
               ]
             }
@@ -2459,12 +2061,8 @@
               "id": "103",
               "answers": [
                 {
-                  "text": "빅토리아 여왕과 앨버트 공",
-                  "answer_start": 0
-                },
-                {
-                  "text": "빅토리아 여왕과 앨버트 공",
-                  "answer_start": 0
+                  "text": "빅토리아 여왕은 산업과 미술의 결합을 시도했던 망부(亡夫) 앨버트 공",
+                  "answer_start": 280
                 }
               ]
             }
@@ -2484,11 +2082,7 @@
               "answers": [
                 {
                   "text": "1852년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1852년",
-                  "answer_start": 0
+                  "answer_start": 172
                 }
               ]
             }
@@ -2507,12 +2101,8 @@
               "id": "105",
               "answers": [
                 {
-                  "text": "빅토리아 여왕과 앨버트 공",
-                  "answer_start": 0
-                },
-                {
-                  "text": "빅토리아 여왕과 앨버트 공",
-                  "answer_start": 0
+                  "text": "빅토리아 여왕은 산업과 미술의 결합을 시도했던 망부(亡夫) 앨버트 공",
+                  "answer_start": 280
                 }
               ]
             }
@@ -2532,11 +2122,7 @@
               "answers": [
                 {
                   "text": "산업박물관",
-                  "answer_start": 0
-                },
-                {
-                  "text": "산업박물관",
-                  "answer_start": 0
+                  "answer_start": 191
                 }
               ]
             }
@@ -2556,11 +2142,7 @@
               "answers": [
                 {
                   "text": "1998년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1998년",
-                  "answer_start": 0
+                  "answer_start": 36
                 }
               ]
             }
@@ -2580,11 +2162,7 @@
               "answers": [
                 {
                   "text": "1998년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1998년",
-                  "answer_start": 0
+                  "answer_start": 36
                 }
               ]
             }
@@ -2604,11 +2182,7 @@
               "answers": [
                 {
                   "text": "Sky Digital",
-                  "answer_start": 0
-                },
-                {
-                  "text": "스카이디지탈, 스카이디지털",
-                  "answer_start": 0
+                  "answer_start": 62
                 }
               ]
             }
@@ -2628,35 +2202,7 @@
               "answers": [
                 {
                   "text": "SoCal",
-                  "answer_start": 0
-                },
-                {
-                  "text": "소칼, 쏘칼",
-                  "answer_start": 0
-                }
-              ]
-            }
-          ],
-          "context": "남부 캘리포니아 또는 서던 캘리포니아(Southern California, SoCal)는 미국 캘리포니아주의 남부(南部)를 말한다. 한자로 음역해서 남가주(南加州)라고도 한다. 이 지역은 로스앤젤레스 대도시권, 샌디에이고 대도시권, 인랜드엠파이어가 포함되어 있다. 도시의 범위는 태평양 연안의 벤투라에서 로스앤젤레스 대도시권과 인랜드엠파이어를 거쳐 샌디에이고, 그리고 멕시코 국경을 넘어 티후아나까지 확대되어 있다. 이 지역 대도시권은 샌프란시스코 베이 에어리어와 함께 캘리포니아 뿐만 아니라 미국 국내의 주요 문화와 경제의 중심이 되고 있다. 남부 캘리포니아의 서쪽에는 태평양과 채널 제도가 있으며, 남쪽에는 미국-멕시코 국경이 있다. 동쪽은 콜로라도 사막과 콜로라도 강이, 네바다주와의 경계에는 모하비 사막이 있다."
-        }
-      ]
-    },
-    {
-      "title": "남부 캘리포니아",
-      "paragraphs": [
-        {
-          "qas": [
-            {
-              "question": "남부 캘리포니아의 약어는 무엇인가?",
-              "id": "110",
-              "answers": [
-                {
-                  "text": "SoCal",
-                  "answer_start": 0
-                },
-                {
-                  "text": "소칼, 쏘칼",
-                  "answer_start": 0
+                  "answer_start": 42
                 }
               ]
             }
@@ -2676,11 +2222,7 @@
               "answers": [
                 {
                   "text": "네바다",
-                  "answer_start": 0
-                },
-                {
-                  "text": "네바다",
-                  "answer_start": 0
+                  "answer_start": 379
                 }
               ]
             }
@@ -2700,11 +2242,7 @@
               "answers": [
                 {
                   "text": "멕시코",
-                  "answer_start": 0
-                },
-                {
-                  "text": "멕시코",
-                  "answer_start": 0
+                  "answer_start": 206
                 }
               ]
             }
@@ -2724,11 +2262,7 @@
               "answers": [
                 {
                   "text": "티후아나",
-                  "answer_start": 0
-                },
-                {
-                  "text": "티후아나",
-                  "answer_start": 0
+                  "answer_start": 217
                 }
               ]
             }
@@ -2748,11 +2282,7 @@
               "answers": [
                 {
                   "text": "태평양",
-                  "answer_start": 0
-                },
-                {
-                  "text": "태평양",
-                  "answer_start": 0
+                  "answer_start": 156
                 }
               ]
             }
@@ -2772,11 +2302,7 @@
               "answers": [
                 {
                   "text": "콜로라도 강",
-                  "answer_start": 0
-                },
-                {
-                  "text": "콜로라도 강",
-                  "answer_start": 0
+                  "answer_start": 370
                 }
               ]
             }
@@ -2796,11 +2322,7 @@
               "answers": [
                 {
                   "text": "콜로라도 사막",
-                  "answer_start": 0
-                },
-                {
-                  "text": "콜로라도 사막",
-                  "answer_start": 0
+                  "answer_start": 361
                 }
               ]
             }
@@ -2820,11 +2342,7 @@
               "answers": [
                 {
                   "text": "모하비 사막",
-                  "answer_start": 0
-                },
-                {
-                  "text": "모하비 사막",
-                  "answer_start": 0
+                  "answer_start": 391
                 }
               ]
             }
@@ -2844,11 +2362,7 @@
               "answers": [
                 {
                   "text": "미국-멕시코 국경",
-                  "answer_start": 0
-                },
-                {
-                  "text": "미국-멕시코 국경",
-                  "answer_start": 0
+                  "answer_start": 342
                 }
               ]
             }
@@ -2868,11 +2382,7 @@
               "answers": [
                 {
                   "text": "캘리포니아",
-                  "answer_start": 0
-                },
-                {
-                  "text": "캘리포니아",
-                  "answer_start": 0
+                  "answer_start": 3
                 }
               ]
             }
@@ -2891,12 +2401,8 @@
               "id": "120",
               "answers": [
                 {
-                  "text": "외연 열기관",
-                  "answer_start": 0
-                },
-                {
-                  "text": "외연 열기관",
-                  "answer_start": 0
+                  "text": "외연 열기관",
+                  "answer_start": 52
                 }
               ]
             }
@@ -2915,12 +2421,8 @@
               "id": "121",
               "answers": [
                 {
-                  "text": "토마스 뉴커먼",
-                  "answer_start": 0
-                },
-                {
-                  "text": "토마스 뉴커먼",
-                  "answer_start": 0
+                  "text": "토머스 뉴커먼",
+                  "answer_start": 105
                 }
               ]
             }
@@ -2940,11 +2442,7 @@
               "answers": [
                 {
                   "text": "증기 펌프",
-                  "answer_start": 0
-                },
-                {
-                  "text": "증기 펌프",
-                  "answer_start": 0
+                  "answer_start": 357
                 }
               ]
             }
@@ -2964,11 +2462,7 @@
               "answers": [
                 {
                   "text": "Rankine 사이클",
-                  "answer_start": 0
-                },
-                {
-                  "text": "Rankine 사이클",
-                  "answer_start": 0
+                  "answer_start": 606
                 }
               ]
             }
@@ -2986,10 +2480,6 @@
               "question": "증기 압력으로 움직이는 최초의 장치가 기록된 세기는?",
               "id": "124",
               "answers": [
-                {
-                  "text": "1세기",
-                  "answer_start": 0
-                },
                 {
                   "text": "1세기",
                   "answer_start": 0
@@ -3011,12 +2501,8 @@
               "id": "125",
               "answers": [
                 {
-                  "text": "알렉산드리아의 헤론",
-                  "answer_start": 0
-                },
-                {
-                  "text": "헤론",
-                  "answer_start": 0
+                  "text": "알렉산드리아의 헤론",
+                  "answer_start": 5
                 }
               ]
             }
@@ -3036,11 +2522,7 @@
               "answers": [
                 {
                   "text": "지오반니 브란카",
-                  "answer_start": 0
-                },
-                {
-                  "text": "브란카",
-                  "answer_start": 0
+                  "answer_start": 499
                 }
               ]
             }
@@ -3060,11 +2542,7 @@
               "answers": [
                 {
                   "text": "아마조니아",
-                  "answer_start": 0
-                },
-                {
-                  "text": "아마조니아",
-                  "answer_start": 0
+                  "answer_start": 102
                 }
               ]
             }
@@ -3084,11 +2562,7 @@
               "answers": [
                 {
                   "text": "덴버 브롱코스",
-                  "answer_start": 0
-                },
-                {
-                  "text": "덴버 브롱코스",
-                  "answer_start": 0
+                  "answer_start": 100
                 }
               ]
             }
@@ -3108,11 +2582,7 @@
               "answers": [
                 {
                   "text": "캐롤라이나 팬서스",
-                  "answer_start": 0
-                },
-                {
-                  "text": "캐롤라이나 팬서스",
-                  "answer_start": 0
+                  "answer_start": 72
                 }
               ]
             }
@@ -3131,12 +2601,8 @@
               "id": "130",
               "answers": [
                 {
-                  "text": "캘리포니아 주 산타 클라라의 리바이스 스타디움",
-                  "answer_start": 0
-                },
-                {
-                  "text": "리바이스 스타디움",
-                  "answer_start": 0
+                  "text": "산타 클라라의 리바이스 스타디움",
+                  "answer_start": 33
                 }
               ]
             }
@@ -3156,11 +2622,7 @@
               "answers": [
                 {
                   "text": "덴버 브롱코스",
-                  "answer_start": 0
-                },
-                {
-                  "text": "덴버 브롱코스",
-                  "answer_start": 0
+                  "answer_start": 100
                 }
               ]
             }
@@ -3180,11 +2642,7 @@
               "answers": [
                 {
                   "text": "2016년 2월 7일",
-                  "answer_start": 0
-                },
-                {
-                  "text": "2016년 2월 7일",
-                  "answer_start": 0
+                  "answer_start": 7
                 }
               ]
             }
@@ -3204,11 +2662,7 @@
               "answers": [
                 {
                   "text": "덴버 브롱코스",
-                  "answer_start": 0
-                },
-                {
-                  "text": "덴버 브롱코스",
-                  "answer_start": 0
+                  "answer_start": 100
                 }
               ]
             }
@@ -3228,11 +2682,7 @@
               "answers": [
                 {
                   "text": "리바이스 스타디움",
-                  "answer_start": 0
-                },
-                {
-                  "text": "리바이스 스타디움",
-                  "answer_start": 0
+                  "answer_start": 41
                 }
               ]
             }
@@ -3252,11 +2702,7 @@
               "answers": [
                 {
                   "text": "산타 클라라",
-                  "answer_start": 0
-                },
-                {
-                  "text": "산타 클라라",
-                  "answer_start": 0
+                  "answer_start": 33
                 }
               ]
             }
@@ -3276,11 +2722,7 @@
               "answers": [
                 {
                   "text": "SUPER BOWL L",
-                  "answer_start": 0
-                },
-                {
-                  "text": "SUPER BOWL L",
-                  "answer_start": 0
+                  "answer_start": 173
                 }
               ]
             }
@@ -3300,11 +2742,7 @@
               "answers": [
                 {
                   "text": "리바이스 스타디움",
-                  "answer_start": 0
-                },
-                {
-                  "text": "리바이스 스타디움",
-                  "answer_start": 0
+                  "answer_start": 41
                 }
               ]
             }
@@ -3324,11 +2762,7 @@
               "answers": [
                 {
                   "text": "24-10",
-                  "answer_start": 0
-                },
-                {
-                  "text": "24 대 10",
-                  "answer_start": 0
+                  "answer_start": 390
                 }
               ]
             }
@@ -3348,11 +2782,7 @@
               "answers": [
                 {
                   "text": "2016년 2월 7일",
-                  "answer_start": 0
-                },
-                {
-                  "text": "2016년 2월 7일",
-                  "answer_start": 0
+                  "answer_start": 7
                 }
               ]
             }
@@ -3372,11 +2802,7 @@
               "answers": [
                 {
                   "text": "2016년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "2016",
-                  "answer_start": 0
+                  "answer_start": 7
                 }
               ]
             }
@@ -3395,12 +2821,8 @@
               "id": "141",
               "answers": [
                 {
-                  "text": "덴버 브롱코스움",
-                  "answer_start": 0
-                },
-                {
                   "text": "덴버 브롱코스",
-                  "answer_start": 0
+                  "answer_start": 100
                 }
               ]
             }
@@ -3420,11 +2842,7 @@
               "answers": [
                 {
                   "text": "캐롤라이나 팬서스",
-                  "answer_start": 0
-                },
-                {
-                  "text": "캐롤라이나 팬서스",
-                  "answer_start": 0
+                  "answer_start": 72
                 }
               ]
             }
@@ -3443,12 +2861,8 @@
               "id": "143",
               "answers": [
                 {
-                  "text": "덴버 브롱코스움",
-                  "answer_start": 0
-                },
-                {
-                  "text": "덴버 브롱코스",
-                  "answer_start": 0
+                   "text": "덴버 브롱코스",
+                  "answer_start": 100
                 }
               ]
             }
@@ -3468,11 +2882,7 @@
               "answers": [
                 {
                   "text": "본 밀러",
-                  "answer_start": 0
-                },
-                {
-                  "text": "폰 밀러",
-                  "answer_start": 0
+                  "answer_start": 421
                 }
               ]
             }
@@ -3492,11 +2902,7 @@
               "answers": [
                 {
                   "text": "본 밀러",
-                  "answer_start": 0
-                },
-                {
-                  "text": "폰 밀러",
-                  "answer_start": 0
+                  "answer_start": 421
                 }
               ]
             }
@@ -3511,16 +2917,12 @@
         {
           "qas": [
             {
-              "question": "누가 슈퍼볼50의 MVP로 선정되었나 ?",
+              "question": "누가 슈퍼볼50의 MVP로 선정되었나?",
               "id": "146",
               "answers": [
                 {
                   "text": "본 밀러",
-                  "answer_start": 0
-                },
-                {
-                  "text": "본 밀러",
-                  "answer_start": 0
+                  "answer_start": 421
                 }
               ]
             }
@@ -3540,11 +2942,7 @@
               "answers": [
                 {
                   "text": "라인백커",
-                  "answer_start": 0
-                },
-                {
-                  "text": "라인백커",
-                  "answer_start": 0
+                  "answer_start": 416
                 }
               ]
             }
@@ -3564,11 +2962,7 @@
               "answers": [
                 {
                   "text": "라인백커",
-                  "answer_start": 0
-                },
-                {
-                  "text": "라인백커",
-                  "answer_start": 0
+                  "answer_start": 416
                 }
               ]
             }
@@ -3588,11 +2982,7 @@
               "answers": [
                 {
                   "text": "콜드플레이",
-                  "answer_start": 0
-                },
-                {
-                  "text": "콜드플레이",
-                  "answer_start": 0
+                  "answer_start": 315
                 }
               ]
             }
@@ -3612,11 +3002,7 @@
               "answers": [
                 {
                   "text": "콜드플레이",
-                  "answer_start": 0
-                },
-                {
-                  "text": "콜드플레이",
-                  "answer_start": 0
+                  "answer_start": 315
                 }
               ]
             }
@@ -3636,11 +3022,7 @@
               "answers": [
                 {
                   "text": "콜드플레이",
-                  "answer_start": 0
-                },
-                {
-                  "text": "콜드플레이",
-                  "answer_start": 0
+                  "answer_start": 315
                 }
               ]
             }
@@ -3660,11 +3042,7 @@
               "answers": [
                 {
                   "text": "콜드플레이",
-                  "answer_start": 0
-                },
-                {
-                  "text": "콜드플레이",
-                  "answer_start": 0
+                  "answer_start": 315
                 }
               ]
             }
@@ -3684,11 +3062,7 @@
               "answers": [
                 {
                   "text": "콜드플레이",
-                  "answer_start": 0
-                },
-                {
-                  "text": "콜드플레이",
-                  "answer_start": 0
+                  "answer_start": 315
                 }
               ]
             }
@@ -3708,11 +3082,7 @@
               "answers": [
                 {
                   "text": "리바이스 스타디움",
-                  "answer_start": 0
-                },
-                {
-                  "text": "리바이스 스타디움",
-                  "answer_start": 0
+                  "answer_start": 41
                 }
               ]
             }
@@ -3732,11 +3102,7 @@
               "answers": [
                 {
                   "text": "중앙아시아의 건조한 평원지대",
-                  "answer_start": 0
-                },
-                {
-                  "text": "중앙아시아의 건조한 평원지대",
-                  "answer_start": 0
+                  "answer_start": 249
                 }
               ]
             }
@@ -3756,11 +3122,7 @@
               "answers": [
                 {
                   "text": "비단길",
-                  "answer_start": 0
-                },
-                {
-                  "text": "실크로드",
-                  "answer_start": 0
+                  "answer_start": 272
                 }
               ]
             }
@@ -3780,11 +3142,7 @@
               "answers": [
                 {
                   "text": "30-60%",
-                  "answer_start": 0
-                },
-                {
-                  "text": "30-60%",
-                  "answer_start": 0
+                  "answer_start": 397
                 }
               ]
             }
@@ -3804,11 +3162,7 @@
               "answers": [
                 {
                   "text": "17세기",
-                  "answer_start": 0
-                },
-                {
-                  "text": "17세기",
-                  "answer_start": 0
+                  "answer_start": 539
                 }
               ]
             }
@@ -3828,11 +3182,7 @@
               "answers": [
                 {
                   "text": "시칠리아",
-                  "answer_start": 0
-                },
-                {
-                  "text": "시실리",
-                  "answer_start": 0
+                  "answer_start": 558
                 }
               ]
             }
@@ -3851,17 +3201,13 @@
               "id": "160",
               "answers": [
                 {
-                  "text": "1347년 가을",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1347년 가을",
-                  "answer_start": 0
+                  "text": "1347년",
+                  "answer_start": 6
                 }
               ]
             }
           ],
-          "context": "흑사병(黑死病, Black Death)은 인류 역사에 기록된 최악의 범유행 사건 가운데 하나이다. 유럽 지역에서는 1346년–1353년 사이 범유행이 절정에 달했으며, 이 범유행으로 유라시아 대륙에서 최소 7500만, 최고 2억 명에 달하는 사람들이 죽었다.[1][2][3] 흑사병 병원균에 관한 많은 이설이 있었으나 2010년-2011년 남유럽인들을 대상으로 수행한 DNA 분석 결과 페스트의 병원균인 페스트균이 병원균으로 밝혀졌다. 흑사병은 중앙아시아의 건조한 평원지대에서 시작되어 비단길을 따라 서쪽으로 이동해 1343년경 크림 반도에 닿았다.[6] 거기서부터 화물선에 들끓던 검은쥐들에 기생하던 동양쥐벼룩을 기주로 하여 지중해 해운망을 따라 유럽 전역으로 퍼져나갔다. 이때 흑사병으로 유럽의 총 인구의 30-60%가 죽었다.[7] 흑사병 이전의 세계 인구는 4억 5천만 명 정도로 추산되는데, 14세기를 거치며 3억 5천만 명-3억 7500만 명 정도로 거의 1억 명이 줄었다.[8] 흑사병으로 인해 줄어든 세계 인구가 흑사병 이전 수준까지 회복되는 데는 17세기까지 시간이 걸렸다. 그 뒤로도 19세기까지 유럽에서는 페스트가 산발적으로 유행했는데(런던 대역병 등), 흑사병의 병원체를 페스트균으로 확정한다면 흑사병이란 1345년에서 1840년까지 유라시아 대륙에서 계속된 제2차 페스트 범유행의 일부로서 14세기 유럽의 범유행 상황을 가리키는 말이라고 할 수 있다. 14세기 페스트 유행은 유럽사에서 종교사, 사회사, 경제사에 큰 영향을 미쳤다."
+          "context": "유럽에서는 1347년 처음 창궐한 이래 많은 희생자가 발생하여 공포의 대상이었다. 1340년대 흑사병으로 약 2천5백만 명이 희생되었다.[10] 이 때의 흑사병은 중앙아시아나 인도에서 발원하여 전파된 것으로 추정되고 있다.[11] 이는 당시 유럽의 인구의 약 30%에 달하는 숫자이다.[12] 최초의 흑사병 확산이후 1700년대까지 100여 차례의 흑사병 발생이 전 유럽을 휩쓸었다"
         }
       ]
     },
@@ -3875,12 +3221,8 @@
               "id": "161",
               "answers": [
                 {
-                  "text": " 41 °C",
-                  "answer_start": 0
-                },
-                {
-                  "text": " 41 °C",
-                  "answer_start": 0
+                  "text": "38 - 41 °C",
+                  "answer_start": 153
                 }
               ]
             }
@@ -3900,11 +3242,7 @@
               "answers": [
                 {
                   "text": "95%",
-                  "answer_start": 0
-                },
-                {
-                  "text": "95%",
-                  "answer_start": 0
+                  "answer_start": 336
                 }
               ]
             }
@@ -3924,11 +3262,7 @@
               "answers": [
                 {
                   "text": "월트 디즈니 컴퍼니",
-                  "answer_start": 0
-                },
-                {
-                  "text": "월트 디즈니사",
-                  "answer_start": 0
+                  "answer_start": 138
                 }
               ]
             }
@@ -3947,12 +3281,8 @@
               "id": "164",
               "answers": [
                 {
-                  "text": "1948년 4월 19일",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1948년 4월 19일",
-                  "answer_start": 0
+                  "text": "1948년 4월 19",
+                  "answer_start": 105
                 }
               ]
             }
@@ -3972,11 +3302,7 @@
               "answers": [
                 {
                   "text": "질병",
-                  "answer_start": 0
-                },
-                {
-                  "text": "질병",
-                  "answer_start": 0
+                  "answer_start": 111
                 }
               ]
             }
@@ -3996,11 +3322,7 @@
               "answers": [
                 {
                   "text": "신경면역계",
-                  "answer_start": 0
-                },
-                {
-                  "text": "신경면역계",
-                  "answer_start": 0
+                  "answer_start": 355
                 }
               ]
             }
@@ -4020,11 +3342,7 @@
               "answers": [
                 {
                   "text": "박테리오파지",
-                  "answer_start": 0
-                },
-                {
-                  "text": "박테리오파지",
-                  "answer_start": 0
+                  "answer_start": 470
                 }
               ]
             }
@@ -4044,16 +3362,12 @@
               "answers": [
                 {
                   "text": "백신 주사",
-                  "answer_start": 0
-                },
-                {
-                  "text": "백신 주사",
-                  "answer_start": 0
+                  "answer_start": 380
                 }
               ]
             }
           ],
-          "context": "면역계(免疫系, 영어: immune system)는 생물체 내에서 병원체 등의 비자기 물질(외인성 항원, Exogenous antigen)이나 암세포 등의 비정상적인 세포를 인식하고 살균하여 생체를 질병으로부터 보호하는 생물학적인 구조 및 과정을 의미한다. 바이러스나 기생충과 같은 생물의 세포를 보호하는데, 이러한 기능이 올바르게 작동하기 위해서는 개체 자신의 온전한 세포 또는 조직을 이들로부터 구별해 낼 필요가 있다. 많은 종들에서, 면역계는 여러 하위 시스템으로 분류될 수 있는데, 선천성면역과 후천성면역, 체액성면역과 세포성면역이 그 예이다. 사람에 있어선 혈액뇌관문, 뇌척수액관문 등이 말초면역계와 뇌를 보호하는데 관여하는 신경면역계를 구분해 준다. 병원체들이 빠른 속도로 진화하고 적응하면서 면역계를 회피하게 외었지만 그에따라 면역계또한 진화하여 병원체를 인식할 수 있게 되었다. 아주 간단한 박테리아 같은 단세포 생물 조차도 박테리오파지의 감염을 막기 위한 효소형태의 기본적 면역체계를 가지고 있다. 다른 간단한 면역체계는 고대 진핵생물에서 출현하였는데 이와 같은 기작들은 그 후손에 해당하는 식물이나 곤충들에 고스란히 남아있다. 디펜신이라 불리는 항균성 펩티드라든지, 식세포작용(phagocytosis)과 보체(complement system)가 이러한 과정에 관여한다. 인간을 포함한 유악류들은 보다 더 정교한 면역 체계를 갖추고 있는데,[1] 대개의 척추동물의 경우 면역계에 다수의 단백질과 세포, 기관, 조직이 관여하여 정교한 네트워크를 이룬다. 인간의 면역계 또한 이와 같은 체계의 일부를 구성하며, 특정한 병원체들을 보다 효과적으로 인지하도록 적응해 왔다. 이와 같은 기작을 '후천 면역' 또는 '획득 면역'이라 부르며 이 과정으로 면역이 가능해진다. 특정한 병원체에의 1차적인 반응(primary response)에 짧게는 2일 길게는 2주가 소요되며, 이후 형성된 면역기억으로 인해 동일한 병원체가 두 번째로 침입해왔을 때 보다 강화된 수준의 2차 반응(secondary response)이 일어나게 된다. 이와 같은 면역의 획득 과정은 백신 주사를 개발하는 이론적 토대가 된다."
+          "context": "인간을 포함한 유악류들은 보다 더 정교한 면역 체계를 갖추고 있는데,[1] 대개의 척추동물의 경우 면역계에 다수의 단백질과 세포, 기관, 조직이 관여하여 정교한 네트워크를 이룬다. 인간의 면역계 또한 이와 같은 체계의 일부를 구성하며, 특정한 병원체들을 보다 효과적으로 인지하도록 적응해 왔다. 이와 같은 기작을 '후천 면역' 또는 '획득 면역'이라 부르며 이 과정으로 면역이 가능해진다. 특정한 병원체에의 1차적인 반응(primary response)에 짧게는 2일 길게는 2주가 소요되며, 이후 형성된 면역기억으로 인해 동일한 병원체가 두 번째로 침입해왔을 때 보다 강화된 수준의 2차 반응(secondary response)이 일어나게 된다. 이와 같은 면역의 획득 과정은 백신 주사를 개발하는 이론적 토대가 된다."
         }
       ]
     },
@@ -4066,10 +3380,6 @@
               "question": "면역계의 구조와 기능에 관한 학문은?",
               "id": "169",
               "answers": [
-                {
-                  "text": "면역학",
-                  "answer_start": 0
-                },
                 {
                   "text": "면역학",
                   "answer_start": 0
@@ -4092,11 +3402,7 @@
               "answers": [
                 {
                   "text": "전갈",
-                  "answer_start": 0
-                },
-                {
-                  "text": "전갈",
-                  "answer_start": 0
+                  "answer_start": 166
                 }
               ]
             }
@@ -4116,11 +3422,7 @@
               "answers": [
                 {
                   "text": "루이 파스퇴르",
-                  "answer_start": 0
-                },
-                {
-                  "text": "루이 파스퇴르",
-                  "answer_start": 0
+                  "answer_start": 252
                 }
               ]
             }
@@ -4140,11 +3442,7 @@
               "answers": [
                 {
                   "text": "월터 리드",
-                  "answer_start": 0
-                },
-                {
-                  "text": "월터 리드",
-                  "answer_start": 0
+                  "answer_start": 466
                 }
               ]
             }
@@ -4164,11 +3462,7 @@
               "answers": [
                 {
                   "text": "코흐",
-                  "answer_start": 0
-                },
-                {
-                  "text": "코흐",
-                  "answer_start": 0
+                  "answer_start": 360
                 }
               ]
             }
@@ -4188,11 +3482,7 @@
               "answers": [
                 {
                   "text": "미생물",
-                  "answer_start": 0
-                },
-                {
-                  "text": "미생물",
-                  "answer_start": 0
+                  "answer_start": 367
                 }
               ]
             }
@@ -4212,11 +3502,7 @@
               "answers": [
                 {
                   "text": "황열 바이러스",
-                  "answer_start": 0
-                },
-                {
-                  "text": "황열 바이러스",
-                  "answer_start": 0
+                  "answer_start": 473
                 }
               ]
             }
@@ -4234,10 +3520,6 @@
               "question": "패턴 인식 수용체가 무엇들 사이에 널리 보존되어 있는 부분을 인지하여 외부의 미생물을 감지하나?",
               "id": "176",
               "answers": [
-                {
-                  "text": "미생물",
-                  "answer_start": 0
-                },
                 {
                   "text": "미생물",
                   "answer_start": 0
@@ -4260,11 +3542,7 @@
               "answers": [
                 {
                   "text": "패턴 인식 수용체",
-                  "answer_start": 0
-                },
-                {
-                  "text": "패턴 인식 수용체",
-                  "answer_start": 0
+                  "answer_start": 69
                 }
               ]
             }
@@ -4282,10 +3560,6 @@
               "question": "국가의 법이나 정부 내지 지배 권력의 명령 등이 부당하다고 판단했을 때, 이를 공개적으로 거부하는 행위를 무엇이라 하나?",
               "id": "178",
               "answers": [
-                {
-                  "text": "시민 불복종",
-                  "answer_start": 0
-                },
                 {
                   "text": "시민 불복종",
                   "answer_start": 0
@@ -4308,11 +3582,7 @@
               "answers": [
                 {
                   "text": "인종차별 반대 투쟁",
-                  "answer_start": 0
-                },
-                {
-                  "text": "인종차별 반대 투쟁",
-                  "answer_start": 0
+                  "answer_start": 236
                 }
               ]
             }
@@ -4331,12 +3601,8 @@
               "id": "180",
               "answers": [
                 {
-                  "text": "공민권운동",
-                  "answer_start": 0
-                },
-                {
-                  "text": "공민권운동",
-                  "answer_start": 0
+                  "text": "공민권 운동",
+                  "answer_start": 252
                 }
               ]
             }
@@ -4356,11 +3622,7 @@
               "answers": [
                 {
                   "text": "모한다스 카람찬드 간디",
-                  "answer_start": 0
-                },
-                {
-                  "text": "모한다스 카람찬드 간디",
-                  "answer_start": 0
+                  "answer_start": 185
                 }
               ]
             }
@@ -4380,11 +3642,7 @@
               "answers": [
                 {
                   "text": "모한다스 카람찬드 간디",
-                  "answer_start": 0
-                },
-                {
-                  "text": "간디",
-                  "answer_start": 0
+                  "answer_start": 185
                 }
               ]
             }
@@ -4402,10 +3660,6 @@
               "question": "건물을 짓거나 만들거나 하는 일을 무엇이라 하는가?",
               "id": "183",
               "answers": [
-                {
-                  "text": "건설",
-                  "answer_start": 0
-                },
                 {
                   "text": "건설",
                   "answer_start": 0
@@ -4428,11 +3682,7 @@
               "answers": [
                 {
                   "text": "상속 관계",
-                  "answer_start": 0
-                },
-                {
-                  "text": "상속 관계",
-                  "answer_start": 0
+                  "answer_start": 13
                 }
               ]
             }
@@ -4452,11 +3702,7 @@
               "answers": [
                 {
                   "text": "BBC",
-                  "answer_start": 0
-                },
-                {
-                  "text": "BBC",
-                  "answer_start": 0
+                  "answer_start": 24
                 }
               ]
             }
@@ -4476,11 +3722,7 @@
               "answers": [
                 {
                   "text": "1963년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1963",
-                  "answer_start": 0
+                  "answer_start": 54
                 }
               ]
             }
@@ -4500,11 +3742,7 @@
               "answers": [
                 {
                   "text": "타디스",
-                  "answer_start": 0
-                },
-                {
-                  "text": "타디스",
-                  "answer_start": 0
+                  "answer_start": 246
                 }
               ]
             }
@@ -4523,12 +3761,8 @@
               "id": "188",
               "answers": [
                 {
-                  "text": "경찰 비상전화 박스",
-                  "answer_start": 0
-                },
-                {
-                  "text": "경찰 비상전화 박스",
-                  "answer_start": 0
+                  "text": "옛 영국의 경찰 전화박스",
+                  "answer_start": 221
                 }
               ]
             }
@@ -4548,11 +3782,7 @@
               "answers": [
                 {
                   "text": "SF 드라마 시리즈",
-                  "answer_start": 0
-                },
-                {
-                  "text": "SF 드라마 시리즈",
-                  "answer_start": 0
+                  "answer_start": 113
                 }
               ]
             }
@@ -4572,11 +3802,7 @@
               "answers": [
                 {
                   "text": "12대",
-                  "answer_start": 0
-                },
-                {
-                  "text": "12대",
-                  "answer_start": 0
+                  "answer_start": 647
                 }
               ]
             }
@@ -4596,11 +3822,7 @@
               "answers": [
                 {
                   "text": "러셀 T. 데이비스",
-                  "answer_start": 0
-                },
-                {
-                  "text": "러셀 T. 데이비스",
-                  "answer_start": 0
+                  "answer_start": 98
                 }
               ]
             }
@@ -4620,11 +3842,7 @@
               "answers": [
                 {
                   "text": "러셀 T. 데이비스",
-                  "answer_start": 0
-                },
-                {
-                  "text": "러셀 T. 데이비스",
-                  "answer_start": 0
+                  "answer_start": 98
                 }
               ]
             }
@@ -4643,12 +3861,8 @@
               "id": "193",
               "answers": [
                 {
-                  "text": "1963년 11월 23일",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1963년 11월 23일",
-                  "answer_start": 0
+                  "text": "1963년 11월 23일",
+                  "answer_start": 54
                 }
               ]
             }
@@ -4668,11 +3882,7 @@
               "answers": [
                 {
                   "text": "달렉",
-                  "answer_start": 0
-                },
-                {
-                  "text": "달렉",
-                  "answer_start": 0
+                  "answer_start": 439
                 }
               ]
             }
@@ -4692,11 +3902,7 @@
               "answers": [
                 {
                   "text": "25분",
-                  "answer_start": 0
-                },
-                {
-                  "text": "25분",
-                  "answer_start": 0
+                  "answer_start": 88
                 }
               ]
             }
@@ -4715,12 +3921,8 @@
               "id": "196",
               "answers": [
                 {
-                  "text": "26시즌",
-                  "answer_start": 0
-                },
-                {
-                  "text": "26시즌",
-                  "answer_start": 0
+                  "text": "26개의 시즌",
+                  "answer_start": 395
                 }
               ]
             }
@@ -4739,12 +3941,8 @@
               "id": "197",
               "answers": [
                 {
-                  "text": "경찰 비상전화 박스",
-                  "answer_start": 0
-                },
-                {
-                  "text": "경찰 비상전화 박스",
-                  "answer_start": 0
+                  "text": "옛 영국의 경찰 전화박스",
+                  "answer_start": 221
                 }
               ]
             }
@@ -4764,11 +3962,7 @@
               "answers": [
                 {
                   "text": "타임머신",
-                  "answer_start": 0
-                },
-                {
-                  "text": "타임머쉰",
-                  "answer_start": 0
+                  "answer_start": 108
                 }
               ]
             }
@@ -4787,12 +3981,8 @@
               "id": "199",
               "answers": [
                 {
-                  "text": "26시즌",
-                  "answer_start": 0
-                },
-                {
-                  "text": "26시즌",
-                  "answer_start": 0
+                  "text": "26개의 시즌",
+                  "answer_start": 395
                 }
               ]
             }
@@ -4811,12 +4001,8 @@
               "id": "200",
               "answers": [
                 {
-                  "text": "1989년 12월 6일",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1989년 12월 6일",
-                  "answer_start": 0
+                  "text": "1989년 12월 6일",
+                  "answer_start": 377
                 }
               ]
             }
@@ -4836,11 +4022,7 @@
               "answers": [
                 {
                   "text": "97개",
-                  "answer_start": 0
-                },
-                {
-                  "text": "97",
-                  "answer_start": 0
+                  "answer_start": 34
                 }
               ]
             }
@@ -4860,11 +4042,7 @@
               "answers": [
                 {
                   "text": "쿠빌라이 칸",
-                  "answer_start": 0
-                },
-                {
-                  "text": "쿠빌라이 칸",
-                  "answer_start": 0
+                  "answer_start": 43
                 }
               ]
             }
@@ -4884,11 +4062,7 @@
               "answers": [
                 {
                   "text": "1271년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1271",
-                  "answer_start": 0
+                  "answer_start": 51
                 }
               ]
             }
@@ -4908,11 +4082,7 @@
               "answers": [
                 {
                   "text": "송나라",
-                  "answer_start": 0
-                },
-                {
-                  "text": "송나라",
-                  "answer_start": 0
+                  "answer_start": 188
                 }
               ]
             }
@@ -4932,11 +4102,7 @@
               "answers": [
                 {
                   "text": "명나라",
-                  "answer_start": 0
-                },
-                {
-                  "text": "명나라",
-                  "answer_start": 0
+                  "answer_start": 131
                 }
               ]
             }
@@ -4956,11 +4122,7 @@
               "answers": [
                 {
                   "text": "칭기즈 칸",
-                  "answer_start": 0
-                },
-                {
-                  "text": "칭기즈 칸",
-                  "answer_start": 0
+                  "answer_start": 11
                 }
               ]
             }
@@ -4980,11 +4142,7 @@
               "answers": [
                 {
                   "text": "1271년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1271",
-                  "answer_start": 0
+                  "answer_start": 51
                 }
               ]
             }
@@ -5004,11 +4162,7 @@
               "answers": [
                 {
                   "text": "다이 온 이케 몽골 울루스",
-                  "answer_start": 0
-                },
-                {
-                  "text": "다이 온 이케 몽골 울루스",
-                  "answer_start": 0
+                  "answer_start": 95
                 }
               ]
             }
@@ -5028,11 +4182,7 @@
               "answers": [
                 {
                   "text": "대원대몽골국",
-                  "answer_start": 0
-                },
-                {
-                  "text": "대원대몽골국",
-                  "answer_start": 0
+                  "answer_start": 140
                 }
               ]
             }
@@ -5052,11 +4202,7 @@
               "answers": [
                 {
                   "text": "몽케",
-                  "answer_start": 0
-                },
-                {
-                  "text": "몽케",
-                  "answer_start": 0
+                  "answer_start": 14
                 }
               ]
             }
@@ -5076,11 +4222,7 @@
               "answers": [
                 {
                   "text": "남송",
-                  "answer_start": 0
-                },
-                {
-                  "text": "남송",
-                  "answer_start": 0
+                  "answer_start": 18
                 }
               ]
             }
@@ -5101,10 +4243,6 @@
                 {
                   "text": "1259년",
                   "answer_start": 0
-                },
-                {
-                  "text": "1259",
-                  "answer_start": 0
                 }
               ]
             }
@@ -5124,11 +4262,7 @@
               "answers": [
                 {
                   "text": "남송인",
-                  "answer_start": 0
-                },
-                {
-                  "text": "남송인",
-                  "answer_start": 0
+                  "answer_start": 52
                 }
               ]
             }
@@ -5148,11 +4282,7 @@
               "answers": [
                 {
                   "text": "카라코람",
-                  "answer_start": 0
-                },
-                {
-                  "text": "카라코람",
-                  "answer_start": 0
+                  "answer_start": 368
                 }
               ]
             }
@@ -5172,11 +4302,7 @@
               "answers": [
                 {
                   "text": "대도",
-                  "answer_start": 0
-                },
-                {
-                  "text": "대도",
-                  "answer_start": 0
+                  "answer_start": 382
                 }
               ]
             }
@@ -5196,11 +4322,7 @@
               "answers": [
                 {
                   "text": "대도",
-                  "answer_start": 0
-                },
-                {
-                  "text": "대도",
-                  "answer_start": 0
+                  "answer_start": 382
                 }
               ]
             }
@@ -5220,11 +4342,7 @@
               "answers": [
                 {
                   "text": "마르코 폴로",
-                  "answer_start": 0
-                },
-                {
-                  "text": "마르코 폴로",
-                  "answer_start": 0
+                  "answer_start": 265
                 }
               ]
             }
@@ -5244,11 +4362,7 @@
               "answers": [
                 {
                   "text": "임안",
-                  "answer_start": 0
-                },
-                {
-                  "text": "임안",
-                  "answer_start": 0
+                  "answer_start": 247
                 }
               ]
             }
@@ -5268,11 +4382,7 @@
               "answers": [
                 {
                   "text": "송나라",
-                  "answer_start": 0
-                },
-                {
-                  "text": "송나라",
-                  "answer_start": 0
+                  "answer_start": 188
                 }
               ]
             }
@@ -5292,11 +4402,7 @@
               "answers": [
                 {
                   "text": "명나라",
-                  "answer_start": 0
-                },
-                {
-                  "text": "명나라",
-                  "answer_start": 0
+                  "answer_start": 131
                 }
               ]
             }
@@ -5316,11 +4422,7 @@
               "answers": [
                 {
                   "text": "베이징",
-                  "answer_start": 0
-                },
-                {
-                  "text": "북경",
-                  "answer_start": 0
+                  "answer_start": 73
                 }
               ]
             }
@@ -5340,11 +4442,7 @@
               "answers": [
                 {
                   "text": "국제 연합",
-                  "answer_start": 0
-                },
-                {
-                  "text": "국제 연합",
-                  "answer_start": 0
+                  "answer_start": 90
                 }
               ]
             }
@@ -5364,11 +4462,7 @@
               "answers": [
                 {
                   "text": "이회성",
-                  "answer_start": 0
-                },
-                {
-                  "text": "이회성",
-                  "answer_start": 0
+                  "answer_start": 444
                 }
               ]
             }
@@ -5388,16 +4482,12 @@
               "answers": [
                 {
                   "text": "한국인",
-                  "answer_start": 0
-                },
-                {
-                  "text": "한국",
-                  "answer_start": 0
+                  "answer_start": 474
                 }
               ]
             }
           ],
-          "context": "기후 변화에 관한 정부간 협의체(氣候 變化에 關한 政府間 協議體, Intergovernmental Panel on Climate Change, 약칭 IPCC)은 국제 연합의 전문 기관인 세계 기상 기구(WMO)와 국제 연합 환경 계획(UNEP)에 의해 1988년 설립된 조직으로, 인간 활동에 대한 기후 변화의 위험을 평가하는 것이 임무이다. IPCC는 연구를 수행하거나 기상 관측을 하는 조직은 아니다. 기후 변화에 관한 국제 연합 기본 협약(UNFCCC)의 실행에 관한 보고서를 발행하는 것이 주 임무이다.이 패널은 미국의 앨 고어 전 부통령과 함께 2007년 노벨 평화상 수상자로 선정되었다. IPCC는 독자적인 연구를 추진하지 않으며 기후변화를 감시하거나 관련 현상으로 야기되는 문제 자체에 대해서는 발표하지 않는다. IPCC의 주된 활동은 UNFCCC에 관련된 의제의 실행 여부에 대한 주제 보고서를 작성하고 출판하는 데 있다. UNFCCC는 중대한 기후 변화가 일으킬 수 있는 가능성에 대한 인정하는 내용을 담은 국제협약이며 그 구체화가 교토의정서이다. IPCC는 저작물에 대한 검증을 관련 분야종사자에게 맡기고 있으며 과학적인 근거를 확인한다. 가입국은 WMO와 UNEP 회원국에 한정한다."
+          "context": "IPCC는 독자적인 연구를 추진하지 않으며 기후변화를 감시하거나 관련 현상으로 야기되는 문제 자체에 대해서는 발표하지 않는다. IPCC의 주된 활동은 UNFCCC에 관련된 의제의 실행 여부에 대한 주제 보고서를 작성하고 출판하는 데 있다.[2] UNFCCC는 중대한 기후 변화가 일으킬 수 있는 가능성에 대한 인정하는 내용을 담은 국제협약이며 그 구체화가 교토의정서이다. IPCC는 저작물에 대한 검증을 관련 분야종사자에게 맡기고 있으며 과학적인 근거를 확인한다.[3] 가입국은 WMO와 UNEP 회원국에 한정한다. 실제로 IPCC가 발표하는 보고서는 기후변화 논쟁 및 공식 토론에서도 널리 쓰이고 있다.[4][5] 각국 및 국제사회의 기후변화에 대한 관심도가 높아짐에 따라 전반적으로 국제연합의 기후협력패널에 대해서는 상당히 설득력이 있는 것으로 받아들여지고 있기도 하다.[6] 부의장이었던 이회성이 2015년 10월에 의장으로 당선됨으로써 첫 한국인 의장이 되었다."
         }
       ]
     },
@@ -5412,11 +4502,7 @@
               "answers": [
                 {
                   "text": "리처드 린젠",
-                  "answer_start": 0
-                },
-                {
-                  "text": "리처드 린젠",
-                  "answer_start": 0
+                  "answer_start": 12
                 }
               ]
             }
@@ -5436,12 +4522,8 @@
               "answers": [
                 {
                   "text": "존 휴튼",
-                  "answer_start": 0
-                },
-                {
-                  "text": "존 휴튼",
-                  "answer_start": 0
-                }
+                  "answer_start": 223
+                }}
               ]
             }
           ],
@@ -5460,11 +4542,7 @@
               "answers": [
                 {
                   "text": "의장",
-                  "answer_start": 0
-                },
-                {
-                  "text": "의장",
-                  "answer_start": 0
+                  "answer_start": 7
                 }
               ]
             }
@@ -5484,11 +4562,7 @@
               "answers": [
                 {
                   "text": "히말라야 빙하 연구",
-                  "answer_start": 0
-                },
-                {
-                  "text": "히말라야 빙하 연구",
-                  "answer_start": 0
+                  "answer_start": 176
                 }
               ]
             }
@@ -5507,12 +4581,8 @@
               "id": "229",
               "answers": [
                 {
-                  "text": "2001년",
-                  "answer_start": 0
-                },
-                {
                   "text": "2001",
-                  "answer_start": 0
+                  "answer_start": 23
                 }
               ]
             }
@@ -5532,11 +4602,7 @@
               "answers": [
                 {
                   "text": "2007년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "2007",
-                  "answer_start": 0
+                  "answer_start": 17
                 }
               ]
             }
@@ -5555,12 +4621,8 @@
               "id": "231",
               "answers": [
                 {
-                  "text": "2001년",
-                  "answer_start": 0
-                },
-                {
                   "text": "2001",
-                  "answer_start": 0
+                  "answer_start": 23
                 }
               ]
             }
@@ -5580,11 +4642,7 @@
               "answers": [
                 {
                   "text": "광합성",
-                  "answer_start": 0
-                },
-                {
-                  "text": "광합성",
-                  "answer_start": 0
+                  "answer_start": 45
                 }
               ]
             }
@@ -5604,11 +4662,7 @@
               "answers": [
                 {
                   "text": "시아노박테리아의 일종",
-                  "answer_start": 0
-                },
-                {
-                  "text": "시아노박테리아의 일종",
-                  "answer_start": 0
+                  "answer_start": 14
                 }
               ]
             }
@@ -5628,11 +4682,7 @@
               "answers": [
                 {
                   "text": "빛에너지",
-                  "answer_start": 0
-                },
-                {
-                  "text": "빛에너지",
-                  "answer_start": 0
+                  "answer_start": 190
                 }
               ]
             }
@@ -5652,11 +4702,7 @@
               "answers": [
                 {
                   "text": "빛에너지",
-                  "answer_start": 0
-                },
-                {
-                  "text": "빛에너지",
-                  "answer_start": 0
+                  "answer_start": 190
                 }
               ]
             }
@@ -5676,11 +4722,7 @@
               "answers": [
                 {
                   "text": "원반상",
-                  "answer_start": 0
-                },
-                {
-                  "text": "원반상",
-                  "answer_start": 0
+                  "answer_start": 159
                 }
               ]
             }
@@ -5700,11 +4742,7 @@
               "answers": [
                 {
                   "text": "5μm",
-                  "answer_start": 0
-                },
-                {
-                  "text": "5μm",
-                  "answer_start": 0
+                  "answer_start": 175
                 }
               ]
             }
@@ -5723,12 +4761,8 @@
               "id": "238",
               "answers": [
                 {
-                  "text": "자기 자신",
-                  "answer_start": 0
-                },
-                {
-                  "text": "자기 자신",
-                  "answer_start": 0
+                  "text": "그 수 자신",
+                  "answer_start": 131
                 }
               ]
             }
@@ -5748,11 +4782,7 @@
               "answers": [
                 {
                   "text": "무한",
-                  "answer_start": 0
-                },
-                {
-                  "text": "무한",
-                  "answer_start": 0
+                  "answer_start": 26
                 }
               ]
             }
@@ -5772,11 +4802,7 @@
               "answers": [
                 {
                   "text": "유클리드",
-                  "answer_start": 0
-                },
-                {
-                  "text": "유클리드",
-                  "answer_start": 0
+                  "answer_start": 38
                 }
               ]
             }
@@ -5796,11 +4822,7 @@
               "answers": [
                 {
                   "text": "고대 그리스",
-                  "answer_start": 0
-                },
-                {
-                  "text": "고대 그리스",
-                  "answer_start": 0
+                  "answer_start": 96
                 }
               ]
             }
@@ -5820,11 +4842,7 @@
               "answers": [
                 {
                   "text": "유클리드 원론",
-                  "answer_start": 0
-                },
-                {
-                  "text": "유클리드 원론",
-                  "answer_start": 0
+                  "answer_start": 119
                 }
               ]
             }
@@ -5844,11 +4862,7 @@
               "answers": [
                 {
                   "text": "유클리드",
-                  "answer_start": 0
-                },
-                {
-                  "text": "유클리드",
-                  "answer_start": 0
+                  "answer_start": 119
                 }
               ]
             }
@@ -5868,11 +4882,7 @@
               "answers": [
                 {
                   "text": "1640년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1640",
-                  "answer_start": 0
+                  "answer_start": 257
                 }
               ]
             }
@@ -5892,11 +4902,7 @@
               "answers": [
                 {
                   "text": "알프스",
-                  "answer_start": 0
-                },
-                {
-                  "text": "알프스",
-                  "answer_start": 0
+                  "answer_start": 35
                 }
               ]
             }
@@ -5916,11 +4922,7 @@
               "answers": [
                 {
                   "text": "북해",
-                  "answer_start": 0
-                },
-                {
-                  "text": "북해",
-                  "answer_start": 0
+                  "answer_start": 58
                 }
               ]
             }
@@ -5939,12 +4941,8 @@
               "id": "247",
               "answers": [
                 {
-                  "text": "1,230km",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1,230km",
-                  "answer_start": 0
+                  "text": "1,320km",
+                  "answer_start": 46
                 }
               ]
             }
@@ -5964,11 +4962,7 @@
               "answers": [
                 {
                   "text": "유럽",
-                  "answer_start": 0
-                },
-                {
-                  "text": "유럽",
-                  "answer_start": 0
+                  "answer_start": 5
                 }
               ]
             }
@@ -5988,11 +4982,7 @@
               "answers": [
                 {
                   "text": "레노스",
-                  "answer_start": 0
-                },
-                {
-                  "text": "레노스",
-                  "answer_start": 0
+                  "answer_start": 116
                 }
               ]
             }
@@ -6012,11 +5002,7 @@
               "answers": [
                 {
                   "text": "Rhin",
-                  "answer_start": 0
-                },
-                {
-                  "text": "Rhin",
-                  "answer_start": 0
+                  "answer_start": 8
                 }
               ]
             }
@@ -6036,7 +5022,7 @@
               "answers": [
                 {
                   "text": "Rijn",
-                  "answer_start": 0
+                  "answer_start": 46
                 },
                 {
                   "text": "Rijn",
@@ -6060,11 +5046,7 @@
               "answers": [
                 {
                   "text": "콘스탄츠 호",
-                  "answer_start": 0
-                },
-                {
-                  "text": "콘스탄츠 호",
-                  "answer_start": 0
+                  "answer_start": 153
                 }
               ]
             }
@@ -6084,11 +5066,7 @@
               "answers": [
                 {
                   "text": "1998년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1998",
-                  "answer_start": 0
+                  "answer_start": 268
                 }
               ]
             }
@@ -6108,11 +5086,7 @@
               "answers": [
                 {
                   "text": "1998년 스코틀랜드법",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1998년 스코틀랜드법",
-                  "answer_start": 0
+                  "answer_start": 268
                 }
               ]
             }
@@ -6132,11 +5106,7 @@
               "answers": [
                 {
                   "text": "129명",
-                  "answer_start": 0
-                },
-                {
-                  "text": "129명",
-                  "answer_start": 0
+                  "answer_start": 184
                 }
               ]
             }
@@ -6156,11 +5126,7 @@
               "answers": [
                 {
                   "text": "그레이트브리튼 의회",
-                  "answer_start": 0
-                },
-                {
-                  "text": "그레이트브리튼 의회",
-                  "answer_start": 0
+                  "answer_start": 184
                 }
               ]
             }
@@ -6180,11 +5146,7 @@
               "answers": [
                 {
                   "text": "73명",
-                  "answer_start": 0
-                },
-                {
-                  "text": "73명",
-                  "answer_start": 0
+                  "answer_start": 243
                 }
               ]
             }
@@ -6204,11 +5166,7 @@
               "answers": [
                 {
                   "text": "에든버러의 홀리루드",
-                  "answer_start": 0
-                },
-                {
-                  "text": "에든버러의 홀리루드",
-                  "answer_start": 0
+                  "answer_start": 98
                 }
               ]
             }
@@ -6228,11 +5186,7 @@
               "answers": [
                 {
                   "text": "1755년 - 1763년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1755-1763",
-                  "answer_start": 0
+                  "answer_start": 34
                 }
               ]
             }
@@ -6252,11 +5206,7 @@
               "answers": [
                 {
                   "text": "1754년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1754",
-                  "answer_start": 0
+                  "answer_start": 166
                 }
               ]
             }
@@ -6276,11 +5226,7 @@
               "answers": [
                 {
                   "text": "대참사",
-                  "answer_start": 0
-                },
-                {
-                  "text": "대참사",
-                  "answer_start": 0
+                  "answer_start": 92
                 }
               ]
             }
@@ -6300,11 +5246,7 @@
               "answers": [
                 {
                   "text": "보세주르 요새",
-                  "answer_start": 0
-                },
-                {
-                  "text": "보세주르 요새",
-                  "answer_start": 0
+                  "answer_start": 211
                 }
               ]
             }
@@ -6324,11 +5266,7 @@
               "answers": [
                 {
                   "text": "1744~48",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1744~1748",
-                  "answer_start": 0
+                  "answer_start": 244
                 }
               ]
             }
@@ -6348,11 +5286,7 @@
               "answers": [
                 {
                   "text": "6년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "6년",
-                  "answer_start": 0
+                  "answer_start": 104
                 }
               ]
             }
@@ -6372,11 +5306,7 @@
               "answers": [
                 {
                   "text": "1760년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1760",
-                  "answer_start": 0
+                  "answer_start": 185
                 }
               ]
             }
@@ -6396,11 +5326,7 @@
               "answers": [
                 {
                   "text": "1754년",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1754",
-                  "answer_start": 0
+                  "answer_start": 166
                 }
               ]
             }
@@ -6420,11 +5346,7 @@
               "answers": [
                 {
                   "text": "7만 5천여명",
-                  "answer_start": 0
-                },
-                {
-                  "text": "75,000여명",
-                  "answer_start": 0
+                  "answer_start": 87
                 }
               ]
             }
@@ -6444,11 +5366,7 @@
               "answers": [
                 {
                   "text": "피카윌라니",
-                  "answer_start": 0
-                },
-                {
-                  "text": "피카윌라니",
-                  "answer_start": 0
+                  "answer_start": 174
                 }
               ]
             }
@@ -6469,10 +5387,6 @@
                 {
                   "text": "1749년",
                   "answer_start": 0
-                },
-                {
-                  "text": "1749",
-                  "answer_start": 0
                 }
               ]
             }
@@ -6492,11 +5406,7 @@
               "answers": [
                 {
                   "text": "버지니아 오하이오 컴퍼니",
-                  "answer_start": 0
-                },
-                {
-                  "text": "버지니아 오하이오 컴퍼니",
-                  "answer_start": 0
+                  "answer_start": 39
                 }
               ]
             }
@@ -6516,11 +5426,7 @@
               "answers": [
                 {
                   "text": "크리스토퍼 기스트",
-                  "answer_start": 0
-                },
-                {
-                  "text": "크리스토퍼 기스트",
-                  "answer_start": 0
+                  "answer_start": 206
                 }
               ]
             }
@@ -6540,11 +5446,7 @@
               "answers": [
                 {
                   "text": "엑스라샤펠 조약",
-                  "answer_start": 0
-                },
-                {
-                  "text": "엑스라샤펠 조약",
-                  "answer_start": 0
+                  "answer_start": 270
                 }
               ]
             }
@@ -6564,11 +5466,7 @@
               "answers": [
                 {
                   "text": "종퀴에르 후작",
-                  "answer_start": 0
-                },
-                {
-                  "text": "종퀴에르 후작",
-                  "answer_start": 0
+                  "answer_start": 25
                 }
               ]
             }
@@ -6588,11 +5486,7 @@
               "answers": [
                 {
                   "text": "300명",
-                  "answer_start": 0
-                },
-                {
-                  "text": "300명",
-                  "answer_start": 0
+                  "answer_start": 208
                 }
               ]
             }
@@ -6612,11 +5506,7 @@
               "answers": [
                 {
                   "text": "폴 마린 드 라 말그",
-                  "answer_start": 0
-                },
-                {
-                  "text": "폴 마린 드 라 말그",
-                  "answer_start": 0
+                  "answer_start": 9
                 }
               ]
             }
@@ -6636,11 +5526,7 @@
               "answers": [
                 {
                   "text": "프레스크 섬 요새",
-                  "answer_start": 0
-                },
-                {
-                  "text": "프레스크 섬 요새",
-                  "answer_start": 0
+                  "answer_start": 229
                 }
               ]
             }
@@ -6660,11 +5546,7 @@
               "answers": [
                 {
                   "text": "르베프 요새",
-                  "answer_start": 0
-                },
-                {
-                  "text": "르베프 요새",
-                  "answer_start": 0
+                  "answer_start": 300
                 }
               ]
             }
@@ -6684,11 +5566,7 @@
               "answers": [
                 {
                   "text": "타나그리슨",
-                  "answer_start": 0
-                },
-                {
-                  "text": "타나그리슨",
-                  "answer_start": 0
+                  "answer_start": 460
                 }
               ]
             }
@@ -6708,11 +5586,7 @@
               "answers": [
                 {
                   "text": "와라기히그게이",
-                  "answer_start": 0
-                },
-                {
-                  "text": "와라기히그게이",
-                  "answer_start": 0
+                  "answer_start": 672
                 }
               ]
             }
@@ -6732,11 +5606,7 @@
               "answers": [
                 {
                   "text": "대령",
-                  "answer_start": 0
-                },
-                {
-                  "text": "대령",
-                  "answer_start": 0
+                  "answer_start": 757
                 }
               ]
             }
@@ -6756,11 +5626,7 @@
               "answers": [
                 {
                   "text": "오하이오 회사",
-                  "answer_start": 0
-                },
-                {
-                  "text": "오하이오 회사",
-                  "answer_start": 0
+                  "answer_start": 227
                 }
               ]
             }
@@ -6780,11 +5646,7 @@
               "answers": [
                 {
                   "text": "조지 워싱턴",
-                  "answer_start": 0
-                },
-                {
-                  "text": "조지 워싱턴",
-                  "answer_start": 0
+                  "answer_start": 179
                 }
               ]
             }
@@ -6804,11 +5666,7 @@
               "answers": [
                 {
                   "text": "12월 12일",
-                  "answer_start": 0
-                },
-                {
-                  "text": "12월 12일",
-                  "answer_start": 0
+                  "answer_start": 346
                 }
               ]
             }
@@ -6828,16 +5686,12 @@
               "answers": [
                 {
                   "text": "생피에르",
-                  "answer_start": 0
-                },
-                {
-                  "text": "생피에르",
-                  "answer_start": 0
+                  "answer_start": 40
                 }
               ]
             }
           ],
-          "context": "버지니아 총독 로버트 딘위디는 자신이 곤경에 빠진 것을 알게 되었다. 딘위디는 오하이오 회사의 투자자 중 한 사람이며, 프랑스가 오하이오를 자국령이라고 주장하면, 오하이오 회사는 돈을 잃을 수도 있었다. 1753년 10월, 오하이오에 주둔하고 있는 프랑스군에 대항하기 위해 딘위디는 21세의 버지니아 민병대 소령인 조지 워싱턴으로 하여금 프랑스군에게 버지니아에서 퇴거를 경고하도록 명령했다. 워싱턴은 소규모의 병력만 데리고 출발했다. 가는 길 내내 통역으로 재이콥 반 브라암, 그리고 버지니아 지역의 회사에서 측량사 일을 하던 크리스토퍼 기스트, 또한 타나그리슨이 이끄는 몇몇 밍고 족을 함께 데리고 갔다. 12월 12일, 워싱턴과 군인들은 르베프 요새에 도착했다. 프랑스군은 지휘관의 마린이 10월 29일에 사망하고, 자끄 르가르저 드 생피에르(Jacques Legardeur de Saint-Pierre)가 새로운 지휘관이 되어 있었다. 생피에르는 그날 밤 워싱턴을 식사에 초대했다. 식사 중 워싱턴은 딘위디가 생피에르에게 보낸 편지를 내밀었다. 그 편지에는 오하이오 컨트리에서 프랑스가 즉시 철수를 해야 한다는 내용이 있었다. 생피에르는 이에 대해 정중하게 이렇게 말했다. “귀하가 나에게 퇴거하라고 말한 것을 따를 의무가 있다고는 생각하지 않는다.”[11] 생피에르는 워싱턴에게 프랑스가 오하이오를 자국령이라고 주장하는 것은 영국보다 역사적인 시점에서 앞서 있기 때문이라고 설명했다. 라살(René-Robert Cavelier, Sieur de La Salle)이 영국보다 100년 앞서 오하이오 영토를 탐사했기 때문이었다"
+          "context": "프랑스군은 지휘관의 마린이 10월 29일에 사망하고, 자끄 르가르저 드 생피에르(Jacques Legardeur de Saint-Pierre)가 새로운 지휘관이 되어 있었다. 생피에르는 그날 밤 워싱턴을 식사에 초대했다. 식사 중 워싱턴은 딘위디가 생피에르에게 보낸 편지를 내밀었다. 그 편지에는 오하이오 컨트리에서 프랑스가 즉시 철수를 해야 한다는 내용이 있었다. 생피에르는 이에 대해 정중하게 이렇게 말했다. “귀하가 나에게 퇴거하라고 말한 것을 따를 의무가 있다고는 생각하지 않는다."
         }
       ]
     },
@@ -6852,11 +5706,7 @@
               "answers": [
                 {
                   "text": "브래독",
-                  "answer_start": 0
-                },
-                {
-                  "text": "브래독",
-                  "answer_start": 0
+                  "answer_start": 28
                 }
               ]
             }
@@ -6876,11 +5726,7 @@
               "answers": [
                 {
                   "text": "나이아가라 요새",
-                  "answer_start": 0
-                },
-                {
-                  "text": "나이아가라 요새",
-                  "answer_start": 0
+                  "answer_start": 102
                 }
               ]
             }
@@ -6900,11 +5746,7 @@
               "answers": [
                 {
                   "text": "윌리엄 헨리 요새",
-                  "answer_start": 0
-                },
-                {
-                  "text": "윌리엄 헨리 요새",
-                  "answer_start": 0
+                  "answer_start": 338
                 }
               ]
             }
@@ -6924,11 +5766,7 @@
               "answers": [
                 {
                   "text": "타이컨더로가 지점",
-                  "answer_start": 0
-                },
-                {
-                  "text": "타이컨더로가 지점",
-                  "answer_start": 0
+                  "answer_start": 445
                 }
               ]
             }
@@ -6947,12 +5785,8 @@
               "id": "289",
               "answers": [
                 {
-                  "text": "멍턴 대령",
-                  "answer_start": 0
-                },
-                {
                   "text": "멍크튼 대령",
-                  "answer_start": 0
+                  "answer_start": 21
                 }
               ]
             }
@@ -6972,11 +5806,7 @@
               "answers": [
                 {
                   "text": "윌리엄 셜리",
-                  "answer_start": 0
-                },
-                {
-                  "text": "윌리엄 셜리",
-                  "answer_start": 0
+                  "answer_start": 9
                 }
               ]
             }
@@ -6995,12 +5825,8 @@
               "id": "291",
               "answers": [
                 {
-                  "text": "제임스 애버크롬비 장군",
-                  "answer_start": 0
-                },
-                {
-                  "text": "제임스 애버크롬비 장군",
-                  "answer_start": 0
+                  "text": "제임스 애버크롬비 장군",
+                  "answer_start": 308
                 }
               ]
             }
@@ -7019,12 +5845,8 @@
               "id": "292",
               "answers": [
                 {
-                  "text": "1756년 5월 18일",
-                  "answer_start": 0
-                },
-                {
-                  "text": "1756년 5월 18일",
-                  "answer_start": 0
+                  "text": "1756년 5월 18일",
+                  "answer_start": 531
                 }
               ]
             }
@@ -7044,11 +5866,7 @@
               "answers": [
                 {
                   "text": "45,000 파운드",
-                  "answer_start": 0
-                },
-                {
-                  "text": "45,000 파운드",
-                  "answer_start": 0
+                  "answer_start": 24
                 }
               ]
             }
@@ -7068,11 +5886,7 @@
               "answers": [
                 {
                   "text": "애버크롬비",
-                  "answer_start": 0
-                },
-                {
-                  "text": "애버크롬비",
-                  "answer_start": 0
+                  "answer_start": 287
                 }
               ]
             }
@@ -7092,11 +5906,7 @@
               "answers": [
                 {
                   "text": "몽칼름",
-                  "answer_start": 0
-                },
-                {
-                  "text": "몽칼름",
-                  "answer_start": 0
+                  "answer_start": 91
                 }
               ]
             }
@@ -7116,11 +5926,7 @@
               "answers": [
                 {
                   "text": "오스웨고",
-                  "answer_start": 0
-                },
-                {
-                  "text": "오스웨고",
-                  "answer_start": 0
+                  "answer_start": 7
                 }
               ]
             }
@@ -7140,11 +5946,7 @@
               "answers": [
                 {
                   "text": "윌리엄 피트",
-                  "answer_start": 0
-                },
-                {
-                  "text": "윌리엄 피트",
-                  "answer_start": 0
+                  "answer_start": 149
                 }
               ]
             }
@@ -7164,11 +5966,7 @@
               "answers": [
                 {
                   "text": "프랑스의 비정규군",
-                  "answer_start": 0
-                },
-                {
-                  "text": "프랑스의 비정규군",
-                  "answer_start": 0
+                  "answer_start": 388
                 }
               ]
             }
@@ -7188,11 +5986,7 @@
               "answers": [
                 {
                   "text": "흉작",
-                  "answer_start": 0
-                },
-                {
-                  "text": "흉작",
-                  "answer_start": 0
+                  "answer_start": 83
                 }
               ]
             }
@@ -7212,11 +6006,7 @@
               "answers": [
                 {
                   "text": "세인트로렌스 강",
-                  "answer_start": 0
-                },
-                {
-                  "text": "세인트로렌스 강",
-                  "answer_start": 0
+                  "answer_start": 460
                 }
               ]
             }
