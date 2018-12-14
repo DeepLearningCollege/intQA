@@ -15,20 +15,48 @@ def del_all_flags(FLAGS):
 def analyze(passage, question):
     f = tf.app.flags
 
-    f.FLAGS.model_type="fusion_net"
-    f.FLAGS.experiment_name="fusion_net_ko"
-    f.FLAGS.checkpoint_dir="checkpoint_fusion_net_ko"
-    f.FLAGS.log_dir="log_fusion_net_ko"
-    f.FLAGS.num_gpus=1
+    # --model_type = rnet \
+    # - -rnn_size = 40 \
+    # - -batch_size = 16 \
+    # - -input_dropout = 0.3 \
+    # - -rnn_dropout = 0.3 \
+    # - -dropout = 0.3 \
+    # - -num_gpus = 2 \
+    # - -checkpoint_dir = checkpoint_rnet_ko \
+    # - -experiment_name = rnet_ko \
+    # - -log_dir = log_rnet_ko \
+    # - -word_embedding_model_type = fasttext \
+    # - -exobrain_korean_dataset = True
+
+    f.FLAGS.model_type="rnet"
+    f.FLAGS.experiment_name="rnet_ko"
+    f.FLAGS.checkpoint_dir="checkpoint_rnet_ko"
+    f.FLAGS.log_dir="log_rnet_ko"
+    f.FLAGS.num_gpus=0
     f.FLAGS.batch_size=16
-    f.FLAGS.rnn_size=128
-    f.FLAGS.dropout=0.4
-    f.FLAGS.input_dropout=0.4
+    f.FLAGS.rnn_size=40
+    f.FLAGS.dropout=0.3
+    f.FLAGS.input_dropout=0.3
     f.FLAGS.rnn_dropout=0.3
     f.FLAGS.word_embedding_model_type="fasttext"
     f.FLAGS.exobrain_korean_dataset=True
     f.FLAGS.context=passage
     f.FLAGS.question=question
+
+    # f.FLAGS.model_type="fusion_net"
+    # f.FLAGS.experiment_name="fusion_net_ko"
+    # f.FLAGS.checkpoint_dir="checkpoint_fusion_net_ko"
+    # f.FLAGS.log_dir="log_fusion_net_ko"
+    # f.FLAGS.num_gpus=1
+    # f.FLAGS.batch_size=16
+    # f.FLAGS.rnn_size=128
+    # f.FLAGS.dropout=0.4
+    # f.FLAGS.input_dropout=0.4
+    # f.FLAGS.rnn_dropout=0.3
+    # f.FLAGS.word_embedding_model_type="fasttext"
+    # f.FLAGS.exobrain_korean_dataset=True
+    # f.FLAGS.context=passage
+    # f.FLAGS.question=question
 
     # f.FLAGS.remove_flag_values(f.FLAGS.flag_values_dict())
     # del_all_flags(f.FLAGS)
